@@ -84,4 +84,15 @@ body{
   .toggle-checkbox:checked + .toggle-label::after {
     transform: translateX(30px);
   }
+
+  /* Safari */
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-touch-callout: none) {
+        /* Safari specific styles */
+        .your-class {
+            /* Your styles here */
+        }
+    }
+}
+
   
