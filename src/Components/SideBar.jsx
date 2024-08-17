@@ -26,7 +26,7 @@ const SideBar = () => {
                     </span>
                     <span>
                        <img src={packageLogo}></img>
-                        <Link to='/package'>Package</Link>
+                        <Link to='/create-package'>Package</Link>
                     </span>
                     {/* <span>
                        <img src={chat}></img>
