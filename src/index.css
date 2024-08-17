@@ -39,7 +39,8 @@ body{
 .select{
     background-color: #E9EAEB;
     border-radius: 5px;
-    padding: 5px;
+    padding: 10px;
+    border: none;
 }
 
 /* Switch */
