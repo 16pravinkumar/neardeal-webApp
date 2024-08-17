@@ -20,7 +20,7 @@ body{
 }
 
 /* Button */
-.btn{
+.button{
     display: inline-block;
     padding: 10px 20px;
     background-color: black;
@@ -30,7 +30,7 @@ body{
     transition: background-color 0.3s;
 }
 
-.btn:hover{
+.button:hover{
     background-color: #333;
     color: white;
 }

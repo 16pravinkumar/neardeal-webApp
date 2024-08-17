@@ -78,7 +78,6 @@ const Limits = () => {
                                     />
                                     <label htmlFor="toggle1" className="toggle-label"></label>
                                     {/* <span>Publish</span> */}
-
                                 </div>
 
                                 <div style={{display:'flex', flexDirection:'column', margin:'0px 10px'}}>

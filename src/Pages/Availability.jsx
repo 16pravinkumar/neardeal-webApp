@@ -33,7 +33,7 @@ const Availability = () => {
                         <div className="body">
                             <div>
                                 <span>Regular Time</span>
-                                <button className="btn">
+                                <button className="button">
                                     Create New Present
                                 </button>
                             </div>
@@ -54,7 +54,7 @@ const Availability = () => {
 
                             <div>
                                 <span>Date override</span>
-                                <button className="btn">
+                                <button className="button">
                                     Create New Present
                                 </button>
                             </div>

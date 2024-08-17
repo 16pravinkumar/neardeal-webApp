@@ -55,7 +55,7 @@ const CreatePackage = () => {
                             </div>
 
                             <div className="right">
-                                <button className="btn">Save Changes</button>
+                                <button className="button">Save Changes</button>
                             </div>
                         </div>
                         <div className="body">
@@ -81,7 +81,7 @@ const CreatePackage = () => {
                             </div>
                             <div style={{ justifyContent: "end" }}>
                                 <button style={{ borderRadius: '5px', padding: '0px 10px', margin: '0px 10px' }}>Remove All</button>
-                                <button className="btn">Upload</button>
+                                <button className="button">Upload</button>
                             </div>
                             <div className="grey">What's included</div>
                             <div className="text-section">
@@ -152,7 +152,7 @@ const CreatePackage = () => {
                             </div>
 
                             <div>
-                                <button className="btn">Save changes</button>
+                                <button className="button">Save changes</button>
                             </div>
                         </div>
                     </div>
