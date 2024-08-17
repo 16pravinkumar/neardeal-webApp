@@ -11,6 +11,11 @@ import chat from "../assets/chat.svg"
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
+
+    const isActive = (path) => {
+        return location.pathname === path ? 'active' : '';
+      };
+
     return (
         <>
         <div className="sidebar">
@@ -20,13 +25,13 @@ const SideBar = () => {
                 </div>
                 <span className="sidebar-subtitle">CUSTOMER</span>
                 <div className="sidebar-list">
-                    <span>
+                    <span className={`${isActive('/')}`}>
                        <img src={booking}></img>
-                        <Link to='/'>Booking</Link>
+                        <Link style={{textDecoration:'none'}} to='/'>Booking</Link>
                     </span>
-                    <span>
+                    <span className={`${isActive('/create-package')}`}>
                        <img src={packageLogo}></img>
-                        <Link to='/create-package'>Package</Link>
+                        <Link style={{textDecoration:'none'}} to='/create-package'>Package</Link>
                     </span>
                     {/* <span>
                        <img src={chat}></img>

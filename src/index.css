@@ -85,14 +85,11 @@ body{
     transform: translateX(30px);
   }
 
-  /* Safari */
-  @media not all and (min-resolution: 0.001dpcm) {
-    @supports (-webkit-touch-callout: none) {
-        /* Safari specific styles */
-        .your-class {
-            /* Your styles here */
-        }
-    }
-}
-
   
+  
+  .active{
+    background-color: #EBF8F3;
+    padding: 10px;
+    border-radius: 10px;
+    color: #00B87C;
+  }
