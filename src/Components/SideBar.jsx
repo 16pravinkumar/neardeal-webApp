@@ -29,7 +29,7 @@ const SideBar = () => {
                        <img src={booking}></img>
                         <Link style={{textDecoration:'none'}} to='/'>Booking</Link>
                     </span>
-                    <span className={`${isActive('/create-package')}`}>
+                    <span className={`${isActive('/create-package')} ${isActive('/availability')} ${isActive('/limits')}`}>
                        <img src={packageLogo}></img>
                         <Link style={{textDecoration:'none'}} to='/create-package'>Package</Link>
                     </span>

@@ -85,11 +85,16 @@ body{
     transform: translateX(30px);
   }
 
-  
-  
   .active{
     background-color: #EBF8F3;
     padding: 10px;
     border-radius: 10px;
     color: #00B87C;
+  }
+
+  .grey-active{
+    background-color: #DAD8DE;
+    padding: 15px;
+    border-radius: 10px;
+    color: black;
   }
