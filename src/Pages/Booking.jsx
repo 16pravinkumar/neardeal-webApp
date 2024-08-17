@@ -112,7 +112,7 @@ const Booking = () => {
                             <div className="card-body pb-0">
                                 <div className="row">
                                     <div className="col-lg-2">
-                                        <img src="../assets/offCanPackage.png" width="100%" alt="Package" />
+                                        <img style={{borderRadius:'5px'}} src="https://avatars.githubusercontent.com/u/97161064?v=4" width="100%" alt="Package" />
                                     </div>
                                     <div className="col-lg-8">
                                         <p className="offCanOfferType">Regular</p>
@@ -140,7 +140,7 @@ const Booking = () => {
                             <div className="card-body ">
                                 <div className="row">
                                     <div className="col-lg-4">
-                                        <img src="../assets/cust1.png" width="100%" alt="Customer" />
+                                        <img style={{borderRadius:'50%'}} src="https://avatars.githubusercontent.com/u/97161064?v=4" width="100%" alt="Customer" />
                                     </div>
                                     <div className="col-lg-8 my-auto">
                                         <p id="custName">Qwerty</p>
