@@ -40,17 +40,17 @@ const SideBar = () => {
                 </div>
                 <span className="sidebar-subtitle">STORE</span>
                 <div className="sidebar-list">
-                    <span>
+                    <span className={`${isActive('/campaign')}`}>
                        <img src={campaign}></img>
-                        Campaign
+                        <Link style={{textDecoration:'none'}} to="/campaign">Campaign</Link>
                     </span>
                     <span>
                       <img src={analytics}></img>
                         Analytics
                     </span>
-                    <span>
+                    <span className={`${isActive('/transaction')}`}>
                         <img src={transaction}></img>
-                        Transaction
+                        <Link style={{textDecoration:'none'}} to="/transaction">Transaction</Link>
                     </span>
                     {/* <span>
                         <img src={staff}></img>

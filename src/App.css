@@ -466,4 +466,93 @@
     height: 1px;   
 }
 
+/* Campaign */
+.campaign-ads, .campaign-blog{
+    padding: 20px 40px;
+    background-color: #fff;
+    height: fit-content;
+    border-radius: 10px;
+}
 
+.campaign-ads{
+    display: flex;
+    justify-content: space-between;
+}
+
+.campaign-ads div{
+    display: flex;
+    flex-direction: column;
+}
+
+.campaign-ads .edit{
+    display: flex;
+    width: 15%;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.campaign-blog{
+    display: flex;
+}
+
+.campaign-blog .btn{
+    width: 28%;
+}
+
+/* Payment */
+
+.payment-table-container {
+    padding: 20px;
+  }
+  
+  .payment-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+  
+  .payment-table th, .payment-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .payment-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  
+  .payment-table th span {
+    font-size: 12px;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+  
+  .payment-table td {
+    background-color: #ffffff;
+  }
+  
+  .payment-table td input[type="checkbox"] {
+    cursor: pointer;
+  }
+  
+  .payment-table .status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  .payment-table .status.uncaptured {
+    background-color: #e0f7fa;
+    color: #00796b;
+  }
+  
+  .payment-table .status.succeeded {
+    background-color: #e8f5e9;
+    color: #388e3c;
+  }
+  
