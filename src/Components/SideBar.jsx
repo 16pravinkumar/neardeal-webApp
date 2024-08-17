@@ -44,9 +44,9 @@ const SideBar = () => {
                        <img src={campaign}></img>
                         <Link style={{textDecoration:'none'}} to="/campaign">Campaign</Link>
                     </span>
-                    <span>
+                    <span  className={`${isActive('/analytics')}`}>
                       <img src={analytics}></img>
-                        Analytics
+                        <Link style={{textDecoration:'none'}} to="/analytics">Analytics</Link>
                     </span>
                     <span className={`${isActive('/transaction')}`}>
                         <img src={transaction}></img>
