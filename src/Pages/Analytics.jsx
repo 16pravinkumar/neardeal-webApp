@@ -60,6 +60,22 @@ const AnalyticsDashboard = () => {
           <h3>Top Selling Package</h3>
           <Bar data={barChartData} />
         </div>
+        <div className="chart-box">
+          <h3>Total Orders</h3>
+          <Line data={lineChartData} />
+        </div>
+        <div className="chart-box">
+          <h3>Returning Customers</h3>
+          <Line data={lineChartData} />
+        </div>
+        <div className="chart-box">
+          <h3>Average Order Value</h3>
+          <Line data={lineChartData} />
+        </div>
+        <div className="chart-box">
+          <h3>Saled by Marketing</h3>
+          <Line data={lineChartData} />
+        </div>
       </div>
     </div>
   </div>
