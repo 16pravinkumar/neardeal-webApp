@@ -8,11 +8,23 @@ import PackageSideBar from "../Components/PackageSideBar";
 
 const Limits = () => {
 
-    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked1, setIsChecked1] = useState(false);
+    const [isChecked2, setIsChecked2] = useState(false);
+    const [isChecked3, setIsChecked3] = useState(false);
 
-    const handleToggle = () => {
-        setIsChecked(!isChecked);
-        console.log('Toggle state:', !isChecked);
+    const handleToggle1 = () => {
+        setIsChecked1(!isChecked1);
+        console.log('Toggle state:', !isChecked1);
+    };
+
+    const handleToggle2 = () => {
+        setIsChecked2(!isChecked2);
+        console.log('Toggle state:', !isChecked2);
+    };
+
+    const handleToggle3 = () => {
+        setIsChecked3(!isChecked3);
+        console.log('Toggle state:', !isChecked3);
     };
 
     return (
@@ -59,12 +71,12 @@ const Limits = () => {
                                 <div className="toggle-switch">
                                     <input
                                         type="checkbox"
-                                        id="toggle"
+                                        id="toggle1"
                                         className="toggle-checkbox"
-                                        checked={isChecked}
-                                        onChange={handleToggle}
+                                        checked={isChecked1}
+                                        onChange={handleToggle1}
                                     />
-                                    <label htmlFor="toggle" className="toggle-label"></label>
+                                    <label htmlFor="toggle1" className="toggle-label"></label>
                                     {/* <span>Publish</span> */}
 
                                 </div>
@@ -86,12 +98,12 @@ const Limits = () => {
                                 <div className="toggle-switch">
                                     <input
                                         type="checkbox"
-                                        id="toggle"
+                                        id="toggle2"
                                         className="toggle-checkbox"
-                                        checked={isChecked}
-                                        onChange={handleToggle}
+                                        checked={isChecked2}
+                                        onChange={handleToggle2}
                                     />
-                                    <label htmlFor="toggle" className="toggle-label"></label>
+                                    <label htmlFor="toggle2" className="toggle-label"></label>
                                     {/* <span>Publish</span> */}
 
                                 </div>
@@ -107,12 +119,12 @@ const Limits = () => {
                                 <div className="toggle-switch">
                                     <input
                                         type="checkbox"
-                                        id="toggle"
+                                        id="toggle3"
                                         className="toggle-checkbox"
-                                        checked={isChecked}
-                                        onChange={handleToggle}
+                                        checked={isChecked3}
+                                        onChange={handleToggle3}
                                     />
-                                    <label htmlFor="toggle" className="toggle-label"></label>
+                                    <label htmlFor="toggle3" className="toggle-label"></label>
                                     {/* <span>Publish</span> */}
 
                                 </div>
