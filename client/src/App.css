@@ -1,4 +1,149 @@
 
+/* Signup */
+.bg-grad{
+    background-image: linear-gradient(#ACABF44D, #F2F0F6, #F4A9A933);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.header-logo{
+    color: var(--black-main, #000);
+    font-family: Prompt;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+.logo-img{
+    height: 2.5rem;
+    margin: 0 0.5%;
+}
+/* //------- Form Body ------------ */
+
+#form{
+    margin: 12% 0 0 0; /*TRBL*/
+    justify-content: center;
+}
+
+.form-header{
+    color: var(--Default-Black, #252936);
+    font-family: "Prompt";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.formFields{
+    border: 1px solid #000;
+    border-radius: 0.5rem;
+    padding: 2%;
+}
+
+#google-ic{
+    display: flex;
+    margin: 4% auto;
+    width: 4rem;
+    height: 4rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: 0.5px solid rgba(0, 0, 0, 0.20);
+}
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.fade-in {
+    animation: slideXIn 0.5s;
+}
+
+.fade-out {
+    animation: slideXOut 0.5s;
+}
+.slide-in{
+    animation: slideYIn 0.5s;
+}
+.slide-out{
+    animation: slideYOut 0.5s;
+}
+
+.upload-logo {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.upload-logo input[type="file"] {
+    display: none;
+}
+
+#logo_preview {
+    border: 2px dashed #ccc;
+    padding: 5%;
+    border-radius: 50%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes slideXIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideXOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideYIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideYOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
 /* SideBar */
 .sidebar{
     display: flex;

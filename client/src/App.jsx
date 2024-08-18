@@ -7,11 +7,17 @@ import Limits from './Pages/Limits'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Transaction from './Pages/Transaction'
 import Analytics from './Pages/Analytics'
+import SignUp from './Pages/Signup'
 
 function App() {
   return (
     <Router>
       <Routes>
+
+        {/* Signup */}
+
+        <Route path='/signup' exact element={<SignUp></SignUp>}></Route>
+
         <Route path='/' exact element={<Booking></Booking>} />
 
         <Route path='/create-package' element={<CreatePackage></CreatePackage>} />
@@ -20,7 +26,7 @@ function App() {
 
         <Route path='/campaign' element={<Campaign />} />
         <Route path='/transaction' element={<Transaction />} />
-        <Route path='/analytics' element={<Analytics/>} />
+        <Route path='/analytics' element={<Analytics />} />
       </Routes>
       {/* <Booking></Booking> */}
       {/* <CreatePackage></CreatePackage> */}
