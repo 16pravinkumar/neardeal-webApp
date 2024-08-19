@@ -24,9 +24,10 @@ const Login = () => {
             const data = res.data;
             console.log(data);
             // Example success message
+            
             toast.success('Login successful!');
             Cookies.set('user_token', res.data.token);
-            navigate('/');
+            window.location.href = '/';
             // Handle successful login logic here
         } catch (error) {
             console.error(error);
