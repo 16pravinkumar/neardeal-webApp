@@ -78,7 +78,7 @@ const login = async (req, res) => {
     }
 
     // Generate a JWT token
-    const token = jwt.sign({ id: existingMerchant._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: existingMerchant._id }, 'jfjkdkjjkjdskjbkjsdbvbjvbsjvbahdhdvhjdjhdc');
 
     // Respond with success
     res.status(200).json({
