@@ -4,12 +4,14 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const conn = require('./conn/conn.js');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(bodyParser.json());
 app.use(cors({
    credentials: true,
-    origin: ['http://localhost:5173']
+    origin: ['http://localhost:5173', 'http://localhost:3000']
 }));
 
 dotenv.config();

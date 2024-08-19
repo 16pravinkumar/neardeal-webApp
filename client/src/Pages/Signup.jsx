@@ -1,8 +1,18 @@
 import { useState } from "react";
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+
+import logo from "../assets/logo.svg"
+import spa from "../assets/spa.svg"
+import salon from "../assets/salon.svg"
+import yoga from "../assets/yoga.svg"
+import gym from "../assets/gym.svg"
 
 const SignUp = () => {
+    const navigate = useNavigate();
     const [currentStep, setCurrentStep] = useState(1);
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         email: "",
         storeName: "",
@@ -20,7 +30,6 @@ const SignUp = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        console.log(`Updating ${name} with value: ${value}`); // Debugging line
         setFormData(prevFormData => ({
             ...prevFormData,
             [name]: value,
@@ -28,15 +37,21 @@ const SignUp = () => {
     };
 
     const handleFileChange = (e) => {
-        console.log("File selected:", e.target.files[0]); // Debugging line
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            storeLogo: e.target.files[0], // Save the file object
-        }));
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData(prevFormData => ({
+                    ...prevFormData,
+                    storeLogo: reader.result // Base64 encoded string
+                }));
+            };
+            reader.readAsDataURL(file);
+        }
     };
+    
 
     const selCategory = (id) => {
-        console.log("Category selected:", id); // Debugging line
         setFormData(prevFormData => ({
             ...prevFormData,
             category: id,
@@ -48,50 +63,51 @@ const SignUp = () => {
     };
 
     const launchMerchant = async () => {
-        console.log(formData); // Debugging line
-    
+        setLoading(true);
         try {
-            // Create a FormData object to handle form data and file uploads
-            // const formDataToSend = new FormData();
+            const payload = {
+                email: formData.email,
+                storeName: formData.storeName,
+                password: formData.password,
+                confirmPassword: formData.confirmPassword,
+                dob: formData.dob,
+                contact: formData.contact,
+                category: formData.category,
+                storeAddress: formData.storeAddress,
+                city: formData.city,
+                country: formData.country,
+                zip: formData.zip,
+                storeLogo: formData.storeLogo // Base64 string
+            };
     
-            // Append form fields
-            // Object.keys(formData).forEach(key => {
-            //     if (formData[key] instanceof File) {
-            //         formDataToSend.append(key, formData[key]); // Append file as is
-            //     } else {
-            //         formDataToSend.append(key, formData[key]);
-            //     }
-            // });
-            
-            // Send the POST request with the form data
-            const response = await axios.post("http://localhost:3000/api/v1/signup", formData);
-    
-            // Handle the response
+            const response = await axios.post("http://localhost:3000/api/v1/signup", payload, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
             console.log("Form submitted successfully:", response.data);
-            // Optionally, reset the form or navigate to another page
-    
+            toast.success('Merchant account created successfully');
+            navigate('/login');
         } catch (error) {
             if (error.response) {
-                // Server responded with a status other than 2xx
                 console.error("Error submitting form:", error.response.data.message);
+                toast.error(error.response.data.message);
             } else if (error.request) {
-                // Request was made but no response received
                 console.error("Network error:", error.request);
             } else {
-                // Something happened in setting up the request
                 console.error("Error:", error.message);
             }
+        } finally{
+            setLoading(false); 
         }
     };
     
-
     return (
         <div className="bg-grad">
             <nav className="navbar navbar-expand-sm navbar-light p-4">
                 <div className="container-fluid">
-                    <img src="../assets/image 10logo.png" className="logo-img" alt="logo" />
-                    <h1 className="header-logo float-start">neardeal</h1>
                     <div className="collapse navbar-collapse" id="mynavbar">
+                        <img src={logo} className="logo-img" alt="logo" />
                         <ul className="navbar-nav me-auto"></ul>
                     </div>
                     <button className="btn px-0 float-end" type="button" style={{ color: "rgba(0, 0, 0, 0.50)" }}>
@@ -221,7 +237,7 @@ const SignUp = () => {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-5 p-2">
-                                                    <img src="../assets/spa.png" className="img-fluid rounded-start" alt="Spa" />
+                                                    <img src={spa} className="img-fluid rounded-start" alt="Spa" />
                                                 </div>
                                             </div>
                                         </div>
@@ -235,21 +251,35 @@ const SignUp = () => {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-5 p-2">
-                                                    <img src="../assets/salon.png" className="img-fluid rounded-start" alt="Salon" />
+                                                    <img src={salon} className="img-fluid rounded-start" alt="Salon" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-6 col-sm-12" style={{ paddingRight: "1%" }}>
-                                        <div className="card mb-2" onClick={() => selCategory("All")} id="All">
+                                        <div className="card mb-2" onClick={() => selCategory("yoga")} id="yoga">
                                             <div className="row g-0">
                                                 <div className="col-md-6 m-auto">
                                                     <div className="card-body">
-                                                        <p className="card-text">All</p>
+                                                        <p className="card-text">Yoga</p>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-5 p-2">
-                                                    <img src="../assets/all.png" className="img-fluid rounded-start" alt="All" />
+                                                    <img src={yoga} className="img-fluid rounded-start" alt="yoga" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-6 col-sm-12" style={{ paddingRight: "1%" }}>
+                                        <div className="card mb-2" onClick={() => selCategory("gym")} id="gym">
+                                            <div className="row g-0">
+                                                <div className="col-md-6 m-auto">
+                                                    <div className="card-body">
+                                                        <p className="card-text">Gym</p>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-5 p-2">
+                                                    <img src={gym} className="img-fluid rounded-start" alt="gym" />
                                                 </div>
                                             </div>
                                         </div>
@@ -325,6 +355,11 @@ const SignUp = () => {
                                 <div className="d-grid mt-3">
                                     <button type="button" className="btn btn-dark btn-block" onClick={launchMerchant}>
                                         Launch Merchant Account
+                                        {
+                                            loading && (
+                                                <span className="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
+                                            )
+                                        }
                                     </button>
                                 </div>
                             </div>
