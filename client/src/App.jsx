@@ -30,6 +30,9 @@ function App() {
         <Route path='/transaction' element={<Transaction></Transaction>}></Route>
         <Route path='/campaign' element={<Campaign></Campaign>}></Route>
         {/* Protected Routes */}
+        {/* <Route path="/limits" exact element={<ProtectedRoutes Component={Limits} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/transaction" exact element={<ProtectedRoutes Component={Transaction} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/campaign" exact element={<ProtectedRoutes Component={Campaign} isUserLoggedIn={isUserLoggedIn} />} /> */}
       </Routes>
       {/* <Booking></Booking> */}
       {/* <CreatePackage></CreatePackage> */}
