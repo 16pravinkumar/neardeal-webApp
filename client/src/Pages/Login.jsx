@@ -3,12 +3,9 @@ import { useState } from 'react';
 import logo from '../assets/logo.svg';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const Login = () => {
-    // State hooks for managing form values and loading state
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,11 +20,9 @@ const Login = () => {
             });
             const data = res.data;
             console.log(data);
-            // Example success message
-            
-            toast.success('Login successful!');
-            Cookies.set('user_token', res.data.token);
             window.location.href = '/';
+            Cookies.set('user_token', res.data.token);
+            toast.success('Login successful!');
             // Handle successful login logic here
         } catch (error) {
             console.error(error);

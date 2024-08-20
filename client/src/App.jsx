@@ -22,15 +22,14 @@ function App() {
         <Route path='/signup' exact element={<SignUp></SignUp>}></Route>
         <Route path='/login' exact element={<Login />} />
 
+        <Route path='/' element={<Booking></Booking>}></Route>
+        <Route path='/analytics' element={<Analytics></Analytics>}></Route>
+        <Route path='/create-package' element={<CreatePackage></CreatePackage>}></Route>
+        <Route path='/availability' element={<Availability></Availability>}></Route>
+        <Route path='/limits' element={<Limits></Limits>}></Route>
+        <Route path='/transaction' element={<Transaction></Transaction>}></Route>
+        <Route path='/campaign' element={<Campaign></Campaign>}></Route>
         {/* Protected Routes */}
-        <Route path="/" exact element={<ProtectedRoutes Component={Booking} isUserLoggedIn={isUserLoggedIn} />} />
-        <Route path="/analytics" exact element={<ProtectedRoutes Component={Analytics} isUserLoggedIn={isUserLoggedIn} />} />
-        <Route path="/create-package" exact element={<ProtectedRoutes Component={CreatePackage} isUserLoggedIn={isUserLoggedIn} />} />
-        <Route path="/availability" exact element={<ProtectedRoutes Component={Availability} isUserLoggedIn={isUserLoggedIn} />} />
-        
-        <Route path="/limits" exact element={<ProtectedRoutes Component={Limits} isUserLoggedIn={isUserLoggedIn} />} />
-        <Route path="/transaction" exact element={<ProtectedRoutes Component={Transaction} isUserLoggedIn={isUserLoggedIn} />} />
-        <Route path="/campaign" exact element={<ProtectedRoutes Component={Campaign} isUserLoggedIn={isUserLoggedIn} />} />
       </Routes>
       {/* <Booking></Booking> */}
       {/* <CreatePackage></CreatePackage> */}
