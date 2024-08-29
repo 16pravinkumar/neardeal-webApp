@@ -14,6 +14,37 @@ body{
 
 /* Global */
 
+.item{
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.item div, .item{
+  display: flex;
+  flex-direction: row;
+}
+
+.item .left img{
+  width: 5%;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.item .left div{
+  flex-direction: column;
+}
+
+.item .left div div{
+  flex-direction: row;
+}
+
+.item .right div{
+  align-items: center;
+}
+
+
 /* Colors */
 .grey{
     color: #919EAB;

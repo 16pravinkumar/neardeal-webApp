@@ -330,6 +330,34 @@
 /* Booking */
 
 /* Create Package */
+.package-body{
+    overflow-y: auto;
+    height: 70vh;
+}
+
+/* spa */
+.spa{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.spa img{
+    width: max-content;
+}
+
+.spa div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.spa button{
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .create-package{
     padding: 40px 80px;
 }
