@@ -11,6 +11,7 @@ import icon2 from "../assets/icon2.svg";
 import icon3 from "../assets/icon3.svg";
 import deleteIcon from "../assets/deleteIcon.svg";
 import PackageSideBar from "../Components/PackageSideBar";
+import { Link } from "react-router-dom";
 
 const CreatePackage = () => {
 
@@ -26,7 +27,7 @@ const CreatePackage = () => {
             <SideBar></SideBar>
             <img style={{ position: 'absolute', top: 0, zIndex: '-1', width: '100%' }} src={background}></img>
             <div className="create-package" style={{ width: '80%' }}>
-                <span className="heading"> <img src={leftArrow} /> Create Package</span>
+                <span className="heading"> <Link to="/package"><img src={leftArrow} /></Link> Create Package</span>
                 <div>
                     <div className="left">
                       <PackageSideBar/>
