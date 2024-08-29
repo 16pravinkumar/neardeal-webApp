@@ -15,8 +15,8 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         email: "",
-        storeName: "",
         password: "",
+        storeName: "",
         confirmPassword: "",
         dob: "",
         contact: "",
@@ -25,7 +25,7 @@ const SignUp = () => {
         city: "",
         country: "",
         zip: "",
-        storeLogo: null,
+        profilePic: null,
     });
 
     const handleInputChange = (e) => {
@@ -67,17 +67,17 @@ const SignUp = () => {
         try {
             const payload = {
                 email: formData.email,
-                storeName: formData.storeName,
                 password: formData.password,
+                storeName: formData.storeName,
+                contact: formData.contact,
                 confirmPassword: formData.confirmPassword,
                 dob: formData.dob,
-                contact: formData.contact,
                 category: formData.category,
                 storeAddress: formData.storeAddress,
                 city: formData.city,
                 country: formData.country,
                 zip: formData.zip,
-                storeLogo: formData.storeLogo // Base64 string
+                profilePic: formData.storeLogo // Base64 string
             };
     
             const response = await axios.post("http://localhost:3000/api/v1/signup", payload, {
@@ -343,10 +343,10 @@ const SignUp = () => {
                                     onChange={handleFileChange}
                                     required
                                 />
-                                {formData.storeLogo && (
+                                {formData.profilePic && (
                                     <div className="mt-3">
                                         <img
-                                            src={URL.createObjectURL(formData.storeLogo)}  // Show preview of selected image
+                                            src={URL.createObjectURL(formData.profilePic)}  // Show preview of selected image
                                             alt="Store Logo Preview"
                                             style={{ maxWidth: '100px', maxHeight: '100px' }}
                                         />

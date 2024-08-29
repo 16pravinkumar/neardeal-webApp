@@ -645,6 +645,35 @@
     width: 28%;
 }
 
+.campaign-nearreel .item{
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.campaign-nearreel .item div, .campaign-nearreel .item{
+    display: flex;
+    flex-direction: row;
+}
+
+.campaign-nearreel .item .left img{
+    width: 5%;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.campaign-nearreel .item .left div{
+    flex-direction: column;
+}
+
+.campaign-nearreel .item .left div div{
+    flex-direction: row;
+}
+
+.campaign-nearreel .item .right div{
+    align-items: center;
+}
+
 /* Payment */
 
 .payment-table-container {
