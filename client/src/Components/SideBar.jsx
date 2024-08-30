@@ -56,9 +56,9 @@ const SideBar = () => {
                         <img src={staff}></img>
                         Staff
                     </span> */}
-                    <span>
+                    <span className={`${isActive('/store-settings')}`}>
                         <img src={storeSetting}></img>
-                        Store Setting
+                        <Link style={{textDecoration:'none'}} to="/store-settings">Store Setting</Link>
                     </span>
                     <span>
                     <img src={aiLogo}></img>

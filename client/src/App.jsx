@@ -15,6 +15,7 @@ import CampaignRedeemRecord from './Components/CampaignRedeemRecord.jsx';
 import Login from './Pages/Login'
 import Cookies from "js-cookie";
 import CampainAnalytics from './Components/CampainAnalytics'
+import StoreSettings from './Pages/StoreSettings.jsx'
 
 function App() {
   const jwtUserToken = Cookies.get("user_token");
@@ -37,6 +38,7 @@ function App() {
         <Route path='/create-coupon' element={<CreateCoupon/>}></Route>
         <Route path='/campaign/analytics' element={<CampainAnalytics/>}></Route>
         <Route path='/campaign/redeemcode' element={<CampaignRedeemRecord></CampaignRedeemRecord>}></Route>
+        <Route path='/store-settings' element={<StoreSettings></StoreSettings>}></Route>
         {/* Protected Routes */}
         {/* <Route path="/limits" exact element={<ProtectedRoutes Component={Limits} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/transaction" exact element={<ProtectedRoutes Component={Transaction} isUserLoggedIn={isUserLoggedIn} />} />
