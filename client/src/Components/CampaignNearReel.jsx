@@ -4,6 +4,7 @@ import eye from '../assets/eye.svg'
 import share from '../assets/share.svg'
 import eye1 from '../assets/eye1.svg'
 import likes from '../assets/likes.svg'
+import { motion } from 'framer-motion'
 
 const CampaignNearReel = () => {
     const [isChecked, setIsChecked] = useState(false);
@@ -13,7 +14,10 @@ const CampaignNearReel = () => {
         console.log('Toggle state:', !isChecked);
     };
     return (
-        <>
+        <motion.div initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}>
             <div className='campaign-nearreel'>
                 <div className='item'>
                     <div className='left' style={{ width: '84%' }}>
@@ -86,7 +90,7 @@ const CampaignNearReel = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </motion.div>
     )
 }
 

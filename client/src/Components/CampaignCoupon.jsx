@@ -4,7 +4,7 @@ import likes from '../assets/likes.svg';
 import share from '../assets/share.svg';
 import eye from '../assets/eye.svg';
 import edit1 from '../assets/edit1.svg';
-
+import { motion } from 'framer-motion';
 
 const CampaignCoupon = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -15,7 +15,10 @@ const CampaignCoupon = () => {
   };
 
   return (
-    <>
+    <motion.div initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 1 }}>
       <div className='item'>
         <div className='left' style={{ width: '84%' }}>
           <img src='https://avatars.githubusercontent.com/u/97161064?v=4' />
@@ -49,7 +52,7 @@ const CampaignCoupon = () => {
           </div>
         </div>
       </div>
-    </>
+    </motion.div>
   )
 }
 

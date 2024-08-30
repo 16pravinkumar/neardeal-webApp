@@ -2,6 +2,7 @@ import React from 'react';
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line, Bar } from 'react-chartjs-2';
 import SideBar from '../Components/SideBar';
+import { motion } from 'framer-motion';
 
 // Register the components you need
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
@@ -42,7 +43,10 @@ const AnalyticsDashboard = () => {
   return (
   <div style={{display:'flex'}}>
     <SideBar></SideBar>
-    <div className="analytics-dashboard">
+    <motion.div initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1 }} className="analytics-dashboard">
       <h1>Analytics</h1>
       <div className="chart-container">
         <div className="chart-box">
@@ -78,7 +82,7 @@ const AnalyticsDashboard = () => {
           <Line data={lineChartData} />
         </div>
       </div>
-    </div>
+    </motion.div>
   </div>
   );
 };

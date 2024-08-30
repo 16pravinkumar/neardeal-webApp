@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import plus from "../assets/plus.svg";
 import edit from "../assets/edit.svg";
+import { motion } from 'framer-motion';
 
 const CampaignAds = () => {
     const [isChecked, setIsChecked] = useState(false);
@@ -9,7 +10,10 @@ const CampaignAds = () => {
         console.log('Toggle state:', !isChecked);
     };
     return (
-        <>
+        <motion.div initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}>
             <div className="campaign-ads">
                 <div>
                     <span>Activate homepage ads banner</span>
@@ -46,7 +50,7 @@ const CampaignAds = () => {
                     </button>
                 </div>
             </div>
-        </>
+        </motion.div>
     )
 }
 

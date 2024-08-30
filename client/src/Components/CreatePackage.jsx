@@ -12,6 +12,7 @@ import icon3 from "../assets/icon3.svg";
 import deleteIcon from "../assets/deleteIcon.svg";
 import PackageSideBar from "../Components/PackageSideBar";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const CreatePackage = () => {
 
@@ -33,7 +34,10 @@ const CreatePackage = () => {
                       <PackageSideBar/>
                     </div>
 
-                    <div className="right">
+                    <motion.div initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1 }} className="right">
                         <div className="header">
                             <div className="left" style={{ display: 'flex' }}>
                                 <div className="toggle-switch">
@@ -156,7 +160,7 @@ const CreatePackage = () => {
                                 <button className="button">Save changes</button>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 

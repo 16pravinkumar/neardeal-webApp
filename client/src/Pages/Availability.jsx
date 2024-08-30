@@ -5,6 +5,7 @@ import leftArrow from "../assets/leftArrow.svg";
 import edit from "../assets/edit.svg";
 import dot from "../assets/dot.svg";
 import PackageSideBar from "../Components/PackageSideBar";
+import { motion } from "framer-motion";
 
 const Availability = () => {
 
@@ -26,7 +27,10 @@ const Availability = () => {
                        <PackageSideBar/>
                     </div>
 
-                    <div className="right">
+                    <motion.div initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1 }} className="right">
                         <div className="header">
                             <span>Changes will be autosaved</span>
                         </div>
@@ -83,7 +87,7 @@ const Availability = () => {
 
 
 
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 

@@ -12,6 +12,7 @@ import icon3 from "../assets/icon3.svg";
 import deleteIcon from "../assets/deleteIcon.svg";
 import CampaignSideBar from "./CampaignSideBar";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const RedeemRecord = () => {
 
@@ -26,7 +27,10 @@ const RedeemRecord = () => {
         <div style={{ display: 'flex' }}>
             <SideBar></SideBar>
             <img style={{ position: 'absolute', top: 0, zIndex: '-1', width: '100%' }} src={background}></img>
-            <div className="create-package" style={{ width: '80%' }}>
+            <motion.div initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1 }} className="create-package" style={{ width: '80%' }}>
                 <span className="heading"> <Link to="/campaign"><img src={leftArrow} /></Link> Coupon redeem record</span>
                 <div className="payment-table-container">
                         <table className="payment-table">
@@ -81,7 +85,7 @@ const RedeemRecord = () => {
                             </tbody>
                         </table>
                     </div>
-            </div>
+            </motion.div>
 
         </div>
     )

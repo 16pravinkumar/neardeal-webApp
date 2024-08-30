@@ -2,13 +2,18 @@
 import "../App.css";
 import SideBar from "../Components/SideBar";
 import background from "../assets/background.svg";
+import { motion } from 'framer-motion';
+
 const Booking = () => {
     return (
-        <div style={{display:'flex'}}>
+        <div style={{ display: 'flex' }}>
             <SideBar></SideBar>
-            <div style={{width:'80%'}}>
+            <motion.div initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1 }} style={{ width: '80%' }}>
                 <div></div>
-                <img style={{position:'absolute', top:0, zIndex:'-1'}} src={background}></img>
+                <img style={{ position: 'absolute', top: 0, zIndex: '-1' }} src={background}></img>
 
                 <div className="container mainSec" id="bookingSec">
                     <h1 className="secHead">Booking</h1>
@@ -28,54 +33,57 @@ const Booking = () => {
                             <button className="btn btn-outline-secondary ms-3 me-0 rounded-3" type="button">Filter Packages</button>
                         </div>
                     </div>
-                    <table className="table table-hover mt-5">
-                        <tbody>
-                            <tr className="align-middle">
-                                <td><i className="bi bi-play-fill"></i> Started</td>
-                                <td>Wed 12<br />10:00-10:30</td>
-                                <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">Lunch & Swimming Pool</span></td>
-                                <td>Terrence Lam</td>
-                                <td className="text-success">Attending</td>
-                                <td>
-                                    <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                </td>
-                                <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                            </tr>
-                            <tr className="align-middle">
-                                <td><i className="bi bi-check-circle"></i> Attend</td>
-                                <td>Wed 12<br />11:00-11:30</td>
-                                <td>Anti Ageing Facial/Deep Relieve Massage</td>
-                                <td>Bonnie Li</td>
-                                <td className="text-success">Attending</td>
-                                <td>
-                                    <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                </td>
-                                <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                            </tr>
-                            <tr className="align-middle">
-                                <td><i className="bi bi-x-circle"></i> Absent</td>
-                                <td>Wed 12<br />12:00-12:30</td>
-                                <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">SPA & Fitness Facility</span></td>
-                                <td>Terrence Lam</td>
-                                <td className="text-danger">Cancelled</td>
-                                <td>
-                                    <button className="btn btn-link disabled"><i className="bi bi-pencil"></i></button>
-                                </td>
-                                <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                            </tr>
-                            <tr className="align-middle">
-                                <td><i className="bi bi-dash-circle"></i> Absent</td>
-                                <td>Wed 12<br />11:00-11:30</td>
-                                <td>Japanese Sakura & Sake Spa Ritual for Couple</td>
-                                <td>Bonnie Li</td>
-                                <td className="text-success">Attending</td>
-                                <td>
-                                    <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                </td>
-                                <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <motion.div >
+
+                        <table className="table table-hover mt-5">
+                            <tbody>
+                                <tr className="align-middle">
+                                    <td><i className="bi bi-play-fill"></i> Started</td>
+                                    <td>Wed 12<br />10:00-10:30</td>
+                                    <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">Lunch & Swimming Pool</span></td>
+                                    <td>Terrence Lam</td>
+                                    <td className="text-success">Attending</td>
+                                    <td>
+                                        <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
+                                    </td>
+                                    <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
+                                </tr>
+                                <tr className="align-middle">
+                                    <td><i className="bi bi-check-circle"></i> Attend</td>
+                                    <td>Wed 12<br />11:00-11:30</td>
+                                    <td>Anti Ageing Facial/Deep Relieve Massage</td>
+                                    <td>Bonnie Li</td>
+                                    <td className="text-success">Attending</td>
+                                    <td>
+                                        <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
+                                    </td>
+                                    <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
+                                </tr>
+                                <tr className="align-middle">
+                                    <td><i className="bi bi-x-circle"></i> Absent</td>
+                                    <td>Wed 12<br />12:00-12:30</td>
+                                    <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">SPA & Fitness Facility</span></td>
+                                    <td>Terrence Lam</td>
+                                    <td className="text-danger">Cancelled</td>
+                                    <td>
+                                        <button className="btn btn-link disabled"><i className="bi bi-pencil"></i></button>
+                                    </td>
+                                    <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
+                                </tr>
+                                <tr className="align-middle">
+                                    <td><i className="bi bi-dash-circle"></i> Absent</td>
+                                    <td>Wed 12<br />11:00-11:30</td>
+                                    <td>Japanese Sakura & Sake Spa Ritual for Couple</td>
+                                    <td>Bonnie Li</td>
+                                    <td className="text-success">Attending</td>
+                                    <td>
+                                        <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
+                                    </td>
+                                    <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </motion.div>
                     <nav>
                         <ul className="pagination justify-content-center">
                             <li className="page-item disabled">
@@ -112,7 +120,7 @@ const Booking = () => {
                             <div className="card-body pb-0">
                                 <div className="row">
                                     <div className="col-lg-2">
-                                        <img style={{borderRadius:'5px'}} src="https://avatars.githubusercontent.com/u/97161064?v=4" width="100%" alt="Package" />
+                                        <img style={{ borderRadius: '5px' }} src="https://avatars.githubusercontent.com/u/97161064?v=4" width="100%" alt="Package" />
                                     </div>
                                     <div className="col-lg-8">
                                         <p className="offCanOfferType">Regular</p>
@@ -140,7 +148,7 @@ const Booking = () => {
                             <div className="card-body ">
                                 <div className="row">
                                     <div className="col-lg-4">
-                                        <img style={{borderRadius:'50%'}} src="https://avatars.githubusercontent.com/u/97161064?v=4" width="100%" alt="Customer" />
+                                        <img style={{ borderRadius: '50%' }} src="https://avatars.githubusercontent.com/u/97161064?v=4" width="100%" alt="Customer" />
                                     </div>
                                     <div className="col-lg-8 my-auto">
                                         <p id="custName">Qwerty</p>
@@ -158,7 +166,7 @@ const Booking = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     )
 }

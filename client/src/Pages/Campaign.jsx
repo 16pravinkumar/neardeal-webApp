@@ -9,6 +9,7 @@ import CampaignNearReel from "../Components/CampaignNearReel";
 import CampaignCoupon from "../Components/CampaignCoupon";
 import CampaignDiscounts from "../Components/CampaignDiscounts";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Campaign = () => {
 
@@ -20,7 +21,10 @@ const Campaign = () => {
     return (
         <div style={{ display: 'flex' }}>
             <SideBar></SideBar>
-            <div style={{ width: '80%' }}>
+            <motion.div initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1 }} style={{ width: '80%' }}>
                 <div></div>
                 <img style={{ position: 'absolute', top: 0, zIndex: '-1' }} src={background}></img>
 
@@ -134,7 +138,7 @@ const Campaign = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     )
 }

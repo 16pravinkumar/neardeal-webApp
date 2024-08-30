@@ -5,6 +5,7 @@ import leftArrow from "../assets/leftArrow.svg";
 import edit from "../assets/edit.svg";
 import dot from "../assets/dot.svg";
 import PackageSideBar from "../Components/PackageSideBar";
+import { motion } from "framer-motion";
 
 const Limits = () => {
 
@@ -31,14 +32,17 @@ const Limits = () => {
         <div style={{ display: 'flex' }}>
             <SideBar></SideBar>
             <img style={{ position: 'absolute', top: 0, zIndex: '-1', width: '100%' }} src={background}></img>
-            <div className="limits" style={{ width: '80%' }}>
+            <div  className="limits" style={{ width: '80%' }}>
                 <span className="heading"> <img src={leftArrow} /> Create Package</span>
                 <div>
                     <div className="left">
                         <PackageSideBar/>
                     </div>
 
-                    <div className="right">
+                    <motion.div initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1 }} className="right">
                         <div className="header">
                             <span>Changes will be autosaved</span>
                         </div>
@@ -142,7 +146,7 @@ const Limits = () => {
                             <hr/>
 
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 

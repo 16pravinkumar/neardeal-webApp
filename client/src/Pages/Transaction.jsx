@@ -3,6 +3,7 @@ import "../App.css";
 import SideBar from "../Components/SideBar";
 import background from "../assets/background.svg";
 import edit from "../assets/edit.svg";
+import { motion } from "framer-motion";
 
 const Transaction = () => {
     const [isChecked, setIsChecked] = useState(false);
@@ -14,7 +15,10 @@ const Transaction = () => {
     return (
         <div style={{ display: 'flex' }}>
             <SideBar></SideBar>
-            <div style={{ width: '80%' }}>
+            <motion.div initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1 }} style={{ width: '80%' }}>
                 <div></div>
                 <img style={{ position: 'absolute', top: 0, zIndex: '-1' }} src={background}></img>
 
@@ -91,7 +95,7 @@ const Transaction = () => {
                     </div>
 
                 </div>
-            </div>
+            </motion.div>
         </div>
     )
 }

@@ -18,6 +18,7 @@ import clock1 from "../assets/clock1.svg";
 import location from "../assets/location.svg";
 import email from "../assets/email.svg";
 import phone from "../assets/phone.svg";
+import { motion } from "framer-motion";
 
 const StoreSetting = () => {
 
@@ -32,7 +33,10 @@ const StoreSetting = () => {
         <div style={{ display: 'flex' }}>
             <SideBar></SideBar>
             <img style={{ position: 'absolute', top: 0, zIndex: '-1', width: '100%' }} src={background}></img>
-            <div className="store" style={{ width: '80%' }}>
+            <motion.div initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1 }} className="store" style={{ width: '80%' }}>
                 <span className="heading">Store Settings</span>
                 <div>
                     <div className="left">
@@ -185,7 +189,7 @@ const StoreSetting = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
         </div>
     )
