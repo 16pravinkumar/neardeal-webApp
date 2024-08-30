@@ -7,6 +7,7 @@ import Limits from './Pages/Limits'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Transaction from './Pages/Transaction'
 import ProtectedRoutes from "./ProtechedRoutes";
+import CreateCoupon from "./Components/CreateCoupon";
 import Package from "./Pages/CreatePackage"
 import Analytics from './Pages/Analytics'
 import SignUp from './Pages/Signup'
@@ -31,6 +32,7 @@ function App() {
         <Route path='/limits' element={<Limits></Limits>}></Route>
         <Route path='/transaction' element={<Transaction></Transaction>}></Route>
         <Route path='/campaign' element={<Campaign></Campaign>}></Route>
+        <Route path='/create-coupon' element={<CreateCoupon/>}></Route>
         {/* Protected Routes */}
         {/* <Route path="/limits" exact element={<ProtectedRoutes Component={Limits} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/transaction" exact element={<ProtectedRoutes Component={Transaction} isUserLoggedIn={isUserLoggedIn} />} />

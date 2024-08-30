@@ -3,10 +3,12 @@ import "../App.css";
 import SideBar from "../Components/SideBar";
 import background from "../assets/background.svg";
 import plus from "../assets/plus.svg";
+import clock from "../assets/clock.svg";
 import CampaignAds from "../Components/CampaignAds";
 import CampaignNearReel from "../Components/CampaignNearReel";
 import CampaignCoupon from "../Components/CampaignCoupon";
 import CampaignDiscounts from "../Components/CampaignDiscounts";
+import { Link } from "react-router-dom";
 
 const Campaign = () => {
 
@@ -36,7 +38,10 @@ const Campaign = () => {
                             <button className="btn btn-outline-secondary me-2 rounded-3" type="button">
                                 <i className="fa fa-search"></i>
                             </button>
-                            <button style={{ padding: '0px 20px' }} className=" btn-outline-secondary ms-3 me-0 rounded-3" type="button"><img src={plus} /> <span style={{ color: 'black' }}>Create NearReel</span></button>
+                            {
+                                active === 'coupon' && <button style={{ padding: '0px 20px' }} className=" btn-outline-secondary ms-3 me-0 rounded-3" type="button"><img src={clock} /> <span style={{ color: 'black' }}>Redeem record</span></button>
+                            }
+                            <Link to='/create-coupon'><button style={{ padding: '0px 20px' }} className=" btn-outline-secondary ms-3 me-0 rounded-3" type="button"><img src={plus} /> <span style={{ color: 'black' }}>Create Coupon</span></button></Link>
                         </div>
                     </div>
                     <table className="table table-hover mt-5">
