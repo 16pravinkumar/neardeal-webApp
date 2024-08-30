@@ -91,7 +91,7 @@ const CreateCoupon = () => {
                                     <img src={icon1} />
                                     <img src={icon2} />
                                     <img src={icon3} />
-                                    <img src={icon1} />
+                                    <img src={icon1} />-
                                     <img src={icon1} />
                                     <img src={icon1} />
                                 </div>

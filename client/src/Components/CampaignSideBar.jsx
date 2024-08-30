@@ -8,8 +8,8 @@ const PackageSideBar = () => {
 
     return (
         <>
-            <span><Link style={{textDecoration:'none'}} className={`${isActive('/create-coupon')}`} to="/create-package">Coupon Setup</Link></span>
-            <span><Link style={{textDecoration:'none'}} className={`${isActive('/availability')}`} to="/availability">Analytics (soon)</Link></span>
+            <span><Link style={{textDecoration:'none'}} className={`${isActive('/create-coupon')}`} to="/create-coupon">Coupon Setup</Link></span>
+            <span>Analytics (soon)</span>
         </>
     )
 }
