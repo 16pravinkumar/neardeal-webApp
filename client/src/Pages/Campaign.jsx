@@ -41,7 +41,7 @@ const Campaign = () => {
                             {
                                 active === 'coupon' && <button style={{ padding: '0px 20px' }} className=" btn-outline-secondary ms-3 me-0 rounded-3" type="button"><img src={clock} /> <span style={{ color: 'black' }}>Redeem record</span></button>
                             }
-                            <Link to='/create-coupon'><button style={{ padding: '0px 20px' }} className=" btn-outline-secondary ms-3 me-0 rounded-3" type="button"><img src={plus} /> <span style={{ color: 'black' }}>Create Coupon</span></button></Link>
+                            <Link to='/create-coupon' className="btn-outline-secondary ms-3 me-0 rounded-3" style={{display:'flex', alignItems:'center', border:'2px solid black', padding:'0px 20px', textDecoration:'none'}}><img src={plus} /> <span style={{ color: 'black' }}>Create Coupon</span></Link>
                         </div>
                     </div>
                     <table className="table table-hover mt-5">

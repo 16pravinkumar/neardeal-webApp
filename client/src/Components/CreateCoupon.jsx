@@ -10,7 +10,7 @@ import icon1 from "../assets/icon1.svg";
 import icon2 from "../assets/icon2.svg";
 import icon3 from "../assets/icon3.svg";
 import deleteIcon from "../assets/deleteIcon.svg";
-import PackageSideBar from "../Components/PackageSideBar";
+import CampaignSideBar from "../Components/CampaignSideBar";
 import { Link } from "react-router-dom";
 
 const CreateCoupon = () => {
@@ -30,7 +30,7 @@ const CreateCoupon = () => {
                 <span className="heading"> <Link to="/campaign"><img src={leftArrow} /></Link> Create Coupon</span>
                 <div>
                     <div className="left">
-                      <PackageSideBar/>
+                      <CampaignSideBar />
                     </div>
 
                     <div className="right">
