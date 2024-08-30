@@ -11,6 +11,7 @@ import CreateCoupon from "./Components/CreateCoupon";
 import Package from "./Pages/CreatePackage"
 import Analytics from './Pages/Analytics'
 import SignUp from './Pages/Signup'
+import CampaignRedeemRecord from './Components/CampaignRedeemRecord.jsx';
 import Login from './Pages/Login'
 import Cookies from "js-cookie";
 import CampainAnalytics from './Components/CampainAnalytics'
@@ -35,6 +36,7 @@ function App() {
         <Route path='/campaign' element={<Campaign></Campaign>}></Route>
         <Route path='/create-coupon' element={<CreateCoupon/>}></Route>
         <Route path='/campaign/analytics' element={<CampainAnalytics/>}></Route>
+        <Route path='/campaign/redeemcode' element={<CampaignRedeemRecord></CampaignRedeemRecord>}></Route>
         {/* Protected Routes */}
         {/* <Route path="/limits" exact element={<ProtectedRoutes Component={Limits} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/transaction" exact element={<ProtectedRoutes Component={Transaction} isUserLoggedIn={isUserLoggedIn} />} />

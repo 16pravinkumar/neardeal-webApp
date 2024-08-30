@@ -39,7 +39,7 @@ const Campaign = () => {
                                 <i className="fa fa-search"></i>
                             </button>
                             {
-                                active === 'coupon' && <button style={{ padding: '0px 20px' }} className=" btn-outline-secondary ms-3 me-0 rounded-3" type="button"><img src={clock} /> <span style={{ color: 'black' }}>Redeem record</span></button>
+                                active === 'coupon' && <Link style={{display:'flex', alignItems:'center', textDecoration:'none', border:'2px solid black', padding:'0px 20px'}} to='/campaign/redeemcode' className=" btn-outline-secondary ms-3 me-0 rounded-3" type="button"><img src={clock} /> <span style={{ color: 'black' }}>Redeem record</span></Link>
                             }
                             <Link to='/create-coupon' className="btn-outline-secondary ms-3 me-0 rounded-3" style={{display:'flex', alignItems:'center', border:'2px solid black', padding:'0px 20px', textDecoration:'none'}}><img src={plus} /> <span style={{ color: 'black' }}>Create Coupon</span></Link>
                         </div>
