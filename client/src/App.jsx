@@ -1,9 +1,9 @@
 
-import Availability from './Pages/Availability'
 import Booking from './Pages/Booking'
 import Campaign from './Pages/Campaign'
-import CreatePackage from './Components/CreatePackage'
-import Limits from './Pages/Limits'
+import CreateSpaPackage from './Components/CreateSpaPackage.jsx'
+import CreateMassagePackage from './Components/CreateMassagePackage.jsx'
+import CreateSaunaPackage from './Components/CreateSaunaPackage.jsx'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Transaction from './Pages/Transaction'
 import ProtectedRoutes from "./ProtechedRoutes";
@@ -29,10 +29,10 @@ function App() {
 
         <Route path='/' element={<Booking></Booking>}></Route>
         <Route path='/analytics' element={<Analytics></Analytics>}></Route>
-        <Route path='/create-package' element={<CreatePackage></CreatePackage>}></Route>
+        <Route path='/spa/create-package' element={<CreateSpaPackage></CreateSpaPackage>}></Route>
+        <Route path='/massage/create-package' element={<CreateMassagePackage></CreateMassagePackage>}></Route>
+        <Route path='/sauna/create-package' element={<CreateSaunaPackage></CreateSaunaPackage>}></Route>
         <Route path='/package' element={<Package></Package>}></Route>
-        <Route path='/availability' element={<Availability></Availability>}></Route>
-        <Route path='/limits' element={<Limits></Limits>}></Route>
         <Route path='/transaction' element={<Transaction></Transaction>}></Route>
         <Route path='/campaign' element={<Campaign></Campaign>}></Route>
         <Route path='/create-coupon' element={<CreateCoupon/>}></Route>
