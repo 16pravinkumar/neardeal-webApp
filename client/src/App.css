@@ -963,6 +963,10 @@
     outline: none;
 }
 
+.image-upload{
+    flex-direction: column;
+}
+
 .store div .right .body .image-upload{
     display: flex;
     justify-content: center;
