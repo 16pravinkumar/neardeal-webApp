@@ -222,8 +222,6 @@
 //         </div>
 //     );
 // }
-
-// export default CreatePackage;
 import React, { useState, useRef } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import Quill's styles
@@ -238,21 +236,13 @@ import crossIcon from "../assets/cross.svg";
 import PackageSideBar from "../Components/PackageSideBar";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import icon1 from "../assets/icon1.svg";
-import icon2 from "../assets/icon2.svg";
-import icon3 from "../assets/icon3.svg";
-import icon4 from "../assets/icon4.svg";
-import icon5 from "../assets/icon5.svg";
-import icon6 from "../assets/icon6.svg";
-import icon7 from "../assets/icon7.svg";
-import icon8 from "../assets/icon8.svg";
-import icon9 from "../assets/icon9.svg";
-import icon10 from "../assets/icon10.svg";
 
 const CreatePackage = () => {
     const [isChecked, setIsChecked] = useState(false);
     const [images, setImages] = useState([]);
-    const [editorValue, setEditorValue] = useState('');
+    const [includedContent, setIncludedContent] = useState('');
+    const [openingHoursContent, setOpeningHoursContent] = useState('');
+    const [tncContent, setTncContent] = useState('');
     const fileInputRef = useRef(null);
 
     const handleToggle = () => {
@@ -341,10 +331,10 @@ const CreatePackage = () => {
                                     style={{ display: 'none' }}
                                 />
                             </div>
-                            <div className="image-select" style={{ display: 'flex', flexWrap: 'wrap', overflowY: 'auto', maxHeight: '300px' }}>
+                            <div className="image-select" style={{ display: 'flex', flexWrap: 'wrap' }}>
                                 {images.map((image, index) => (
                                     <div key={index} style={{ position: 'relative', margin: '10px' }}>
-                                        <img src={image} alt={`uploaded ${index}`} style={{ objectFit: 'cover', width: '100px', height: '100px' }} />
+                                        <img src={image} alt={`uploaded ${index}`} style={{ objectFit: 'cover' }} />
                                         <button
                                             onClick={() => handleRemoveImage(index)}
                                             style={{
@@ -368,8 +358,8 @@ const CreatePackage = () => {
                             <div className="grey">What's included</div>
                             <div className="text-section">
                                 <ReactQuill
-                                    value={editorValue}
-                                    onChange={setEditorValue}
+                                    value={includedContent}
+                                    onChange={setIncludedContent}
                                     className="text-area"
                                     modules={CreatePackage.modules}
                                     formats={CreatePackage.formats}
@@ -379,8 +369,8 @@ const CreatePackage = () => {
                             <div className="grey">Opening hours</div>
                             <div className="text-section">
                                 <ReactQuill
-                                    value={editorValue}
-                                    onChange={setEditorValue}
+                                    value={openingHoursContent}
+                                    onChange={setOpeningHoursContent}
                                     className="text-area"
                                     modules={CreatePackage.modules}
                                     formats={CreatePackage.formats}
@@ -390,14 +380,29 @@ const CreatePackage = () => {
                             <div className="grey">TNC</div>
                             <div className="text-section">
                                 <ReactQuill
-                                    value={editorValue}
-                                    onChange={setEditorValue}
+                                    value={tncContent}
+                                    onChange={setTncContent}
                                     className="text-area"
                                     modules={CreatePackage.modules}
                                     formats={CreatePackage.formats}
                                     placeholder="Type here"
                                 />
                             </div>
+
+                            <div className="url">
+                                 <span className="grey">URL</span>
+                                 <div>
+                                     <input type="url" />
+                                     <img src={copy} alt="copy" />
+                                 </div>
+                             </div>
+                             <div className="grey">Add-on</div>
+                             <div className="add-on" style={{ justifyContent: 'start' }}>
+                                 <input style={{ margin: '0px 4px' }} type="text" />
+                                 <input style={{ margin: '0px 4px' }} type="text" />
+                                 <img src={deleteIcon} alt="delete" />
+                             </div>
+
                             <div className="grey">Duration</div>
                             <div className="add-on" style={{ justifyContent: 'start' }}>
                                 <input style={{ margin: '0px 4px' }} type="text" />
