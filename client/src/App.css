@@ -387,6 +387,7 @@
 
 .quill .ql-toolbar{
     border: none !important;
+    justify-content: start;
 }
 
 .quill .ql-container{
