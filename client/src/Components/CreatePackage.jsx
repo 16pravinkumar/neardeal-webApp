@@ -9,6 +9,13 @@ import cross from "../assets/cross.svg";
 import icon1 from "../assets/icon1.svg";
 import icon2 from "../assets/icon2.svg";
 import icon3 from "../assets/icon3.svg";
+import icon4 from "../assets/icon4.svg";
+import icon5 from "../assets/icon5.svg";
+import icon6 from "../assets/icon6.svg";
+import icon7 from "../assets/icon7.svg";
+import icon8 from "../assets/icon8.svg";
+import icon9 from "../assets/icon9.svg";
+import icon10 from "../assets/icon10.svg";
 import deleteIcon from "../assets/deleteIcon.svg";
 import PackageSideBar from "../Components/PackageSideBar";
 import { Link } from "react-router-dom";
@@ -68,7 +75,7 @@ const CreatePackage = () => {
                                 <span className="grey">Add this package to
                                     <select className="select">
                                         <option>Spa</option>
-                                        <option>Spa</option>
+                                        <option>Gym</option>
                                     </select>
                                 </span>
                             </div>
@@ -95,9 +102,13 @@ const CreatePackage = () => {
                                     <img src={icon1} />
                                     <img src={icon2} />
                                     <img src={icon3} />
-                                    <img src={icon1} />
-                                    <img src={icon1} />
-                                    <img src={icon1} />
+                                    <img src={icon4} />
+                                    <img src={icon5} />
+                                    <img src={icon6} />
+                                    <img src={icon7} />
+                                    <img src={icon8} />
+                                    <img src={icon9} />
+                                    <img src={icon10} />
                                 </div>
 
                                 <textarea className="text-area" placeholder="Type here"></textarea>
@@ -109,9 +120,13 @@ const CreatePackage = () => {
                                     <img src={icon1} />
                                     <img src={icon2} />
                                     <img src={icon3} />
-                                    <img src={icon1} />
-                                    <img src={icon1} />
-                                    <img src={icon1} />
+                                    <img src={icon4} />
+                                    <img src={icon5} />
+                                    <img src={icon6} />
+                                    <img src={icon7} />
+                                    <img src={icon8} />
+                                    <img src={icon9} />
+                                    <img src={icon10} />
                                 </div>
 
                                 <textarea className="text-area" placeholder="Type here"></textarea>
@@ -123,9 +138,13 @@ const CreatePackage = () => {
                                     <img src={icon1} />
                                     <img src={icon2} />
                                     <img src={icon3} />
-                                    <img src={icon1} />
-                                    <img src={icon1} />
-                                    <img src={icon1} />
+                                    <img src={icon4} />
+                                    <img src={icon5} />
+                                    <img src={icon6} />
+                                    <img src={icon7} />
+                                    <img src={icon8} />
+                                    <img src={icon9} />
+                                    <img src={icon10} />
                                 </div>
 
                                 <textarea className="text-area" placeholder="Type here"></textarea>

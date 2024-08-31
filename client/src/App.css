@@ -474,7 +474,7 @@
 .create-package div .right .body .text-section .heading{
     display: flex;
     justify-content: space-evenly;
-    width: 23%;
+    width: 40%;
 }
 
 .create-package div .right .body .text-section .text-area{
