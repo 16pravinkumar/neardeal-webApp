@@ -14,7 +14,7 @@ const Login = () => {
     const handleSubmit = async () => {
         try {
             setLoading(true);
-            const res = await axios.post('http://localhost:3000/api/v1/login', {
+            const res = await axios.post('https://neardeal.me/WAPI/merchantLogin.php', {
                 email,
                 password
             });
