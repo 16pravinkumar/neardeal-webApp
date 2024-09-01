@@ -38,7 +38,7 @@ function App() {
         <Route path='/create-coupon' element={<CreateCoupon/>}></Route>
         <Route path='/campaign/analytics' element={<CampainAnalytics/>}></Route>
         <Route path='/campaign/redeemcode' element={<CampaignRedeemRecord></CampaignRedeemRecord>}></Route>
-        <Route path='/store-settings' element={<StoreSettings></StoreSettings>}></Route> */} */}
+        <Route path='/store-settings' element={<StoreSettings></StoreSettings>}></Route> */} 
         {/* Protected Routes
         
         {/* <Route path="/" exact element={<ProtectedRoutes Component={Booking} isUserLoggedIn={isUserLoggedIn} />} /> */}
