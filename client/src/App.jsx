@@ -27,7 +27,7 @@ function App() {
         <Route path='/signup' exact element={<SignUp></SignUp>}></Route>
         <Route path='/login' exact element={<Login />} />
 
-        <Route path='/' element={<Booking></Booking>}></Route>
+        {/* <Route path='/' element={<Booking></Booking>}></Route> */}
         {/* <Route path='/analytics' element={<Analytics></Analytics>}></Route>
         <Route path='/spa/create-package' element={<CreateSpaPackage></CreateSpaPackage>}></Route>
         <Route path='/massage/create-package' element={<CreateMassagePackage></CreateMassagePackage>}></Route>
@@ -39,9 +39,9 @@ function App() {
         <Route path='/campaign/analytics' element={<CampainAnalytics/>}></Route>
         <Route path='/campaign/redeemcode' element={<CampaignRedeemRecord></CampaignRedeemRecord>}></Route>
         <Route path='/store-settings' element={<StoreSettings></StoreSettings>}></Route> */} 
-        {/* Protected Routes
+       
         
-        {/* <Route path="/" exact element={<ProtectedRoutes Component={Booking} isUserLoggedIn={isUserLoggedIn} />} /> */}
+       <Route path="/" exact element={<ProtectedRoutes Component={Booking} isUserLoggedIn={isUserLoggedIn} />} /> 
         <Route path="/analytics" exact element={<ProtectedRoutes Component={Analytics} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/spa/create-package" exact element={<ProtectedRoutes Component={CreateSpaPackage} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/massage/create-package" exact element={<ProtectedRoutes Component={CreateMassagePackage} isUserLoggedIn={isUserLoggedIn} />} />
