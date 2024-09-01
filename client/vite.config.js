@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['react-quill'] // Add react-quill to external if necessary
+      external: ['react-quill','react-quill/dist/quill.snow.css'] // Add react-quill to external if necessary
     }
   }
 });

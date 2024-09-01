@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from "react";
 import ReactQuill from 'react-quill';
-// import 'react-quill/dist/quill.snow.css'; // Import Quill's styles
+import 'react-quill/dist/quill.snow.css'; // Import Quill's styles
 import SideBar from "./SideBar";
 import background from "../assets/background.svg";
 import leftArrow from "../assets/leftArrow.svg";
