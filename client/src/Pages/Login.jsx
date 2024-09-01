@@ -14,25 +14,43 @@ const Login = () => {
     const handleSubmit = async () => {
         try {
             setLoading(true);
-            const res = await axios.post('https://neardeal.me/WAPI/merchantLogin.php', {
-                email,
-                password
+    
+            // Make sure to use POST if you're sending a body with your request
+            const response = await fetch('https://wellness.neardeal.me/WAPI/merchantLogin.php', {
+                method: 'POST', // Correct method for sending data
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
             });
-            const data = res.data;
-            console.log(data);
-            window.location.href = '/';
-            Cookies.set('user_token', res.data.token);
+    
+            // Check if response is OK (status in the range 200-299)
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            // Parse JSON data from the response
+            const data = await response.json();
+            console.log(data.token);
+            
             toast.success('Login successful!');
+            
+            // Set cookie for 48 hours
+            Cookies.set('user_token', data.token, { expires: 2 }); // 2 days = 48 hours
+    
             // Handle successful login logic here
+            window.location.href = '/';
+    
         } catch (error) {
-            console.error(error);
-            // Example error message
+            console.error('Error:', error);
             toast.error('Login failed. Please check your credentials.');
         } finally {
             setLoading(false);
         }
     };
-
     return (
         <div className="bg-grad">
             <nav className="navbar navbar-expand-sm navbar-light p-4">

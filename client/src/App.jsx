@@ -27,7 +27,7 @@ function App() {
         <Route path='/signup' exact element={<SignUp></SignUp>}></Route>
         <Route path='/login' exact element={<Login />} />
 
-        <Route path='/' element={<Booking></Booking>}></Route>
+        {/* <Route path='/' element={<Booking></Booking>}></Route>
         <Route path='/analytics' element={<Analytics></Analytics>}></Route>
         <Route path='/spa/create-package' element={<CreateSpaPackage></CreateSpaPackage>}></Route>
         <Route path='/massage/create-package' element={<CreateMassagePackage></CreateMassagePackage>}></Route>
@@ -38,16 +38,24 @@ function App() {
         <Route path='/create-coupon' element={<CreateCoupon/>}></Route>
         <Route path='/campaign/analytics' element={<CampainAnalytics/>}></Route>
         <Route path='/campaign/redeemcode' element={<CampaignRedeemRecord></CampaignRedeemRecord>}></Route>
-        <Route path='/store-settings' element={<StoreSettings></StoreSettings>}></Route>
+        <Route path='/store-settings' element={<StoreSettings></StoreSettings>}></Route> */}
         {/* Protected Routes */}
-        {/* <Route path="/limits" exact element={<ProtectedRoutes Component={Limits} isUserLoggedIn={isUserLoggedIn} />} />
+        
+        <Route path="/" exact element={<ProtectedRoutes Component={Booking} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/analytics" exact element={<ProtectedRoutes Component={Analytics} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/spa/create-package" exact element={<ProtectedRoutes Component={CreateSpaPackage} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/massage/create-package" exact element={<ProtectedRoutes Component={CreateMassagePackage} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/sauna/create-package" exact element={<ProtectedRoutes Component={CreateSaunaPackage} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/package" exact element={<ProtectedRoutes Component={Package} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/transaction" exact element={<ProtectedRoutes Component={Transaction} isUserLoggedIn={isUserLoggedIn} />} />
-        <Route path="/campaign" exact element={<ProtectedRoutes Component={Campaign} isUserLoggedIn={isUserLoggedIn} />} /> */}
+        <Route path="/campaign" exact element={<ProtectedRoutes Component={Campaign} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/create-coupon" exact element={<ProtectedRoutes Component={CreateCoupon} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/campaign/analytics" exact element={<ProtectedRoutes Component={CampainAnalytics} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/campaign/redeemcode" exact element={<ProtectedRoutes Component={CampaignRedeemRecord} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/store-settings" exact element={<ProtectedRoutes Component={StoreSettings} isUserLoggedIn={isUserLoggedIn} />} />
+        
+
       </Routes>
-      {/* <Booking></Booking> */}
-      {/* <CreatePackage></CreatePackage> */}
-      {/* <Availability></Availability> */}
-      {/* <Limits></Limits> */}
     </Router>
   )
 }
