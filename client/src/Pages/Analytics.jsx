@@ -48,7 +48,7 @@ const AnalyticsDashboard = () => {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 1 }} className="analytics-dashboard">
       <h1>Analytics</h1>
-      <div className="chart-container">
+      <div className="container mainSec chart-container">
         <div className="chart-box">
           <h3>Visits</h3>
           <Line data={lineChartData} />

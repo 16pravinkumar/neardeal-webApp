@@ -7,26 +7,7 @@ import { motion } from 'framer-motion';
 import Cookies from 'js-cookie'; // If using js-cookie library
 
 const Booking = () => {
-    useEffect(() => {
-        // Step 1: Retrieve the cookie value
-        const cookieValue = Cookies.get('user_token'); // or use document.cookie for vanilla JS
-        
-        if (cookieValue) {
-            try {
-                // Step 2: URL decode the cookie value
-                const decodedString = decodeURIComponent(cookieValue);
-
-                // Step 3: Parse the JSON string
-                const data = JSON.parse(decodedString);
-
-                console.log(data); // { email: 'bharatsharma98971@gmail.com', ID: '104' }
-            } catch (error) {
-                console.error('Failed to parse JSON from cookie:', error);
-            }
-        } else {
-            console.log('No cookie found');
-        }
-    }, []);
+   
 
     return (
         <div style={{ display: 'flex' }}>
