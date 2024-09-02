@@ -4,45 +4,61 @@ import aiLogo from "../assets/aiLogo.svg";
 import campaign from "../assets/campaign.svg";
 import analytics from "../assets/analytics.svg";
 import transaction from "../assets/transaction.svg";
-import staff from "../assets/staff.svg";
 import storeSetting from "../assets/storeSetting.svg";
 import booking from "../assets/booking.svg";
 import packageLogo from "../assets/package.svg";
-import chat from "../assets/chat.svg";
 import { Link, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const SideBar = () => {
-    const [email, setEmail] = useState(null);
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true); // Add loading state
     const location = useLocation();
 
     useEffect(() => {
-        // Step 1: Retrieve the cookie value
-        const cookieValue = Cookies.get('user_token'); // or use document.cookie for vanilla JS
+        const fetchData = async () => {
+            // Step 1: Retrieve the cookie value
+            var cookieValue = Cookies.get('user_token');
 
-        if (cookieValue) {
-            try {
-                // Step 2: URL decode the cookie value
-                const decodedString = decodeURIComponent(cookieValue);
+            // Convert JSON string to JavaScript object
+            cookieValue = JSON.parse(cookieValue);
 
-                // Step 3: Parse the JSON string
-                const data = JSON.parse(decodedString);
+            console.log("Cookie Value:", cookieValue); // Log the cookie value
+            
+            if (cookieValue) {
+                try {
+                    var payload = {
+                        ID: cookieValue.ID
+                    }
 
-                // Set email to state
-                setEmail(data.email);
+                    // Fetch user data
+                    const response = await fetch('https://wellness.neardeal.me/WAPI/fetchUserData.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload)
+                    });
 
-                console.log(data); // { email: 'bharatsharma98971@gmail.com', ID: '104' }
-            } catch (error) {
-                console.error('Failed to parse JSON from cookie:', error);
+                    const userData = await response.json();
+                    setUserData(userData);
+                    setLoading(false); // Set loading to false after data is fetched
+                    console.log("User Data:", userData); // Log the user data
+
+                } catch (error) {
+                    console.error('Failed to parse JSON from cookie or fetch user data:', error);
+                    setLoading(false); // Set loading to false in case of error
+                }
+            } else {
+                console.log('No cookie found');
+                setLoading(false); // Set loading to false if no cookie is found
             }
-        } else {
-            console.log('No cookie found');
-        }
+        };
+
+        fetchData();
     }, []);
 
-    const isActive = (path) => {
-        return location.pathname === path ? 'active' : '';
-    };
+    const isActive = (path) => location.pathname === path ? 'active' : '';
 
     return (
         <div className="sidebar">
@@ -52,30 +68,30 @@ const SideBar = () => {
                 </div>
                 <span className="sidebar-subtitle">CUSTOMER</span>
                 <div className="sidebar-list">
-                    <span className={`${isActive('/')}`}>
+                    <span className={isActive('/')}>
                         <img src={booking} alt="Booking" />
                         <Link style={{ textDecoration: 'none' }} to="/">Booking</Link>
                     </span>
-                    <span className={`${isActive('/package')} ${isActive('/availability')} ${isActive('/limits')} ${isActive('/sauna/create-package')} ${isActive('/massage/create-package')} ${isActive('/spa/create-package')}`}>
+                    <span className={isActive('/package') || isActive('/availability') || isActive('/limits') || isActive('/sauna/create-package') || isActive('/massage/create-package') || isActive('/spa/create-package')}>
                         <img src={packageLogo} alt="Package" />
                         <Link style={{ textDecoration: 'none' }} to='/package'>Package</Link>
                     </span>
                 </div>
                 <span className="sidebar-subtitle">STORE</span>
                 <div className="sidebar-list">
-                    <span className={`${isActive('/campaign')} ${isActive('/create-coupon')} ${isActive('/campaign/redeemcode')}`}>
+                    <span className={isActive('/campaign') || isActive('/create-coupon') || isActive('/campaign/redeemcode')}>
                         <img src={campaign} alt="Campaign" />
                         <Link style={{ textDecoration: 'none' }} to="/campaign">Campaign</Link>
                     </span>
-                    <span className={`${isActive('/analytics')}`}>
+                    <span className={isActive('/analytics')}>
                         <img src={analytics} alt="Analytics" />
                         <Link style={{ textDecoration: 'none' }} to="/analytics">Analytics</Link>
                     </span>
-                    <span className={`${isActive('/transaction')}`}>
+                    <span className={isActive('/transaction')}>
                         <img src={transaction} alt="Transaction" />
                         <Link style={{ textDecoration: 'none' }} to="/transaction">Transaction</Link>
                     </span>
-                    <span className={`${isActive('/store-settings')}`}>
+                    <span className={isActive('/store-settings')}>
                         <img src={storeSetting} alt="Store Setting" />
                         <Link style={{ textDecoration: 'none' }} to="/store-settings">Store Setting</Link>
                     </span>
@@ -88,8 +104,10 @@ const SideBar = () => {
 
             <div className="sidebar-profile">
                 <img src="https://avatars.githubusercontent.com/u/97161064?v=4" alt="Profile" />
-                <span>Hudson Alvarez</span>
-                <span style={{ fontWeight: "400", color: 'grey' }}>{email}</span>
+                {/* <img src={`${userData && userData.Link}`} alt="Profile" /> */}
+                <span>{ userData && userData.Name }</span>
+             <span style={{ fontWeight: "400", color: 'grey' }}>bharatsharma98971@gmail.com</span>
+             
             </div>
         </div>
     );
