@@ -4,6 +4,7 @@ import "../App.css";
 import SideBar from "../Components/SideBar";
 import background from "../assets/background.svg";
 import { motion } from 'framer-motion';
+import started from "../assets/started.svg";
 import Cookies from 'js-cookie'; // If using js-cookie library
 
 const Booking = () => {
@@ -42,7 +43,7 @@ const Booking = () => {
                         <table className="table table-hover mt-5">
                             <tbody>
                                 <tr className="align-middle">
-                                    <td><i className="bi bi-play-fill"></i> Started</td>
+                                    <td style={{flexDirection:'column', textAlign:'center'}}><img style={{width:'49%'}} src={started}/> <span style={{width:'49%'}}>Started</span></td>
                                     <td>Wed 12<br />10:00-10:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">Lunch & Swimming Pool</span></td>
                                     <td>Terrence Lam</td>

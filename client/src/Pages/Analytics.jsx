@@ -47,7 +47,7 @@ const AnalyticsDashboard = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 1 }} className="analytics-dashboard">
-      <h1>Analytics</h1>
+      <h1 className="secHead" style={{padding:'0px 20px'}}>Analytics</h1>
       <div className="container mainSec chart-container">
         <div className="chart-box">
           <h3>Visits</h3>
