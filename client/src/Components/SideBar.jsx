@@ -12,47 +12,35 @@ import Cookies from "js-cookie";
 
 const SideBar = () => {
     const [userData, setUserData] = useState(null);
-    const [loading, setLoading] = useState(true); // Add loading state
     const location = useLocation();
+    var cookieValue = Cookies.get('user_token');
+    cookieValue = JSON.parse(cookieValue);
 
+    console.log("Cookie Value:", cookieValue.ID); 
     useEffect(() => {
         const fetchData = async () => {
-            // Step 1: Retrieve the cookie value
-            var cookieValue = Cookies.get('user_token');
-
-            // Convert JSON string to JavaScript object
-            cookieValue = JSON.parse(cookieValue);
-
-            console.log("Cookie Value:", cookieValue); // Log the cookie value
-            
-            if (cookieValue) {
-                try {
-                    var payload = {
-                        ID: cookieValue.ID
-                    }
-
-                    // Fetch user data
-                    const response = await fetch('https://wellness.neardeal.me/WAPI/fetchUserData.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(payload)
-                    });
-
-                    const userData = await response.json();
-                    setUserData(userData);
-                    setLoading(false); // Set loading to false after data is fetched
-                    console.log("User Data:", userData); // Log the user data
-
-                } catch (error) {
-                    console.error('Failed to parse JSON from cookie or fetch user data:', error);
-                    setLoading(false); // Set loading to false in case of error
+            try {
+                var payload = {
+                    ID: cookieValue.ID
                 }
-            } else {
-                console.log('No cookie found');
-                setLoading(false); // Set loading to false if no cookie is found
+
+                // Fetch user data
+                const response = await fetch('https://wellness.neardeal.me/WAPI/fetchUserData.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const userData = await response.json();
+                setUserData(userData);
+                console.log("User Data:", userData); // Log the user data
+
+            } catch (error) {
+                console.error('Failed to parse JSON from cookie or fetch user data:', error);
             }
+
         };
 
         fetchData();
@@ -106,8 +94,8 @@ const SideBar = () => {
                 <img src="https://avatars.githubusercontent.com/u/97161064?v=4" alt="Profile" />
                 {/* <img src={`${userData && userData.Link}`} alt="Profile" /> */}
                 <span>{ userData && userData.Name }</span>
-             <span style={{ fontWeight: "400", color: 'grey' }}>bharatsharma98971@gmail.com</span>
-             
+                <span style={{ fontWeight: "400", color: 'grey' }}>bharatsharma98971@gmail.com</span>
+
             </div>
         </div>
     );
