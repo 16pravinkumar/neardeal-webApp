@@ -4,8 +4,10 @@ import logo from '../assets/logo.svg';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -36,14 +38,16 @@ const Login = () => {
             const data = await response.json();
             console.log(data.token);
             
-            toast.success('Login successful!');
             
             // Set cookie for 48 hours
+            
+            // Handle successful login logic here
+            toast.success('Login successfull!');
+            // window.location.href = '/';
+            navigate('/');
             Cookies.set('user_token', data.token, { expires: 2 }); // 2 days = 48 hours
     
-            // Handle successful login logic here
-            window.location.href = '/';
-    
+
         } catch (error) {
             console.error('Error:', error);
             toast.error('Login failed. Please check your credentials.');
