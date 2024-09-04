@@ -8,15 +8,15 @@ import started from "../assets/started.svg";
 import Cookies from 'js-cookie'; // If using js-cookie library
 
 const Booking = () => {
-   
+
 
     return (
         <div style={{ display: 'flex' }}>
             <SideBar></SideBar>
             <motion.div initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 1 }} style={{ width: '80%' }}>
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }} style={{ width: '80%' }}>
                 <div></div>
                 <img style={{ position: 'absolute', top: 0, zIndex: '-1' }} src={background}></img>
 
@@ -43,7 +43,7 @@ const Booking = () => {
                         <table className="table table-hover mt-5">
                             <tbody>
                                 <tr className="align-middle">
-                                    <td style={{flexDirection:'column', textAlign:'center'}}><img style={{width:'49%'}} src={started}/> <span style={{width:'49%'}}>Started</span></td>
+                                    <td style={{ flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '49%' }} src={started} /> <span style={{ width: '49%' }}>Started</span></td>
                                     <td>Wed 12<br />10:00-10:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">Lunch & Swimming Pool</span></td>
                                     <td>Terrence Lam</td>
@@ -132,13 +132,13 @@ const Booking = () => {
                                         <p className="offCanPackageDetail">Japanese Sakura & Sake Spa Ritual for Couple /Japanese sake bath + Aromatherapy Massage + Suite + Cake&Tea + Sake + Gym</p>
                                     </div>
                                 </div>
-                                <div className="row mt-3">
-                                    <div className="col-lg-6">
-                                        <input id="datepicker" placeholder="Date" />
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <input id="timepicker" placeholder="Time" />
-                                    </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', margin: '10px 0px' }}>
+
+                                    <input value='10:00-10:30' style={{ borderRadius: '7px', width: '48%', textAlign: 'center' }} id="datepicker" placeholder="Date" />
+
+
+                                    <input value='Today' style={{ borderRadius: '7px', width: '48%', textAlign: 'center' }} id="timepicker" placeholder="Time" />
+
                                 </div>
                             </div>
                         </div>
