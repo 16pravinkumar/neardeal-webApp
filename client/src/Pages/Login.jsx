@@ -38,13 +38,10 @@ const Login = () => {
             const data = await response.json();
             console.log(data.token);
             
-            
-            // Set cookie for 48 hours
-            
             // Handle successful login logic here
             toast.success('Login successfull!');
-            // window.location.href = '/';
-            navigate('/');
+            window.location.href = '/';
+            // navigate('/');
             Cookies.set('user_token', data.token, { expires: 2 }); // 2 days = 48 hours
     
 
