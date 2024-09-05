@@ -133,12 +133,8 @@ const Booking = () => {
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', margin: '10px 0px' }}>
-
-                                    <input value='10:00-10:30' style={{ borderRadius: '7px', width: '48%', textAlign: 'center' }} id="datepicker" placeholder="Date" />
-
-
-                                    <input value='Today' style={{ borderRadius: '7px', width: '48%', textAlign: 'center' }} id="timepicker" placeholder="Time" />
-
+                                    <input type="date" style={{ borderRadius: '7px', width: '48%', textAlign: 'center' }} id="datepicker" placeholder="Date" />
+                                    <input type="time" style={{ borderRadius: '7px', width: '48%', textAlign: 'center' }} id="timepicker" placeholder="Time" />
                                 </div>
                             </div>
                         </div>
