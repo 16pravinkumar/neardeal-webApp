@@ -35,7 +35,7 @@ const Booking = () => {
                             <button className="btn btn-outline-secondary me-2 rounded-3" type="button">
                                 <i className="fa fa-search"></i>
                             </button>
-                            <button className="btn btn-outline-secondary ms-3 me-0 rounded-3" type="button">Filter Packages</button>
+                            <button data-bs-toggle="offcanvas" data-bs-target="#filter-package" className="btn btn-outline-secondary ms-3 me-0 rounded-3" type="button">Filter Packages</button>
                         </div>
                     </div>
                     <motion.div >
@@ -164,6 +164,21 @@ const Booking = () => {
                                     <button className="btn btn-outline-secondary border-0" type="submit"><i className="fa fa-clone"></i></button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="offcanvas offcanvas-end" id="filter-package">
+                    <div className="offcanvas-header mb-0">
+                        <h3 className="offcanvas-title">Filter Packagee</h3>
+                        <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div className="offcanvas-body">
+                        <button className="remove-btn">Remove all filters</button>
+                        <div className="nav">
+                            <button className="booking-nav-active">Featured</button>
+                            <button>Spa</button>
+                            <button>Massage</button>
+                            <button>Sonna</button>
                         </div>
                     </div>
                 </div>
