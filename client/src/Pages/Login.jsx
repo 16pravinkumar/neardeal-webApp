@@ -42,9 +42,8 @@ const Login = () => {
             toast.success('Login successfull!');
             window.location.href = '/';
             // navigate('/');
-            Cookies.set('user_token', data.token, { expires: 2 }); // 2 days = 48 hours
+            Cookies.set('user_token', data.token, { expires: 2 }); 
     
-
         } catch (error) {
             console.error('Error:', error);
             toast.error('Login failed. Please check your credentials.');
