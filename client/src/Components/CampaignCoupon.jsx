@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import eye1 from '../assets/eye1.svg';
 import likes from '../assets/likes.svg';
+import edit1 from '../assets/edit1.svg';
 import share from '../assets/share.svg';
 import eye from '../assets/eye.svg';
-import edit1 from '../assets/edit1.svg';
 import { motion } from 'framer-motion';
 
 const CampaignCoupon = () => {
