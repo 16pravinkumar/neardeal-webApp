@@ -5,6 +5,8 @@ import SideBar from "../Components/SideBar";
 import background from "../assets/background.svg";
 import { motion } from 'framer-motion';
 import started from "../assets/started.svg";
+import tick from "../assets/tick.svg";
+import dotedCircle from "../assets/dotedCircle.svg"; 
 import Cookies from 'js-cookie'; // If using js-cookie library
 
 const Booking = () => {
@@ -43,7 +45,7 @@ const Booking = () => {
                         <table className="table table-hover mt-5">
                             <tbody>
                                 <tr className="align-middle">
-                                    <td style={{ flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '49%' }} src={started} /> <span style={{ width: '49%' }}>Started</span></td>
+                                    <td style={{ display:'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin:'auto' }} src={started} /> <span>Started</span></td>
                                     <td>Wed 12<br />10:00-10:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">Lunch & Swimming Pool</span></td>
                                     <td>Terrence Lam</td>
@@ -54,7 +56,7 @@ const Booking = () => {
                                     <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
                                 </tr>
                                 <tr className="align-middle">
-                                    <td><i className="bi bi-check-circle"></i> Attend</td>
+                                    <td style={{ display:'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin:'auto' }} src={tick} /> <span>Attend</span></td>
                                     <td>Wed 12<br />11:00-11:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage</td>
                                     <td>Bonnie Li</td>
@@ -65,7 +67,7 @@ const Booking = () => {
                                     <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
                                 </tr>
                                 <tr className="align-middle">
-                                    <td><i className="bi bi-x-circle"></i> Absent</td>
+                                    <td style={{ display:'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin:'auto' }} src={started} /> <span>Started</span></td>
                                     <td>Wed 12<br />12:00-12:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">SPA & Fitness Facility</span></td>
                                     <td>Terrence Lam</td>
@@ -76,7 +78,7 @@ const Booking = () => {
                                     <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
                                 </tr>
                                 <tr className="align-middle">
-                                    <td><i className="bi bi-dash-circle"></i> Absent</td>
+                                    <td style={{ display:'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin:'auto' }} src={dotedCircle} /> <span>Absent</span></td>
                                     <td>Wed 12<br />11:00-11:30</td>
                                     <td>Japanese Sakura & Sake Spa Ritual for Couple</td>
                                     <td>Bonnie Li</td>
