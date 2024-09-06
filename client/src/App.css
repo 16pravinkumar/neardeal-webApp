@@ -1,9 +1,15 @@
+/* Login */
+.login-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
 
 /* Signup */
 .bg-grad{
     background-image: linear-gradient(#ACABF44D, #F2F0F6, #F4A9A933);
-    height: 100%;
-    margin: 0;
+    height: 100vh !important;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -21,10 +27,7 @@
 }
 /* //------- Form Body ------------ */
 
-#form{
-    margin: 12% 0 0 0; /*TRBL*/
-    justify-content: center;
-}
+
 
 .form-header{
     color: var(--Default-Black, #252936);

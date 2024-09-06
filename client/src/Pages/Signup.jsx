@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'; // Import toast notifications
 import logo from '../assets/logo.svg' // Adjust import path as needed
 import spa from '../assets/spa.svg'; // Adjust import path as needed
+import gym from '../assets/gym.svg'
+import salon from '../assets/salon.svg'
+import yoga from '../assets/yoga.svg'
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -199,7 +202,7 @@ const SignUp = () => {
             </nav>
 
             <div className="container-fluid" id="form">
-                <div className="row px-5">
+                <div className="row px-5" style={{ marginTop:'5%' }}>
                     <div className="col-lg-4"></div>
                     <div className="col-lg-4 col-sm-12 px-5">
                         {currentStep === 1 && (
@@ -320,7 +323,49 @@ const SignUp = () => {
                                                 </div>
                                             </div>
                                         </div>
+                                        <div className="card mb-2" onClick={() => handleCategoryChange("Gym")} id="Gym">
+                                            <div className="row g-0">
+                                                <div className="col-md-6 m-auto">
+                                                    <div className="card-body">
+                                                        <p className="card-text">Gym</p>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-5 p-2">
+                                                    <img src={gym} className="img-fluid rounded-start" alt="Gym" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
+
+                                    <div className="col-lg-6 col-sm-12" style={{ paddingRight: "1%" }}>
+                                        <div className="card mb-2" onClick={() => handleCategoryChange("salon")} id="Salon">
+                                            <div className="row g-0">
+                                                <div className="col-md-6 m-auto">
+                                                    <div className="card-body">
+                                                        <p className="card-text">Salon</p>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-5 p-2">
+                                                    <img src={salon} className="img-fluid rounded-start" alt="Salon" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="card mb-2" onClick={() => handleCategoryChange("Yoga")} id="Yoga">
+                                            <div className="row g-0">
+                                                <div className="col-md-6 m-auto">
+                                                    <div className="card-body">
+                                                        <p className="card-text">Yoga</p>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-5 p-2">
+                                                    <img src={yoga} className="img-fluid rounded-start" alt="Yoga" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                   
                                     {/* Repeat for other categories */}
                                 </div>
                                 <div className="d-grid mt-3">

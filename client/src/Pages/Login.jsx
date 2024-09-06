@@ -66,7 +66,7 @@ const Login = () => {
             </nav>
 
             <div className="container-fluid" id="form">
-                <div className="row">
+                <div className="login-form">
                     <div className="col-lg-4"></div>
                     <div className="col-lg-4 col-sm-12 px-5">
                         <h2 className="form-header">Merchant Login</h2>
