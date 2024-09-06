@@ -1,9 +1,7 @@
 
 import Booking from './Pages/Booking'
 import Campaign from './Pages/Campaign'
-import CreateSpaPackage from './Components/CreateSpaPackage.jsx'
-import CreateMassagePackage from './Components/CreateMassagePackage.jsx'
-import CreateSaunaPackage from './Components/CreateSaunaPackage.jsx'
+import CreatePackage from './Components/CreatePackage.jsx'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Transaction from './Pages/Transaction'
 import ProtectedRoutes from "./ProtechedRoutes";
@@ -43,9 +41,7 @@ function App() {
         
        <Route path="/" exact element={<ProtectedRoutes Component={Booking} isUserLoggedIn={isUserLoggedIn} />} /> 
         <Route path="/analytics" exact element={<ProtectedRoutes Component={Analytics} isUserLoggedIn={isUserLoggedIn} />} />
-        <Route path="/spa/create-package" exact element={<ProtectedRoutes Component={CreateSpaPackage} isUserLoggedIn={isUserLoggedIn} />} />
-        <Route path="/massage/create-package" exact element={<ProtectedRoutes Component={CreateMassagePackage} isUserLoggedIn={isUserLoggedIn} />} />
-        <Route path="/sauna/create-package" exact element={<ProtectedRoutes Component={CreateSaunaPackage} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/create-package" exact element={<ProtectedRoutes Component={CreatePackage} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/package" exact element={<ProtectedRoutes Component={Package} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/transaction" exact element={<ProtectedRoutes Component={Transaction} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/campaign" exact element={<ProtectedRoutes Component={Campaign} isUserLoggedIn={isUserLoggedIn} />} />

@@ -62,7 +62,7 @@ const CreatePackage = () => {
                                 <span style={{ fontWeight: 'bold' }}>Spa</span>
                                 <img src={more} />
                             </div>
-                            <Link to='/spa/create-package'>
+                            <Link to='/create-package'>
                                 <button>
                                     <img src={plus} />
                                     <span>Add Package</span>
@@ -148,7 +148,7 @@ const CreatePackage = () => {
                                 <span style={{ fontWeight: 'bold' }}>Massage</span>
                                 <img src={more} />
                             </div>
-                            <Link to='/massage/create-package'>
+                            <Link to='/create-package'>
                                 <button>
                                     <img src={plus} />
                                     <span>Add Package</span>
@@ -234,7 +234,7 @@ const CreatePackage = () => {
                                 <span style={{ fontWeight: 'bold' }}>Sauna</span>
                                 <img src={more} />
                             </div>
-                            <Link to='/sauna/create-package'>
+                            <Link to='/create-package'>
                                 <button>
                                     <img src={plus} />
                                     <span>Add Package</span>

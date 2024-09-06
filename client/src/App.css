@@ -417,7 +417,6 @@
 .create-package div{
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
 }
 
 .create-package div .left{
@@ -463,7 +462,7 @@
     /* justify-content: center; */
     display: flex;
     align-items: center; 
-    width: 10%;
+    width: 18%;
 }
 
 .create-package div .right .body{
