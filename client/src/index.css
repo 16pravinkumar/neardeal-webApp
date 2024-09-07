@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 *{
     margin: 0;
     padding: 0;
@@ -12,7 +13,26 @@ body{
 }
 
 /* Global */
+/* Icon Rotate */
+.play-icon {
+  transition: transform 0.3s ease;
+}
 
+.play-icon.rotate {
+  transform: rotate(90deg);
+}
+
+/* Accordion content */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-content.expanded {
+  max-height: 500px; /* Adjust based on content size */
+}
+/* Icon Rotate */
 
 .loading-message {
   font-size: 0.875rem;
@@ -112,57 +132,7 @@ body{
     border: none;
 }
 
-/* App.css */
-
-/* Rotate play icon */
-.play-icon {
-  transition: transform 0.3s ease;
-}
-
-.play-icon.rotate {
-  transform: rotate(90deg);
-}
-
-/* Accordion content */
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.accordion-content.expanded {
-  max-height: 500px; /* Adjust based on content size */
-}
-
-/* Item styling */
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.item img {
-  max-width: 100px; /* Adjust as needed */
-  border-radius: 5px;
-}
-
-.left {
-  display: flex;
-  align-items: center;
-}
-
-.right {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 20%;
-}
-
-/* Toggle switch */
+/* Switch */
 .toggle-switch {
   display: flex;
   align-items: center;
@@ -202,8 +172,6 @@ body{
 .toggle-checkbox:checked + .toggle-label::before {
   transform: translateX(14px);
 }
-
-
 
   .active{
     background-color: #EBF8F3;
