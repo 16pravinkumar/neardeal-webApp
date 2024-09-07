@@ -17,6 +17,57 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const CreatePackage = () => {
+    const [availabilityGroups, setAvailabilityGroups] = useState([
+        {
+            timeSlots: [
+                { startTime: "09:00", endTime: "13:00" },
+                { startTime: "15:00", endTime: "20:00" },
+            ],
+            selectedDays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        },
+        {
+            timeSlots: [{ startTime: "09:00", endTime: "13:00" }],
+            selectedDays: ["Sun"],
+        },
+    ]);
+
+    const addTimeSlot = (groupIndex) => {
+        const updatedGroups = [...availabilityGroups];
+        updatedGroups[groupIndex].timeSlots.push({ startTime: "09:00", endTime: "18:00" });
+        setAvailabilityGroups(updatedGroups);
+    };
+
+    const addAvailabilityGroup = () => {
+        setAvailabilityGroups([
+            ...availabilityGroups,
+            {
+                timeSlots: [{ startTime: "09:00", endTime: "13:00" }],
+                selectedDays: [],
+            },
+        ]);
+    };
+
+    const removeAvailabilityGroup = (groupIndex) => {
+        const updatedGroups = availabilityGroups.filter((_, i) => i !== groupIndex);
+        setAvailabilityGroups(updatedGroups);
+    };
+
+    const handleTimeChange1 = (groupIndex, slotIndex, field, value) => {
+        const updatedGroups = [...availabilityGroups];
+        updatedGroups[groupIndex].timeSlots[slotIndex][field] = value;
+        setAvailabilityGroups(updatedGroups);
+    };
+
+    const handleDayToggle1 = (groupIndex, day) => {
+        const updatedGroups = [...availabilityGroups];
+        const currentDays = updatedGroups[groupIndex].selectedDays;
+        if (currentDays.includes(day)) {
+            updatedGroups[groupIndex].selectedDays = currentDays.filter((d) => d !== day);
+        } else {
+            updatedGroups[groupIndex].selectedDays.push(day);
+        }
+        setAvailabilityGroups(updatedGroups);
+    };
     const [active, setActive] = useState('setup');
     const isActive = (path) => {
         return active === path ? 'btn' : ''
@@ -39,6 +90,33 @@ const CreatePackage = () => {
     const [isChecked1, setIsChecked1] = useState(false);
     const [isChecked2, setIsChecked2] = useState(false);
     const [isChecked3, setIsChecked3] = useState(false);
+    const [availabilitySets, setAvailabilitySets] = useState([
+        { fromTime: "09:00", toTime: "18:00", days: [] },
+    ]);
+
+    const addAvailabilitySet = () => {
+        setAvailabilitySets([
+            ...availabilitySets,
+            { fromTime: "09:00", toTime: "18:00", days: [] },
+        ]);
+    };
+
+    const handleTimeChange = (index, field, value) => {
+        const updatedSets = [...availabilitySets];
+        updatedSets[index][field] = value;
+        setAvailabilitySets(updatedSets);
+    };
+
+    const handleDayToggle = (index, day) => {
+        const updatedSets = [...availabilitySets];
+        const daysSet = updatedSets[index].days;
+        if (daysSet.includes(day)) {
+            updatedSets[index].days = daysSet.filter((d) => d !== day);
+        } else {
+            updatedSets[index].days.push(day);
+        }
+        setAvailabilitySets(updatedSets);
+    };
 
     const handleToggle1 = () => {
         setIsChecked1(!isChecked1);
@@ -153,7 +231,7 @@ const CreatePackage = () => {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 1 }} className="right">
                             <div className="header">
-                                <div className="left" style={{ display: 'flex', flexDirection:'row' }}>
+                                <div className="left" style={{ display: 'flex', flexDirection: 'row' }}>
                                     <div className="toggle-switch">
                                         <input
                                             type="checkbox"
@@ -362,7 +440,7 @@ const CreatePackage = () => {
                             <div className="body">
                                 <div>
                                     <span>Regular Time</span>
-                                    <button className="button">
+                                    <button className="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
                                         Create New Present
                                     </button>
                                 </div>
@@ -383,7 +461,7 @@ const CreatePackage = () => {
 
                                 <div>
                                     <span>Date override</span>
-                                    <button className="button">
+                                    <button className="button" data-bs-toggle="offcanvas" data-bs-target="#demo1">
                                         Create New Present
                                     </button>
                                 </div>
@@ -426,9 +504,9 @@ const CreatePackage = () => {
                                 <div className="header">
                                     <span>Changes will be autosaved</span>
                                 </div>
-                                <div style={{width:'100%'}} className="body">
-                                    <div style={{width:'100%'}}>
-                                        <div style={{width:'49%'}} className="left">
+                                <div style={{ width: '100%' }} className="body">
+                                    <div style={{ width: '100%' }}>
+                                        <div style={{ width: '49%' }} className="left">
                                             <span className="grey">Before Event</span>
                                             <select className="select">
                                                 <option>No Buffer</option>
@@ -530,6 +608,202 @@ const CreatePackage = () => {
 
 
                     {/* Limits */}
+                </div>
+            </div>
+            <div className="offcanvas offcanvas-end show" tabIndex="-1" id="demo1">
+                <div className="offcanvas-header">
+                    <h3 className="offcanvas-title">Create Availability</h3>
+                    <button
+                        type="button"
+                        className="btn-close text-reset"
+                        data-bs-dismiss="offcanvas"
+                    ></button>
+                </div>
+                <div className="offcanvas-body">
+                    <form>
+                        <div className="mb-3">
+                            <label htmlFor="setName" className="form-label">
+                                Name of Set
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="setName"
+                                placeholder="Enter set name"
+                            />
+                        </div>
+
+                        {availabilitySets.map((set, index) => (
+                            <div key={index} className="mb-3">
+                                <div className="row">
+                                    <div className="col-5">
+                                        <input
+                                            type="time"
+                                            className="form-control"
+                                            value={set.fromTime}
+                                            onChange={(e) =>
+                                                handleTimeChange(index, "fromTime", e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                    <div className="col-2 text-center">-</div>
+                                    <div className="col-5">
+                                        <input
+                                            type="time"
+                                            className="form-control"
+                                            value={set.toTime}
+                                            onChange={(e) =>
+                                                handleTimeChange(index, "toTime", e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="mt-3">
+                                    <p>Time Apply on:</p>
+                                    <div className="d-flex justify-content-between">
+                                        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                                            (day) => (
+                                                <button
+                                                    type="button"
+                                                    key={day}
+                                                    className={`btn ${set.days.includes(day)
+                                                        ? "btn-primary"
+                                                        : "btn-outline-dark"
+                                                        }`}
+                                                    onClick={() => handleDayToggle(index, day)}
+                                                >
+                                                    {day}
+                                                </button>
+                                            )
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
+                        <button
+                            type="button"
+                            className="btn btn-outline-primary mt-3"
+                            onClick={addAvailabilitySet}
+                        >
+                            Add Availability Set
+                        </button>
+                    </form>
+                    <button type="button" className="btn btn-success mt-4">
+                        Save
+                    </button>
+                </div>
+            </div>
+            <div className="offcanvas offcanvas-end show" tabIndex="-1" id="demo">
+                <div className="offcanvas-header">
+                    <h3 className="offcanvas-title">Edit Availability</h3>
+                    <button
+                        type="button"
+                        className="btn-close text-reset"
+                        data-bs-dismiss="offcanvas"
+                    ></button>
+                </div>
+                <div className="offcanvas-body">
+                    <form>
+                        <div className="mb-3">
+                            <label htmlFor="setName" className="form-label">
+                                Name of Set
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="setName"
+                                defaultValue="Working Hours"
+                            />
+                        </div>
+
+                        {availabilityGroups.map((group, groupIndex) => (
+                            <div key={groupIndex} className="mb-4 p-3" style={{ border: "1px solid #ccc", borderRadius: "8px" }}>
+                                {group.timeSlots.map((slot, slotIndex) => (
+                                    <div key={slotIndex} className="row mb-3">
+                                        <div className="col-5">
+                                            <input
+                                                type="time"
+                                                className="form-control"
+                                                value={slot.startTime}
+                                                onChange={(e) =>
+                                                    handleTimeChange(groupIndex, slotIndex, "startTime", e.target.value)
+                                                }
+                                            />
+                                        </div>
+                                        <div className="col-2 text-center">-</div>
+                                        <div className="col-5">
+                                            <input
+                                                type="time"
+                                                className="form-control"
+                                                value={slot.endTime}
+                                                onChange={(e) =>
+                                                    handleTimeChange(groupIndex, slotIndex, "endTime", e.target.value)
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-primary mb-2"
+                                    onClick={() => addTimeSlot(groupIndex)}
+                                >
+                                    +
+                                </button>
+
+                                <div className="mt-3">
+                                    <p>Time Apply on:</p>
+                                    <div className="d-flex justify-content-between">
+                                        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                                            (day) => (
+                                                <button
+                                                    type="button"
+                                                    key={day}
+                                                    className={`btn ${group.selectedDays.includes(day)
+                                                            ? "btn-success"
+                                                            : "btn-outline-dark"
+                                                        }`}
+                                                    onClick={() => handleDayToggle(groupIndex, day)}
+                                                >
+                                                    {day}
+                                                </button>
+                                            )
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="text-end mt-3">
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger btn-sm"
+                                        onClick={() => removeAvailabilityGroup(groupIndex)}
+                                    >
+                                        <i className="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+
+                        <button
+                            type="button"
+                            className="btn btn-outline-primary mt-3"
+                            onClick={addAvailabilityGroup}
+                        >
+                            Add Availability Set
+                        </button>
+                    </form>
+
+                    <div className="d-flex justify-content-between mt-4">
+                        <button type="button" className="btn btn-outline-danger">
+                            Delete
+                        </button>
+                        <button type="button" className="btn btn-success">
+                            Save Changes
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
