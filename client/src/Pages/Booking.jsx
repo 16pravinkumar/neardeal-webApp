@@ -6,7 +6,7 @@ import background from "../assets/background.svg";
 import { motion } from 'framer-motion';
 import started from "../assets/started.svg";
 import tick from "../assets/tick.svg";
-import dotedCircle from "../assets/dotedCircle.svg"; 
+import dotedCircle from "../assets/dotedCircle.svg";
 import Cookies from 'js-cookie'; // If using js-cookie library
 
 const Booking = () => {
@@ -45,7 +45,7 @@ const Booking = () => {
                         <table className="table table-hover mt-5">
                             <tbody>
                                 <tr className="align-middle">
-                                    <td style={{ display:'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin:'auto' }} src={started} /> <span>Started</span></td>
+                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={started} /> <span>Started</span></td>
                                     <td>Wed 12<br />10:00-10:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">Lunch & Swimming Pool</span></td>
                                     <td>Terrence Lam</td>
@@ -56,7 +56,7 @@ const Booking = () => {
                                     <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
                                 </tr>
                                 <tr className="align-middle">
-                                    <td style={{ display:'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin:'auto' }} src={tick} /> <span>Attend</span></td>
+                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={tick} /> <span>Attend</span></td>
                                     <td>Wed 12<br />11:00-11:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage</td>
                                     <td>Bonnie Li</td>
@@ -67,7 +67,7 @@ const Booking = () => {
                                     <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
                                 </tr>
                                 <tr className="align-middle">
-                                    <td style={{ display:'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin:'auto' }} src={started} /> <span>Started</span></td>
+                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={started} /> <span>Started</span></td>
                                     <td>Wed 12<br />12:00-12:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">SPA & Fitness Facility</span></td>
                                     <td>Terrence Lam</td>
@@ -78,7 +78,7 @@ const Booking = () => {
                                     <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
                                 </tr>
                                 <tr className="align-middle">
-                                    <td style={{ display:'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin:'auto' }} src={dotedCircle} /> <span>Absent</span></td>
+                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} /> <span>Absent</span></td>
                                     <td>Wed 12<br />11:00-11:30</td>
                                     <td>Japanese Sakura & Sake Spa Ritual for Couple</td>
                                     <td>Bonnie Li</td>
@@ -113,6 +113,36 @@ const Booking = () => {
                     <div className="offcanvas-body">
                         <p className="offCanInvid">Invoice ID: <span id="invoiceNo">1234567890</span></p>
                         <p className="offCanCustName">Customer<br /><span id="custName">Qwerty</span></p>
+                        <div className="card mt-4">
+                            <div className="card-header offCanCardHead">
+                                <div className="row">
+                                    <div className="col-lg-6">
+                                        <p>Order Status</p>
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <button type="button" className="btn btn-outline-dark offCanCardHeadBtn float-end mt-1">Save Changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card-body pb-0">
+                                <div className="row">
+                                    <select style={{ padding:'10px', borderRadius:'5px' }}>
+                                        <option>Attend</option>
+                                        <option>Cancel</option>
+                                        <option>Absent</option>
+                                        <option>Started</option>
+                                    </select>
+                                </div>
+                                <div style={{ marginTop:'10px' }} className="row">
+                                    <select style={{ padding:'10px', borderRadius:'5px' }}>
+                                        <option>Paid</option>
+                                        <option>Pending</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div className="card mt-4">
                             <div className="card-header offCanCardHead">
                                 <div className="row">

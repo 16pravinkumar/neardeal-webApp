@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 *{
     margin: 0;
     padding: 0;
@@ -113,11 +112,60 @@ body{
     border: none;
 }
 
-/* Switch */
+/* App.css */
+
+/* Rotate play icon */
+.play-icon {
+  transition: transform 0.3s ease;
+}
+
+.play-icon.rotate {
+  transform: rotate(90deg);
+}
+
+/* Accordion content */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-content.expanded {
+  max-height: 500px; /* Adjust based on content size */
+}
+
+/* Item styling */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.item img {
+  max-width: 100px; /* Adjust as needed */
+  border-radius: 5px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
+}
+
+/* Toggle switch */
 .toggle-switch {
-  position: relative;
-  width: 40px; /* Reduced from 60px */
-  height: 20px; /* Reduced from 30px */
+  display: flex;
+  align-items: center;
 }
 
 .toggle-checkbox {
@@ -125,34 +173,36 @@ body{
 }
 
 .toggle-label {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: #ccc;
-  border-radius: 20px; /* Adjusted according to new height */
   cursor: pointer;
-  transition: background-color 0.3s;
+  width: 34px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
 }
 
-.toggle-label::after {
-  content: '';
+.toggle-label::before {
+  content: "";
   position: absolute;
-  width: 16px; /* Reduced from 26px */
-  height: 16px; /* Reduced from 26px */
-  background-color: #fff;
-  border-radius: 50%;
   top: 2px;
   left: 2px;
-  transition: transform 0.3s;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.3s;
 }
 
 .toggle-checkbox:checked + .toggle-label {
-  background-color: #4caf50;
+  background: #4caf50;
 }
 
-.toggle-checkbox:checked + .toggle-label::after {
-  transform: translateX(20px); /* Adjusted for smaller size */
+.toggle-checkbox:checked + .toggle-label::before {
+  transform: translateX(14px);
 }
+
 
 
   .active{
