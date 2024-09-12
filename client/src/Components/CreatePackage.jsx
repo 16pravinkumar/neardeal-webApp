@@ -466,8 +466,6 @@ const CreatePackage = () => {
                                     </button>
                                 </div>
 
-
-
                                 <div>
                                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                                         <span>Friday, June 21</span>
@@ -810,28 +808,7 @@ const CreatePackage = () => {
     );
 };
 
-CreatePackage.modules = {
-    toolbar: [
-        [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-        ['bold', 'italic', 'underline'],
-        ['link'],
-        [{ 'align': [] }],
-        ['clean'] // remove formatting button
-    ],
-};
 
-CreatePackage.formats = [
-    'header',
-    'font',
-    'list',
-    'bullet',
-    'bold',
-    'italic',
-    'underline',
-    'link',
-    'align',
-    'clean'
-];
+
 
 export default CreatePackage;
