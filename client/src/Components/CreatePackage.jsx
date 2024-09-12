@@ -514,7 +514,7 @@ const CreatePackage = () => {
                                                 <option>3 hour</option>
                                             </select>
                                         </div>
-                                        <div className="right">
+                                        <div style={{ width: '49%' }} className="right">
                                             <span className="grey">After Event</span>
                                             <select className="select">
                                                 <option>3 hour</option>
