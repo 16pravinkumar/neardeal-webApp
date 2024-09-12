@@ -94,7 +94,7 @@ const SideBar = () => {
                 <img src="https://avatars.githubusercontent.com/u/97161064?v=4" alt="Profile" />
                 {/* <img src={`${userData && userData.Link}`} alt="Profile" /> */}
                 <span>{ userData && userData.Name }</span>
-                <span style={{ fontWeight: "400", color: 'grey' }}>bharatsharma98971@gmail.com</span>
+                <span style={{ fontWeight: "400", color: 'grey' }}>{ userData && userData.Email }</span>
 
             </div>
         </div>
