@@ -15,6 +15,7 @@ import storeLogo from "../assets/storeSettingsLogo.svg";
 import ai from "../assets/aiLogo.svg";
 import image1 from '../assets/image1.svg';
 import image2 from '../assets/image2.svg';
+import aaaa from "../assets/WhatsApp Image 2024-09-12 at 16.48.58_7c2d63d5.jpg";
 
 const StoreSetting = () => {
 
@@ -84,10 +85,10 @@ const StoreSetting = () => {
                         {/* <PackageSideBar/> */}
                         {/* <img src={store}></img> */}
                         <div style={{ flexDirection:'column', position:'relative' }}>
-                            <img src={image1}></img>
-                            <img style={{ position:'absolute', bottom:'-15%', left:'5%', borderRadius:'10px' }} src={image2}></img>
+                            <img style={{ width:'100%' }} src={image1}></img>
+                            <img style={{ position:'absolute', bottom:'-15%', left:'5%', borderRadius:'10px', width:'20%' }} src={aaaa}></img>
                         </div>
-                        <h1 style={{ fontWeight: 'bold' }}>Senmu Farm</h1>
+                        <h1 style={{ fontWeight: 'bold', marginTop:'30px' }}>Senmu Farm</h1>
                         <div className="rating">
                             <span>4.3</span>
                             <span><img src={star}></img> <img src={star}></img> <img src={star}></img> <img src={star}></img> <img src={star}></img></span>
