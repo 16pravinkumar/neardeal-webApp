@@ -494,8 +494,7 @@ const CreatePackage = () => {
                     {
                         active === 'limits'
                         &&
-                        <div className="limits">
-                            <motion.div initial={{ opacity: 0 }}
+                        <motion.div initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 1 }} className="right">
@@ -600,7 +599,6 @@ const CreatePackage = () => {
 
                                 </div>
                             </motion.div>
-                        </div>
                     }
                     {/* Availability */}
 
