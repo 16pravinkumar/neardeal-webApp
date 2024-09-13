@@ -57,7 +57,7 @@ const SideBar = () => {
                 <span className="sidebar-subtitle">CUSTOMER</span>
                 <div className="sidebar-list">
                     <span className={isActive('/')}>
-                        <img src={booking} alt="Booking" />
+                        <img  src={booking} alt="Booking" />
                         <Link style={{ textDecoration: 'none' }} to="/">Booking</Link>
                     </span>
                     <span className={isActive('/package') || isActive('/availability') || isActive('/limits') || isActive('/create-package')}>
