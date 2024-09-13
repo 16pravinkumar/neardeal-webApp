@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import plus from "../assets/plus.svg";
 import edit from "../assets/edit.svg";
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const CampaignAds = () => {
     const [isChecked, setIsChecked] = useState(false);
@@ -14,7 +14,7 @@ const CampaignAds = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}>
-            <div className="campaign-ads">
+            <div style={{ padding:'10px 20px' }} className="campaign-ads">
                 <div>
                     <span>Activate homepage ads banner</span>
                     <span style={{ fontSize: '14px' }} className="grey">Total Cost: $100</span>
@@ -35,11 +35,11 @@ const CampaignAds = () => {
                         <span style={{ margin: '0px 10px' }}>Active</span>
                     </div>
 
-                    <img src={edit} />
+                   <Link to='/campaign/ads'><img  src={edit} /></Link>
                 </div>
             </div>
 
-            <div style={{ margin: '10px 0px' }} className="campaign-blog">
+            <div style={{ margin: '10px 0px', padding:'10px 20px' }} className="campaign-blog">
                 <div>
                     <span>Apply NearDeal Blog page</span>
                     <p style={{ fontSize: '14px' }} className="grey">Our Neardeal Staff will have a trip to your store and experience your service. After that we will write an official review to help promote your store. You may have a chance of winning the Neardeal certified badge if we think your experience meet our standard.</p>
@@ -50,6 +50,7 @@ const CampaignAds = () => {
                     </button>
                 </div>
             </div>
+
         </motion.div>
     )
 }

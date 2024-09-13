@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import started from "../assets/started.svg";
 import tick from "../assets/tick.svg";
 import dotedCircle from "../assets/dotedCircle.svg";
-import Cookies from 'js-cookie'; // If using js-cookie library
 
 const Booking = () => {
 
