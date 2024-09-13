@@ -9,7 +9,6 @@ import copy from "../assets/copy.svg";
 import imageUpload from "../assets/imageUpload.svg";
 import deleteIcon from "../assets/deleteIcon.svg";
 import crossIcon from "../assets/cross.svg";
-import PackageSideBar from "./PackageSideBar";
 import dot from "../assets/dot.svg"
 import edit from "../assets/edit.svg"
 
@@ -52,22 +51,6 @@ const CreatePackage = () => {
         setAvailabilityGroups(updatedGroups);
     };
 
-    const handleTimeChange1 = (groupIndex, slotIndex, field, value) => {
-        const updatedGroups = [...availabilityGroups];
-        updatedGroups[groupIndex].timeSlots[slotIndex][field] = value;
-        setAvailabilityGroups(updatedGroups);
-    };
-
-    const handleDayToggle1 = (groupIndex, day) => {
-        const updatedGroups = [...availabilityGroups];
-        const currentDays = updatedGroups[groupIndex].selectedDays;
-        if (currentDays.includes(day)) {
-            updatedGroups[groupIndex].selectedDays = currentDays.filter((d) => d !== day);
-        } else {
-            updatedGroups[groupIndex].selectedDays.push(day);
-        }
-        setAvailabilityGroups(updatedGroups);
-    };
     const [active, setActive] = useState('setup');
     const isActive = (path) => {
         return active === path ? 'btn' : ''
@@ -606,7 +589,7 @@ const CreatePackage = () => {
                     {/* Limits */}
                 </div>
             </div>
-            <div className="offcanvas offcanvas-end show" tabIndex="-1" id="demo1">
+            <div className="offcanvas offcanvas-end" id="demo1">
                 <div className="offcanvas-header">
                     <h3 className="offcanvas-title">Create Availability</h3>
                     <button
@@ -691,7 +674,7 @@ const CreatePackage = () => {
                     </button>
                 </div>
             </div>
-            <div className="offcanvas offcanvas-end show" tabIndex="-1" id="demo">
+            <div className="offcanvas offcanvas-end" id="demo">
                 <div className="offcanvas-header">
                     <h3 className="offcanvas-title">Edit Availability</h3>
                     <button
@@ -805,8 +788,5 @@ const CreatePackage = () => {
         </div>
     );
 };
-
-
-
 
 export default CreatePackage;
