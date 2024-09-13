@@ -1,5 +1,3 @@
-
-import { useEffect } from "react";
 import "../App.css";
 import SideBar from "../Components/SideBar";
 import background from "../assets/background.svg";

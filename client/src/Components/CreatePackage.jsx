@@ -589,6 +589,7 @@ const CreatePackage = () => {
                     {/* Limits */}
                 </div>
             </div>
+
             <div className="offcanvas offcanvas-end" id="demo1">
                 <div className="offcanvas-header">
                     <h3 className="offcanvas-title">Create Availability</h3>
@@ -674,6 +675,7 @@ const CreatePackage = () => {
                     </button>
                 </div>
             </div>
+
             <div className="offcanvas offcanvas-end" id="demo">
                 <div className="offcanvas-header">
                     <h3 className="offcanvas-title">Edit Availability</h3>

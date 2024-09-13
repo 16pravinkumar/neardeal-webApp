@@ -29,19 +29,24 @@ const CreatePackage = () => {
     };
 
     const handleAccordionToggle = (section) => {
-        // Close currently open section if different
         setExpandedSection(expandedSection === section ? null : section);
+    };
+
+    const openModal = () => {
+        // Use Bootstrap's modal API to show the modal
+        const modal = new window.bootstrap.Modal(document.getElementById('exampleModalToggle'));
+        modal.show();
     };
 
     return (
         <div style={{ display: 'flex' }}>
             <SideBar />
             <motion.div initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 1 }} style={{ width: '80%' }}>
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }} style={{ width: '80%' }}>
                 <img style={{ position: 'absolute', top: 0, zIndex: '-1' }} src={background} alt="background" />
-                
+
                 <div className="container mainSec" id="bookingSec">
                     <h1 className="secHead">Package</h1>
                     <div className="row mb-4 p-0">
@@ -50,7 +55,7 @@ const CreatePackage = () => {
                             <button onClick={() => setActive('nearreel')} type="button" className={`${isActive('nearreel')} btn-outline-secondary border-0 active me-2`}>Spa</button>
                             <button onClick={() => setActive('coupon')} type="button" className={`${isActive('coupon')} btn-outline-secondary border-0 active me-2`}>Massage</button>
                             <button onClick={() => setActive('discounts')} type="button" className={`${isActive('discounts')} btn-outline-secondary border-0 active me-2`}>Status</button>
-                            <img className="border-0 me-2" src={addFile} alt="add file" />
+                            <img className="border-0 me-2" src={addFile} alt="add file" id="addFileBtn" onClick={openModal} style={{ cursor: 'pointer' }} />
                         </div>
                         <div className="col-lg-6 d-flex input-group justify-content-end ms-5" style={{ maxWidth: '45%' }}>
                             <input type="text" className="form-control" placeholder="Search..." />
@@ -210,6 +215,25 @@ const CreatePackage = () => {
                     </div>
                 </div>
             </motion.div>
+
+            <div className="modal fade" id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div style={{border:'none'}} className="modal-header">
+                            <h5 className="modal-title" id="exampleModalToggleLabel">New Folder</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div style={{border:'none'}} className="modal-body">
+                            <input type="text" className="form-control" placeholder="Folder Title" />
+                        </div>
+                        <div style={{border:'none'}} className="modal-footer">
+                            <button style={{ background:'black', color:'white' }} type="button" className="btn">Create Folder</button>
+                            <button style={{ border:'1px solid black' }} type="button" className="btn" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     )
 }
