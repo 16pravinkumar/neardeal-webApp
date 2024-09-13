@@ -67,7 +67,7 @@ const SideBar = () => {
                 </div>
                 <span className="sidebar-subtitle">STORE</span>
                 <div className="sidebar-list">
-                    <span className={isActive('/campaign') || isActive('/create-coupon') || isActive('/campaign/redeemcode') || isActive('/campaign/ads') || isActive('/campaign/create-coupon')}>
+                    <span className={isActive('/campaign') || isActive('/create-coupon') || isActive('/campaign/redeemcode') || isActive('/campaign/ads') || isActive('/campaign/create-coupon') || isActive('/campaign/create-discounts') || isActive('/campaign/create-nearreel')}>
                         <img src={campaign} alt="Campaign" />
                         <Link style={{ textDecoration: 'none' }} to="/campaign">Campaign</Link>
                     </span>

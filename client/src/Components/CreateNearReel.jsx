@@ -12,11 +12,13 @@ import crossIcon from "../assets/cross.svg";
 import PackageSideBar from "./PackageSideBar";
 import dot from "../assets/dot.svg"
 import edit from "../assets/edit.svg"
+import ai from "../assets/aiLogo.svg";
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const CreatePackage = () => {
+    const [checked, setChecked] = useState(false);
     const [active, setActive] = useState('setup');
     const isActive = (path) => {
         return active === path ? 'btn' : ''
@@ -134,12 +136,12 @@ const CreatePackage = () => {
             <img style={{ position: 'absolute', top: 0, zIndex: '-1', width: '100%' }} src={background} alt="background" />
             <div className="create-package" style={{ width: '80%' }}>
                 <span className="heading">
-                    <Link to="/package"><img src={leftArrow} alt="left arrow" /></Link> Create Coupon
+                    <Link to="/package"><img src={leftArrow} alt="left arrow" /></Link> Create NearReel
                 </span>
 
                 <div>
                     <div className="left">
-                        <button className={`${isActive('setup')} btn-outline-secondary border-0 active me-2`} onClick={() => setActive('setup')} style={{ textDecoration: 'none' }}>Coupon Setup</button>
+                        <button className={`${isActive('setup')} btn-outline-secondary border-0 active me-2`} onClick={() => setActive('setup')} style={{ textDecoration: 'none' }}>Content</button>
                         <button className={`${isActive('availability')} btn-outline-secondary border-0 active me-2`} style={{ textDecoration: 'none' }}>Analytics (Soon)</button>
                     </div>
 
@@ -175,35 +177,13 @@ const CreatePackage = () => {
                                     name="packageTitle"
                                     className="package-title"
                                     type="text"
-                                    placeholder="Campaign Title"
+                                    placeholder="Ads Title"
                                     value={packageTitle}
                                     onChange={handleInputChange}
                                 />
                                 <input style={{ width: '35%', padding: '10px 20px', border: '2px solid #E9ECEE', color: '#637381', borderRadius: '10px' }} type="date" placeholder="Valid Date & time"></input>
 
-                                <input style={{ width: '35%', padding: '10px 20px', border: '2px solid #E9ECEE', color: '#637381', borderRadius: '10px', margin: '20px 0px' }} type="text" placeholder="How many NearPoints are required"></input>
-
-                                <div className="grey">Type of coupon</div>
-                                <div style={{ flexDirection:'column' }}>
-                                    <div style={{ justifyContent:'start' }} className="form-check">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                                            <label style={{ margin:'0px 5px' }} className="form-check-label" >
-                                                QR code
-                                            </label>
-                                    </div>
-                                    <div style={{ justifyContent:'start' }} className="form-check">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
-                                            <label style={{ margin:'0px 5px' }} className="form-check-label" >
-                                              Percent Off
-                                            </label>
-                                    </div>
-                                    <div style={{ justifyContent:'start' }} className="form-check">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
-                                            <label style={{ margin:'0px 5px' }} className="form-check-label" >
-                                                Money Value
-                                            </label>
-                                    </div>
-                                </div>
+                                <Link style={{ marginTop: '20px', textDecoration: 'none', border: '2px solid #E9ECEE', width: 'fit-content', padding: '5px', borderRadius: '20px' }}><img src={ai} /> Generate Video with Near.AI</Link>
 
                                 <div
                                     className="image-upload"
@@ -246,75 +226,6 @@ const CreatePackage = () => {
                                     <button style={{ borderRadius: '5px', padding: '0px 10px', margin: '0px 10px' }}>Remove All</button>
                                     <button className="button">Upload</button>
                                 </div>
-                                <div className="grey">What's included</div>
-                                <div className="text-section">
-                                    <ReactQuill
-                                        value={editorStates.included.content}
-                                        onChange={(content, delta, source) => {
-                                            setEditorStates(prevStates => ({
-                                                ...prevStates,
-                                                included: { content, operations: prevStates.included.operations }
-                                            }));
-                                            updateEditorState('included', delta, null, source);
-                                        }}
-                                        className="text-area"
-                                        modules={CreatePackage.modules}
-                                        formats={CreatePackage.formats}
-                                        placeholder="Type here"
-                                        ref={(el) => {
-                                            if (el) {
-                                                quillRefs.current.included = el.getEditor();
-                                                quillRefs.current.included.on('text-change', (delta, oldDelta, source) => updateEditorState('included', delta, oldDelta, source));
-                                            }
-                                        }}
-                                    />
-                                </div>
-                                <div className="grey">Opening hours</div>
-                                <div className="text-section">
-                                    <ReactQuill
-                                        value={editorStates.openingHours.content}
-                                        onChange={(content, delta, source) => {
-                                            setEditorStates(prevStates => ({
-                                                ...prevStates,
-                                                openingHours: { content, operations: prevStates.openingHours.operations }
-                                            }));
-                                            updateEditorState('openingHours', delta, null, source);
-                                        }}
-                                        className="text-area"
-                                        modules={CreatePackage.modules}
-                                        formats={CreatePackage.formats}
-                                        placeholder="Type here"
-                                        ref={(el) => {
-                                            if (el) {
-                                                quillRefs.current.openingHours = el.getEditor();
-                                                quillRefs.current.openingHours.on('text-change', (delta, oldDelta, source) => updateEditorState('openingHours', delta, oldDelta, source));
-                                            }
-                                        }}
-                                    />
-                                </div>
-                                <div className="grey">TNC</div>
-                                <div className="text-section">
-                                    <ReactQuill
-                                        value={editorStates.tnc.content}
-                                        onChange={(content, delta, source) => {
-                                            setEditorStates(prevStates => ({
-                                                ...prevStates,
-                                                tnc: { content, operations: prevStates.tnc.operations }
-                                            }));
-                                            updateEditorState('tnc', delta, null, source);
-                                        }}
-                                        className="text-area"
-                                        modules={CreatePackage.modules}
-                                        formats={CreatePackage.formats}
-                                        placeholder="Type here"
-                                        ref={(el) => {
-                                            if (el) {
-                                                quillRefs.current.tnc = el.getEditor();
-                                                quillRefs.current.tnc.on('text-change', (delta, oldDelta, source) => updateEditorState('tnc', delta, oldDelta, source));
-                                            }
-                                        }}
-                                    />
-                                </div>
 
                                 <div className="url">
                                     <span className="grey">URL</span>
@@ -328,34 +239,96 @@ const CreatePackage = () => {
                                         <img src={copy} alt="copy" />
                                     </div>
                                 </div>
-                                <div className="grey">Add-on</div>
-                                <div className="add-on" style={{ justifyContent: 'start' }}>
-                                    {addons.map((addon, index) => (
-                                        <input
-                                            key={index}
-                                            style={{ margin: '0px 4px' }}
-                                            type="text"
-                                            value={addon}
-                                            onChange={(e) => handleAddonsChange(index, e.target.value)}
-                                        />
-                                    ))}
-                                    <img src={deleteIcon} alt="delete" />
+
+                                <div style={{ margin: '20px 0px' }} className="grey">Mention Package</div>
+                                {/* Time-based Discount Inputs */}
+                                <div className="input-group mb-3">
+                                    <input type="number" className="form-control" placeholder="Which hour" />
+                                    <input type="number" className="form-control" placeholder="How many discount off" />
+                                    <button style={{ background: 'black', color: 'white' }} className="btn btn-outline-secondary">Add time interval</button>
                                 </div>
 
-                                <div className="grey">Duration</div>
-                                <div className="add-on" style={{ justifyContent: 'start' }}>
-                                    <input
-                                        style={{ margin: '0px 4px' }}
-                                        type="text"
-                                        name="duration"
-                                        value={duration}
-                                        onChange={handleInputChange}
-                                    />
-                                    <select className="select" value="minutes" disabled>
-                                        <option>minutes</option>
-                                    </select>
+                                {/* Filters */}
+                                <div className="row mb-4">
+                                    <div className="col">
+                                        <select className="form-select">
+                                            <option>In stock</option>
+                                            <option>Out of stock</option>
+                                        </select>
+                                    </div>
+                                    <div className="col">
+                                        <select className="form-select">
+                                            <option>Published</option>
+                                            <option>Unpublished</option>
+                                        </select>
+                                    </div>
+                                    <div className="col">
+                                        <input type="text" className="form-control" placeholder="Search..." />
+                                    </div>
+                                    <div className="col-auto">
+                                        <button className="btn btn-clear">Clear</button>
+                                    </div>
                                 </div>
-                                <div>
+
+                                {/* Product Table */}
+                                <div className="product-table-wrapper">
+                                    <table className="table table-hover product-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={checked}
+                                                        onChange={() => setChecked(!checked)}
+                                                    />
+                                                </td>
+                                                <td>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</td>
+                                                <td>$399</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" />
+                                                </td>
+                                                <td>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</td>
+                                                <td>$499</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" />
+                                                </td>
+                                                <td>Massage Pool + Suite + Cake & Tea + Sake + Gym</td>
+                                                <td>$345</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {/* Footer */}
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <div className="form-check">
+                                        <input className="form-check-input" type="checkbox" id="denseCheck" />
+                                        <label className="form-check-label" htmlFor="denseCheck">
+                                            Dense
+                                        </label>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <label className="me-2">Rows per page:</label>
+                                        <select className="form-select form-select-sm" style={{ width: 'auto' }}>
+                                            <option>10</option>
+                                            <option>20</option>
+                                            <option>30</option>
+                                        </select>
+                                        <span className="ms-2">3 of 7</span>
+                                    </div>
+                                </div>
+                                <div style={{ margin: '20px 0px' }}>
                                     <button className="button" onClick={handleSaveChanges}>Save changes</button>
                                 </div>
                             </div>

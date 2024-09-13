@@ -50,10 +50,10 @@ const Campaign = () => {
                                 </>
                             }
                             {
-                                active === 'nearreel' && <Link to='/create-coupon' className="btn-outline-secondary ms-3 me-0 rounded-3" style={{display:'flex', alignItems:'center', border:'2px solid black', padding:'0px 20px', textDecoration:'none'}}><img src={plus} /> <span style={{ color: 'black' }}>Create NearReel</span></Link>
+                                active === 'nearreel' && <Link to='/campaign/create-nearreel' className="btn-outline-secondary ms-3 me-0 rounded-3" style={{display:'flex', alignItems:'center', border:'2px solid black', padding:'0px 20px', textDecoration:'none'}}><img src={plus} /> <span style={{ color: 'black' }}>Create NearReel</span></Link>
                             }
                             {
-                                active === 'discounts' && <Link to='/create-coupon' className="btn-outline-secondary ms-3 me-0 rounded-3" style={{display:'flex', alignItems:'center', border:'2px solid black', padding:'0px 20px', textDecoration:'none'}}><img src={plus} /> <span style={{ color: 'black' }}>Create Discounts</span></Link>
+                                active === 'discounts' && <Link to='/campaign/create-discounts' className="btn-outline-secondary ms-3 me-0 rounded-3" style={{display:'flex', alignItems:'center', border:'2px solid black', padding:'0px 20px', textDecoration:'none'}}><img src={plus} /> <span style={{ color: 'black' }}>Create Discounts</span></Link>
                             }
                         </div>
                     </div>
