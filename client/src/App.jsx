@@ -38,14 +38,14 @@ function App() {
         <Route path='/campaign/analytics' element={<CampainAnalytics/>}></Route>
         <Route path='/campaign/redeemcode' element={<CampaignRedeemRecord></CampaignRedeemRecord>}></Route>
         <Route path='/store-settings' element={<StoreSettings></StoreSettings>}></Route> */} 
-       <Route path='/campaign/ads' exact element={<ProtectedRoutes Component={CampaignAdsEdit} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path='/campaign/ads' exact element={<ProtectedRoutes Component={CampaignAdsEdit} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/" exact element={<ProtectedRoutes Component={Booking} isUserLoggedIn={isUserLoggedIn} />} /> 
         <Route path="/analytics" exact element={<ProtectedRoutes Component={Analytics} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/create-package" exact element={<ProtectedRoutes Component={CreatePackage} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/package" exact element={<ProtectedRoutes Component={Package} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/transaction" exact element={<ProtectedRoutes Component={Transaction} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/campaign" exact element={<ProtectedRoutes Component={Campaign} isUserLoggedIn={isUserLoggedIn} />} />
-        <Route path="/create-coupon" exact element={<ProtectedRoutes Component={CreateCoupon} isUserLoggedIn={isUserLoggedIn} />} />
+        <Route path="/campaign/create-coupon" exact element={<ProtectedRoutes Component={CreateCoupon} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/campaign/analytics" exact element={<ProtectedRoutes Component={CampainAnalytics} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/campaign/redeemcode" exact element={<ProtectedRoutes Component={CampaignRedeemRecord} isUserLoggedIn={isUserLoggedIn} />} />
         <Route path="/store-settings" exact element={<ProtectedRoutes Component={StoreSettings} isUserLoggedIn={isUserLoggedIn} />} />
