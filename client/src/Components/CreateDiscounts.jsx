@@ -1,18 +1,13 @@
-import React, { useState, useRef, useCallback } from "react";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // Import Quill's styles
+import { useState } from "react";
+import 'react-quill/dist/quill.snow.css';
 import SideBar from "./SideBar";
 import background from "../assets/background.svg";
 import leftArrow from "../assets/leftArrow.svg";
-import preview from "../assets/preview.svg";
-import copy from "../assets/copy.svg";
-import imageUpload from "../assets/imageUpload.svg";
-import deleteIcon from "../assets/deleteIcon.svg";
-import crossIcon from "../assets/cross.svg";
-import PackageSideBar from "./PackageSideBar";
 import dot from "../assets/dot.svg"
 import edit from "../assets/edit.svg"
 import product from "../assets/product.svg";
+import time from "../assets/time.svg";
+import regular from "../assets/regular.svg";
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -24,56 +19,13 @@ const CreatePackage = () => {
         return active === path ? 'btn' : ''
     };
     const [isChecked, setIsChecked] = useState(false);
-    const [images, setImages] = useState([]);
-    const [editorStates, setEditorStates] = useState({
-        included: { content: '', operations: [] },
-        openingHours: { content: '', operations: [] },
-        tnc: { content: '', operations: [] }
-    });
     const [packageTitle, setPackageTitle] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState('Spa');
     const [url, setUrl] = useState('');
-    const [addons, setAddons] = useState(['', '']);
     const [duration, setDuration] = useState('');
-    const fileInputRef = useRef(null);
-    const quillRefs = useRef({ included: null, openingHours: null, tnc: null });
-
-    const [isChecked1, setIsChecked1] = useState(false);
-    const [isChecked2, setIsChecked2] = useState(false);
-    const [isChecked3, setIsChecked3] = useState(false);
-
-    const handleToggle1 = () => {
-        setIsChecked1(!isChecked1);
-        console.log('Toggle state:', !isChecked1);
-    };
-
-    const handleToggle2 = () => {
-        setIsChecked2(!isChecked2);
-        console.log('Toggle state:', !isChecked2);
-    };
-
-    const handleToggle3 = () => {
-        setIsChecked3(!isChecked3);
-        console.log('Toggle state:', !isChecked3);
-    };
 
     const handleToggle = () => {
         setIsChecked(!isChecked);
         console.log('Toggle state:', !isChecked);
-    };
-
-    const handleImageUpload = (event) => {
-        const files = Array.from(event.target.files);
-        const newImages = files.map(file => URL.createObjectURL(file));
-        setImages(prevImages => [...prevImages, ...newImages]);
-    };
-
-    const handleRemoveImage = (index) => {
-        setImages(images.filter((_, i) => i !== index));
-    };
-
-    const handleUploadClick = () => {
-        fileInputRef.current.click();
     };
 
     const handleInputChange = (e) => {
@@ -93,29 +45,6 @@ const CreatePackage = () => {
         }
     };
 
-    const handleAddonsChange = (index, value) => {
-        const newAddons = [...addons];
-        newAddons[index] = value;
-        setAddons(newAddons);
-    };
-
-    const handleCategoryChange = (e) => {
-        setSelectedCategory(e.target.value);
-    };
-
-    const updateEditorState = useCallback((editorKey, delta, oldDelta, source) => {
-        setEditorStates(prevStates => {
-            const updatedOperations = [...prevStates[editorKey].operations, { delta, oldDelta, source }];
-            return {
-                ...prevStates,
-                [editorKey]: {
-                    ...prevStates[editorKey],
-                    operations: updatedOperations
-                }
-            };
-        });
-    }, []);
-
     const handleSaveChanges = () => {
         console.log('Package Title:', packageTitle);
         console.log('Category:', selectedCategory);
@@ -129,6 +58,9 @@ const CreatePackage = () => {
         console.log('Is Checked:', isChecked);
         console.log('Editor States:', editorStates);
     };
+
+    const [tab, setTab] = useState('1');
+
 
     return (
         <div style={{ display: 'flex' }}>
@@ -173,135 +105,301 @@ const CreatePackage = () => {
                                 </div>
                             </div>
                             <div className="body">
+                                <input
+                                    name="packageTitle"
+                                    className="package-title"
+                                    type="text"
+                                    placeholder="Discount Title"
+                                    value={packageTitle}
+                                    onChange={handleInputChange}
+                                />
+
                                 {/* Discount Buttons */}
-                                <div className="">
-                                    <button className="btn btn-discount-active">
-                                        <i className="bi bi-clock"></i> Time-based discount
+                                <div >
+                                    <button style={{ backgroundColor: tab === '1' ? '#CAF1D9' : 'transparent', width: '49%', padding: '10px 20px', border: '1px solid black', flexDirection: 'column', display: 'flex', alignItems: 'center' }} onClick={() => setTab('1')} className="btn btn-discount-active">
+                                        <img src={time} /> Time-based discount
                                     </button>
-                                    <button className="btn btn-discount-inactive">
-                                        <i className="bi bi-tag"></i> Regular discount
+                                    <button style={{ backgroundColor: tab === '2' ? '#CAF1D9' : 'transparent', width: '49%', padding: '10px 20px', border: '1px solid black', flexDirection: 'column', display: 'flex', alignItems: 'center' }} onClick={() => setTab('2')} className="btn btn-discount-inactive">
+                                        <img src={regular} /> Regular discount
                                     </button>
                                 </div>
 
-                                {/* Time-based Discount Inputs */}
-                                <div className="input-group mb-3">
-                                    <input type="number" className="form-control" placeholder="Which hour" />
-                                    <input type="number" className="form-control" placeholder="How many discount off" />
-                                    <button style={{ background:'black', color:'white' }} className="btn btn-outline-secondary">Add time interval</button>
-                                </div>
+                                {
+                                    tab === '1' &&
+                                    <motion.div initia-l={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 1 }} style={{ flexDirection: 'column', margin: '20px 0px' }}>
+                                        {/* Time-based Discount Inputs */}
+                                        <div className="input-group mb-3">
+                                            <input type="number" className="form-control" placeholder="Which hour" />
+                                            <input type="number" className="form-control" placeholder="How many discount off" />
+                                            <button style={{ background: 'black', color: 'white' }} className="btn btn-outline-secondary">Add time interval</button>
+                                        </div>
 
-                                {/* Filters */}
-                                <div className="row mb-4">
-                                    <div className="col">
-                                        <select className="form-select">
-                                            <option>In stock</option>
-                                            <option>Out of stock</option>
-                                        </select>
-                                    </div>
-                                    <div className="col">
-                                        <select className="form-select">
-                                            <option>Published</option>
-                                            <option>Unpublished</option>
-                                        </select>
-                                    </div>
-                                    <div className="col">
-                                        <input type="text" className="form-control" placeholder="Search..." />
-                                    </div>
-                                    <div className="col-auto">
-                                        <button className="btn btn-clear">Clear</button>
-                                    </div>
-                                </div>
-      {/* Product Table */}
-      <div className="product-table-wrapper">
-                                        <table className="table table-hover product-table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">Product</th>
-                                                    {/* <th scope="col">Price</th> */}
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <input
-                                                            type="checkbox"
-                                                            checked={checked}
-                                                            onChange={() => setChecked(!checked)}
-                                                        />
-                                                    </td>
-                                                    <td>
-                                                        <div>
-                                                            <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
-                                                            <div style={{ flexDirection: 'column' }}>
-                                                                <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
-                                                                <span className="grey">$399</span>
+                                        {/* Filters */}
+                                        <div className="row mb-4">
+                                            <div className="col">
+                                                <select className="form-select">
+                                                    <option>In stock</option>
+                                                    <option>Out of stock</option>
+                                                </select>
+                                            </div>
+                                            <div className="col">
+                                                <select className="form-select">
+                                                    <option>Published</option>
+                                                    <option>Unpublished</option>
+                                                </select>
+                                            </div>
+                                            <div className="col">
+                                                <input type="text" className="form-control" placeholder="Search..." />
+                                            </div>
+                                            <div className="col-auto">
+                                                <button className="btn btn-clear">Clear</button>
+                                            </div>
+                                        </div>
+                                        {/* Product Table */}
+                                        <div className="product-table-wrapper">
+                                            <table className="table table-hover product-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Product</th>
+                                                        {/* <th scope="col">Price</th> */}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={checked}
+                                                                onChange={() => setChecked(!checked)}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                                <div style={{ flexDirection: 'column' }}>
+                                                                    <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                    <span className="grey">$399</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input
-                                                            type="checkbox"
-                                                            checked={checked}
-                                                            onChange={() => setChecked(!checked)}
-                                                        />
-                                                    </td>
-                                                    <td>
-                                                        <div>
-                                                            <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
-                                                            <div style={{ flexDirection: 'column' }}>
-                                                                <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
-                                                                <span className="grey">$399</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={checked}
+                                                                onChange={() => setChecked(!checked)}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                                <div style={{ flexDirection: 'column' }}>
+                                                                    <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                    <span className="grey">$399</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input
-                                                            type="checkbox"
-                                                            checked={checked}
-                                                            onChange={() => setChecked(!checked)}
-                                                        />
-                                                    </td>
-                                                    <td>
-                                                        <div>
-                                                            <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
-                                                            <div style={{ flexDirection: 'column' }}>
-                                                                <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
-                                                                <span className="grey">$399</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={checked}
+                                                                onChange={() => setChecked(!checked)}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                                <div style={{ flexDirection: 'column' }}>
+                                                                    <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                    <span className="grey">$399</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
 
-                                {/* Footer */}
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="form-check">
-                                        <input className="form-check-input" type="checkbox" id="denseCheck" />
-                                        <label className="form-check-label" htmlFor="denseCheck">
-                                            Dense
-                                        </label>
-                                    </div>
-                                    <div className="d-flex align-items-center">
-                                        <label className="me-2">Rows per page:</label>
-                                        <select className="form-select form-select-sm" style={{ width: 'auto' }}>
-                                            <option>10</option>
-                                            <option>20</option>
-                                            <option>30</option>
-                                        </select>
-                                        <span className="ms-2">3 of 7</span>
-                                    </div>
-                                </div>
+                                        {/* Footer */}
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            <div className="form-check">
+                                                <input className="form-check-input" type="checkbox" id="denseCheck" />
+                                                <label className="form-check-label" htmlFor="denseCheck">
+                                                    Dense
+                                                </label>
+                                            </div>
+                                            <div className="d-flex align-items-center">
+                                                <label className="me-2">Rows per page:</label>
+                                                <select className="form-select form-select-sm" style={{ width: 'auto' }}>
+                                                    <option>10</option>
+                                                    <option>20</option>
+                                                    <option>30</option>
+                                                </select>
+                                                <span className="ms-2">3 of 7</span>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                }
+
+                                {
+                                    tab === '2' &&
+                                    <motion.div initia-l={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 1 }} style={{ flexDirection: 'column', margin: '20px 0px' }}>
+
+                                        <input style={{ width: '35%', padding: '10px 20px', border: '2px solid #E9ECEE', color: '#637381', borderRadius: '10px' }} type="date" placeholder="Valid Date & time"></input>
+
+                                        <div style={{ marginTop: '20px' }} className="grey">Type of coupon</div>
+                                        <div style={{ flexDirection: 'column' }}>
+                                            <div style={{ justifyContent: 'start' }} className="form-check">
+                                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                                                <label style={{ margin: '0px 5px' }} className="form-check-label" >
+                                                    QR code
+                                                </label>
+                                            </div>
+                                            <div style={{ justifyContent: 'start' }} className="form-check">
+                                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+                                                <label style={{ margin: '0px 5px' }} className="form-check-label" >
+                                                    Percent Off
+                                                </label>
+                                            </div>
+                                            <div style={{ justifyContent: 'start' }} className="form-check">
+                                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+                                                <label style={{ margin: '0px 5px' }} className="form-check-label" >
+                                                    Money Value
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        {/* Time-based Discount Inputs */}
+                                        <div style={{ marginTop: '20px' }} className="input-group mb-3">
+                                            <input type="number" className="form-control" placeholder="Which hour" />
+                                            <input type="number" className="form-control" placeholder="How many discount off" />
+                                            <button style={{ background: 'black', color: 'white' }} className="btn btn-outline-secondary">Add time interval</button>
+                                        </div>
+
+                                        {/* Filters */}
+                                        <div className="row mb-4">
+                                            <div className="col">
+                                                <select className="form-select">
+                                                    <option>In stock</option>
+                                                    <option>Out of stock</option>
+                                                </select>
+                                            </div>
+                                            <div className="col">
+                                                <select className="form-select">
+                                                    <option>Published</option>
+                                                    <option>Unpublished</option>
+                                                </select>
+                                            </div>
+                                            <div className="col">
+                                                <input type="text" className="form-control" placeholder="Search..." />
+                                            </div>
+                                            <div className="col-auto">
+                                                <button className="btn btn-clear">Clear</button>
+                                            </div>
+                                        </div>
+                                        {/* Product Table */}
+                                        <div className="product-table-wrapper">
+                                            <table className="table table-hover product-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Product</th>
+                                                        {/* <th scope="col">Price</th> */}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={checked}
+                                                                onChange={() => setChecked(!checked)}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                                <div style={{ flexDirection: 'column' }}>
+                                                                    <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                    <span className="grey">$399</span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={checked}
+                                                                onChange={() => setChecked(!checked)}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                                <div style={{ flexDirection: 'column' }}>
+                                                                    <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                    <span className="grey">$399</span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={checked}
+                                                                onChange={() => setChecked(!checked)}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                                <div style={{ flexDirection: 'column' }}>
+                                                                    <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                    <span className="grey">$399</span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        {/* Footer */}
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            <div className="form-check">
+                                                <input className="form-check-input" type="checkbox" id="denseCheck" />
+                                                <label className="form-check-label" htmlFor="denseCheck">
+                                                    Dense
+                                                </label>
+                                            </div>
+                                            <div className="d-flex align-items-center">
+                                                <label className="me-2">Rows per page:</label>
+                                                <select className="form-select form-select-sm" style={{ width: 'auto' }}>
+                                                    <option>10</option>
+                                                    <option>20</option>
+                                                    <option>30</option>
+                                                </select>
+                                                <span className="ms-2">3 of 7</span>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                }
 
                                 {/* Save Changes Button */}
-                                <div className="d-flex justify-content-end mt-4">
-                                    <button className="btn btn-primary btn-save">Save changes</button>
+                                <div style={{ margin: '20px 0px' }}>
+                                    <button className="button" onClick={handleSaveChanges}>Save changes</button>
                                 </div>
                             </div>
                         </motion.div>
