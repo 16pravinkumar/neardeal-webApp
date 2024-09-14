@@ -12,6 +12,7 @@ import crossIcon from "../assets/cross.svg";
 import PackageSideBar from "./PackageSideBar";
 import dot from "../assets/dot.svg"
 import edit from "../assets/edit.svg"
+import product from "../assets/product.svg";
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -210,46 +211,74 @@ const CreatePackage = () => {
                                         <button className="btn btn-clear">Clear</button>
                                     </div>
                                 </div>
-
-                                {/* Product Table */}
-                                <div className="product-table-wrapper">
-                                    <table className="table table-hover product-table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Product</th>
-                                                <th scope="col">Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={checked}
-                                                        onChange={() => setChecked(!checked)}
-                                                    />
-                                                </td>
-                                                <td>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</td>
-                                                <td>$399</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" />
-                                                </td>
-                                                <td>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</td>
-                                                <td>$499</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" />
-                                                </td>
-                                                <td>Massage Pool + Suite + Cake & Tea + Sake + Gym</td>
-                                                <td>$345</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+      {/* Product Table */}
+      <div className="product-table-wrapper">
+                                        <table className="table table-hover product-table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">Product</th>
+                                                    {/* <th scope="col">Price</th> */}
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={checked}
+                                                            onChange={() => setChecked(!checked)}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                            <div style={{ flexDirection: 'column' }}>
+                                                                <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                <span className="grey">$399</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={checked}
+                                                            onChange={() => setChecked(!checked)}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                            <div style={{ flexDirection: 'column' }}>
+                                                                <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                <span className="grey">$399</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={checked}
+                                                            onChange={() => setChecked(!checked)}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                            <div style={{ flexDirection: 'column' }}>
+                                                                <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                <span className="grey">$399</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
                                 {/* Footer */}
                                 <div className="d-flex justify-content-between align-items-center">

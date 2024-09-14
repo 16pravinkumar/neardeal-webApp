@@ -13,6 +13,7 @@ import PackageSideBar from "./PackageSideBar";
 import dot from "../assets/dot.svg"
 import edit from "../assets/edit.svg"
 import ai from "../assets/aiLogo.svg";
+import product from "../assets/product.svg";
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -241,91 +242,116 @@ const CreatePackage = () => {
                                 </div>
 
                                 <div style={{ margin: '20px 0px' }} className="grey">Mention Package</div>
-                                {/* Time-based Discount Inputs */}
-                                <div className="input-group mb-3">
-                                    <input type="number" className="form-control" placeholder="Which hour" />
-                                    <input type="number" className="form-control" placeholder="How many discount off" />
-                                    <button style={{ background: 'black', color: 'white' }} className="btn btn-outline-secondary">Add time interval</button>
-                                </div>
+                                <div style={{ flexDirection: 'column', boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)', padding: '10px', borderRadius: '20px' }}>
 
-                                {/* Filters */}
-                                <div className="row mb-4">
-                                    <div className="col">
-                                        <select className="form-select">
-                                            <option>In stock</option>
-                                            <option>Out of stock</option>
-                                        </select>
+                                    {/* Filters */}
+                                    <div className="row mb-4">
+                                        <div className="col">
+                                            <select className="form-select">
+                                                <option>In stock</option>
+                                                <option>Out of stock</option>
+                                            </select>
+                                        </div>
+                                        <div className="col">
+                                            <select className="form-select">
+                                                <option>Published</option>
+                                                <option>Unpublished</option>
+                                            </select>
+                                        </div>
+                                        <div className="col">
+                                            <input type="text" className="form-control" placeholder="Search..." />
+                                        </div>
+                                        <div className="col-auto">
+                                            <button className="btn btn-clear">Clear</button>
+                                        </div>
                                     </div>
-                                    <div className="col">
-                                        <select className="form-select">
-                                            <option>Published</option>
-                                            <option>Unpublished</option>
-                                        </select>
-                                    </div>
-                                    <div className="col">
-                                        <input type="text" className="form-control" placeholder="Search..." />
-                                    </div>
-                                    <div className="col-auto">
-                                        <button className="btn btn-clear">Clear</button>
-                                    </div>
-                                </div>
 
-                                {/* Product Table */}
-                                <div className="product-table-wrapper">
-                                    <table className="table table-hover product-table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Product</th>
-                                                <th scope="col">Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={checked}
-                                                        onChange={() => setChecked(!checked)}
-                                                    />
-                                                </td>
-                                                <td>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</td>
-                                                <td>$399</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" />
-                                                </td>
-                                                <td>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</td>
-                                                <td>$499</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" />
-                                                </td>
-                                                <td>Massage Pool + Suite + Cake & Tea + Sake + Gym</td>
-                                                <td>$345</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                {/* Footer */}
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="form-check">
-                                        <input className="form-check-input" type="checkbox" id="denseCheck" />
-                                        <label className="form-check-label" htmlFor="denseCheck">
-                                            Dense
-                                        </label>
+                                    {/* Product Table */}
+                                    <div className="product-table-wrapper">
+                                        <table className="table table-hover product-table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">Product</th>
+                                                    {/* <th scope="col">Price</th> */}
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={checked}
+                                                            onChange={() => setChecked(!checked)}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                            <div style={{ flexDirection: 'column' }}>
+                                                                <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                <span className="grey">$399</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={checked}
+                                                            onChange={() => setChecked(!checked)}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                            <div style={{ flexDirection: 'column' }}>
+                                                                <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                <span className="grey">$399</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={checked}
+                                                            onChange={() => setChecked(!checked)}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <img src={product} alt="product" style={{ width: '50px', height: '50px' }} />
+                                                            <div style={{ flexDirection: 'column' }}>
+                                                                <span>Anti Ageing Facial/Deep Relieve Massage + Healthy Lunch + Swimming Pool + SPA & Fitness Facility</span>
+                                                                <span className="grey">$399</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div className="d-flex align-items-center">
-                                        <label className="me-2">Rows per page:</label>
-                                        <select className="form-select form-select-sm" style={{ width: 'auto' }}>
-                                            <option>10</option>
-                                            <option>20</option>
-                                            <option>30</option>
-                                        </select>
-                                        <span className="ms-2">3 of 7</span>
+
+                                    {/* Footer */}
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" id="denseCheck" />
+                                            <label className="form-check-label" htmlFor="denseCheck">
+                                                Dense
+                                            </label>
+                                        </div>
+                                        <div className="d-flex align-items-center">
+                                            <label className="me-2">Rows per page:</label>
+                                            <select className="form-select form-select-sm" style={{ width: 'auto' }}>
+                                                <option>10</option>
+                                                <option>20</option>
+                                                <option>30</option>
+                                            </select>
+                                            <span className="ms-2">3 of 7</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div style={{ margin: '20px 0px' }}>
