@@ -13,11 +13,6 @@ const Booking = () => {
     const jwtUserToken = Cookies.get("user_token");
     const userData = JSON.parse(jwtUserToken);
     const [bookingData, setBookingData] = useState([]);
-    const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString(); // Adjust as needed for format
-};
-
     const [loading, setLoading] = useState(false);
     const handleSubmit = async () => {
         console.log('dsgbd');
@@ -101,25 +96,13 @@ const Booking = () => {
 
                         <table className="table table-hover mt-5">
                             <tbody>
-                                {/* <tr className="align-middle">
-                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={started} /> <span>Started</span></td>
-                                    <td>Wed 12<br />10:00-10:30</td>
-                                    <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">Lunch & Swimming Pool</span></td>
-                                    <td>Terrence Lam</td>
-                                    <td className="text-success">Attending</td>
-                                    <td>
-                                        <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                    </td>
-                                    <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                                </tr> */}
-
                                 {
                                     bookingData.map((data) => {
                                         return <>
                                             <tr className="align-middle">
-                                            <>
-                                                {data.BookingStatus === "Started" ? <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={started} /> <span>Started</span></td> : data.BookingStatus === "Absent" ? <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} /> <span>Absent</span></td> : <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={tick} /> <span>Attend</span></td>}
-                                            </>
+                                                <>
+                                                    {data.BookingStatus === "Started" ? <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={started} /> <span>Started</span></td> : data.BookingStatus === "Absent" ? <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} /> <span>Absent</span></td> : <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={tick} /> <span>Attend</span></td>}
+                                                </>
                                                 {/* <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={tick} /> <span>Attend</span></td> */}
                                                 <td>{data.BookingStartDate}</td>
                                                 <td>{data.InventoryName}</td>
@@ -135,39 +118,6 @@ const Booking = () => {
                                         </>
                                     })
                                 }
-                                {/* <tr className="align-middle">
-                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={tick} /> <span>Attend</span></td>
-                                    <td>Wed 12<br />11:00-11:30</td>
-                                    <td>Anti Ageing Facial/Deep Relieve Massage</td>
-                                    <td>Bonnie Li</td>
-                                    <td className="text-success">Attending</td>
-                                    <td>
-                                        <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                    </td>
-                                    <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                                </tr> */}
-                                {/* <tr className="align-middle">
-                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={started} /> <span>Started</span></td>
-                                    <td>Wed 12<br />12:00-12:30</td>
-                                    <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">SPA & Fitness Facility</span></td>
-                                    <td>Terrence Lam</td>
-                                    <td className="text-danger">Cancelled</td>
-                                    <td>
-                                        <button className="btn btn-link disabled"><i className="bi bi-pencil"></i></button>
-                                    </td>
-                                    <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                                </tr> */}
-                                {/* <tr className="align-middle">
-                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} /> <span>Absent</span></td>
-                                    <td>Wed 12<br />11:00-11:30</td>
-                                    <td>Japanese Sakura & Sake Spa Ritual for Couple</td>
-                                    <td>Bonnie Li</td>
-                                    <td className="text-success">Attending</td>
-                                    <td>
-                                        <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                    </td>
-                                    <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                                </tr> */}
                             </tbody>
                         </table>
                     </motion.div>
