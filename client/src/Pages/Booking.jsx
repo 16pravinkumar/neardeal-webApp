@@ -63,7 +63,7 @@ const Booking = () => {
     useEffect(() => {
         console.log(jwtUserToken);
         handleSubmit()
-    }, [])
+    }, [bookingData])
     return (
         <div style={{ display: 'flex' }}>
             <SideBar></SideBar>
