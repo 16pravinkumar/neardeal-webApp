@@ -35,7 +35,7 @@ const SideBar = () => {
 
                 const userData = await response.json();
                 setUserData(userData);
-                console.log("User Data:", userData); // Log the user data
+                // console.log("User Data:", userData); // Log the user data
 
             } catch (error) {
                 console.error('Failed to parse JSON from cookie or fetch user data:', error);

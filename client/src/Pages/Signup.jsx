@@ -160,7 +160,7 @@ const SignUp = () => {
                     body: JSON.stringify(payload),
                 });
     
-                console.log('Final Response:', finalResponse);
+                // console.log('Final Response:', finalResponse);
                 if (!finalResponse.ok) {
                     throw new Error('Network response was not ok.');
                 }

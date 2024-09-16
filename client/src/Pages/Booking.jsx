@@ -5,10 +5,70 @@ import { motion } from 'framer-motion';
 import started from "../assets/started.svg";
 import tick from "../assets/tick.svg";
 import dotedCircle from "../assets/dotedCircle.svg";
+import { useState, useEffect } from "react";
+import Cookies from 'js-cookie';
 
 const Booking = () => {
 
+    const jwtUserToken = Cookies.get("user_token");
+    const userData = JSON.parse(jwtUserToken);
+    const [bookingData, setBookingData] = useState([]);
+    const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(); // Adjust as needed for format
+};
 
+    const [loading, setLoading] = useState(false);
+    const handleSubmit = async () => {
+        console.log('dsgbd');
+
+        try {
+            setLoading(true);
+
+            // Make sure to use POST if you're sending a body with your request
+            const response = await fetch('https://wellness.neardeal.me/WAPI/bookingsTry.php', {
+                method: 'POST', // Correct method for sending data
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "vendorid": userData.ID,
+                    "bookingFilter": "Today"
+                })
+            });
+
+            // Parse JSON data from the response
+            const data = await response.json();
+
+            console.log(data.data);
+            setBookingData(data.data);
+
+            // const transformedArray = [
+            //     {
+            //         BookingID: data.message.BookingID,
+            //         BookingStatus: data.message.BookingStatus,
+            //         BookingStartDate: data.message.BookingStartDate,
+            //         BookingEndDate: data.message.BookingEndDate,
+            //         InventoryName: data.message.InventoryName,
+            //         AssignedTo: data.message.AssignedTo,
+            //         PaymentStatus: data.message.PaymentStatus
+            //     }
+            // ];
+            // console.log(transformedArray);
+            // setBookingData(transformedArray);
+
+        } catch (error) {
+            console.error('Error:', error);
+            // toast.error('Login failed. Please check your credentials.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        console.log(jwtUserToken);
+        handleSubmit()
+    }, [])
     return (
         <div style={{ display: 'flex' }}>
             <SideBar></SideBar>
@@ -41,7 +101,7 @@ const Booking = () => {
 
                         <table className="table table-hover mt-5">
                             <tbody>
-                                <tr className="align-middle">
+                                {/* <tr className="align-middle">
                                     <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={started} /> <span>Started</span></td>
                                     <td>Wed 12<br />10:00-10:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">Lunch & Swimming Pool</span></td>
@@ -51,8 +111,31 @@ const Booking = () => {
                                         <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
                                     </td>
                                     <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                                </tr>
-                                <tr className="align-middle">
+                                </tr> */}
+
+                                {
+                                    bookingData.map((data) => {
+                                        return <>
+                                            <tr className="align-middle">
+                                            <>
+                                                {data.BookingStatus === "Started" ? <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={started} /> <span>Started</span></td> : data.BookingStatus === "Absent" ? <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} /> <span>Absent</span></td> : <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={tick} /> <span>Attend</span></td>}
+                                            </>
+                                                {/* <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={tick} /> <span>Attend</span></td> */}
+                                                <td>{data.BookingStartDate}</td>
+                                                <td>{data.InventoryName}</td>
+                                                <td>{data.AssignedTo}</td>
+                                                <>
+                                                    {data.PaymentStatus === "Paid" ? <td className="text-success">{data.PaymentStatus}</td> : <td className="text-danger">{data.PaymentStatus}</td>}
+                                                </>
+                                                <td>
+                                                    <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
+                                                </td>
+                                                <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
+                                            </tr>
+                                        </>
+                                    })
+                                }
+                                {/* <tr className="align-middle">
                                     <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={tick} /> <span>Attend</span></td>
                                     <td>Wed 12<br />11:00-11:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage</td>
@@ -62,8 +145,8 @@ const Booking = () => {
                                         <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
                                     </td>
                                     <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                                </tr>
-                                <tr className="align-middle">
+                                </tr> */}
+                                {/* <tr className="align-middle">
                                     <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={started} /> <span>Started</span></td>
                                     <td>Wed 12<br />12:00-12:30</td>
                                     <td>Anti Ageing Facial/Deep Relieve Massage + <span className="text-success">SPA & Fitness Facility</span></td>
@@ -73,8 +156,8 @@ const Booking = () => {
                                         <button className="btn btn-link disabled"><i className="bi bi-pencil"></i></button>
                                     </td>
                                     <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                                </tr>
-                                <tr className="align-middle">
+                                </tr> */}
+                                {/* <tr className="align-middle">
                                     <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} /> <span>Absent</span></td>
                                     <td>Wed 12<br />11:00-11:30</td>
                                     <td>Japanese Sakura & Sake Spa Ritual for Couple</td>
@@ -84,7 +167,7 @@ const Booking = () => {
                                         <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
                                     </td>
                                     <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                                </tr>
+                                </tr> */}
                             </tbody>
                         </table>
                     </motion.div>
@@ -123,15 +206,15 @@ const Booking = () => {
                             </div>
                             <div className="card-body pb-0">
                                 <div className="row">
-                                    <select style={{ padding:'10px', borderRadius:'5px' }}>
+                                    <select style={{ padding: '10px', borderRadius: '5px' }}>
                                         <option>Attend</option>
                                         <option>Cancel</option>
                                         <option>Absent</option>
                                         <option>Started</option>
                                     </select>
                                 </div>
-                                <div style={{ marginTop:'10px' }} className="row">
-                                    <select style={{ padding:'10px', borderRadius:'5px' }}>
+                                <div style={{ marginTop: '10px' }} className="row">
+                                    <select style={{ padding: '10px', borderRadius: '5px' }}>
                                         <option>Paid</option>
                                         <option>Pending</option>
                                     </select>
