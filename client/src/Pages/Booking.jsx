@@ -32,7 +32,7 @@ const Booking = () => {
 
             const data = await response.json();
 
-            console.log('booking: ' , data);
+            // console.log('booking: ' , data);
             setBookingData(data.data);
 
         } catch (error) {
