@@ -15,6 +15,14 @@ const Booking = () => {
     const [active, setActive] = useState('All');
     const [loading, setLoading] = useState(false);
 
+    // State for offcanvas form
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [bookingStatus, setBookingStatus] = useState('Attend');
+    const [paymentStatus, setPaymentStatus] = useState('Paid');
+    const [selectedBookingId, setSelectedBookingId] = useState('');
+    // const []
+
     const isActive = (path) => {
         return active === path ? 'btn' : '';
     };
@@ -35,13 +43,38 @@ const Booking = () => {
             });
 
             const data = await response.json();
-            console.log(data);
-            
+            console.log(data.data[0].BookingID);
+
             setBookingData(data.data);
         } catch (error) {
             console.error('Error:', error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleEdit = async () => {
+        try {
+            const response = await fetch('https://wellness.neardeal.me/WAPI/editBookingsMW.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "vendorId": userData.ID,
+                    "bookingStatus": bookingStatus,
+                    "paymentStatus": paymentStatus,
+                    "bookingId": selectedBookingId,
+                    "bookingTime": `${date} ${time}`
+                })
+            });
+
+            const data = await response.json();
+            console.log(data);
+            // You may want to refresh the booking data after editing
+            handleSubmit(active);
+        } catch (error) {
+            console.error('Error:', error);
         }
     };
 
@@ -86,6 +119,7 @@ const Booking = () => {
                                     ) : (
                                         bookingData.map((data) => (
                                             <tr className="align-middle" key={data.BookingID}>
+                                                {/* {data.BookingID} */}
                                                 <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
                                                     {data.BookingStatus === "Started" ? (
                                                         <>
@@ -94,12 +128,12 @@ const Booking = () => {
                                                         </>
                                                     ) : data.BookingStatus === "Absent" ? (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={dotedCircle} />
                                                             <span>Absent</span>
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={tick} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={tick} />
                                                             <span>Attend</span>
                                                         </>
                                                     )}
@@ -111,11 +145,10 @@ const Booking = () => {
                                                     {data.PaymentStatus}
                                                 </td>
                                                 <td>
-                                                    <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                                </td>
-                                                <td>
                                                     <button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                                                        <i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
+                                                        <i onClick={() => {
+                                                            setSelectedBookingId(data.BookingID);
+                                                        }} className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -140,17 +173,17 @@ const Booking = () => {
                                                 <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
                                                     {data.BookingStatus === "Started" ? (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={started} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={started} />
                                                             <span>Started</span>
                                                         </>
                                                     ) : data.BookingStatus === "Absent" ? (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={dotedCircle} />
                                                             <span>Absent</span>
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={tick} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={tick} />
                                                             <span>Attend</span>
                                                         </>
                                                     )}
@@ -162,11 +195,10 @@ const Booking = () => {
                                                     {data.PaymentStatus}
                                                 </td>
                                                 <td>
-                                                    <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                                </td>
-                                                <td>
                                                     <button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                                                        <i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
+                                                        <i onClick={() => {
+                                                            setSelectedBookingId(data.BookingID);
+                                                        }} className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -191,17 +223,17 @@ const Booking = () => {
                                                 <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
                                                     {data.BookingStatus === "Started" ? (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={started} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={started} />
                                                             <span>Started</span>
                                                         </>
                                                     ) : data.BookingStatus === "Absent" ? (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={dotedCircle} />
                                                             <span>Absent</span>
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={tick} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={tick} />
                                                             <span>Attend</span>
                                                         </>
                                                     )}
@@ -213,11 +245,10 @@ const Booking = () => {
                                                     {data.PaymentStatus}
                                                 </td>
                                                 <td>
-                                                    <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                                </td>
-                                                <td>
                                                     <button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                                                        <i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
+                                                        <i onClick={() => {
+                                                            setSelectedBookingId(data.BookingID);
+                                                        }} className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -242,17 +273,17 @@ const Booking = () => {
                                                 <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
                                                     {data.BookingStatus === "Started" ? (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={started} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={started} />
                                                             <span>Started</span>
                                                         </>
                                                     ) : data.BookingStatus === "Absent" ? (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={dotedCircle} />
                                                             <span>Absent</span>
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={tick} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={tick} />
                                                             <span>Attend</span>
                                                         </>
                                                     )}
@@ -264,11 +295,10 @@ const Booking = () => {
                                                     {data.PaymentStatus}
                                                 </td>
                                                 <td>
-                                                    <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                                </td>
-                                                <td>
                                                     <button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                                                        <i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
+                                                        <i onClick={() => {
+                                                            setSelectedBookingId(data.BookingID);
+                                                        }} className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -293,17 +323,17 @@ const Booking = () => {
                                                 <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
                                                     {data.BookingStatus === "Started" ? (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={started} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={started} />
                                                             <span>Started</span>
                                                         </>
                                                     ) : data.BookingStatus === "Absent" ? (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={dotedCircle} />
                                                             <span>Absent</span>
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <img style={{ width: '41%', margin: 'auto' }} src={tick} />
+                                                            <img style={{ width: '30%', margin: 'auto' }} src={tick} />
                                                             <span>Attend</span>
                                                         </>
                                                     )}
@@ -315,11 +345,10 @@ const Booking = () => {
                                                     {data.PaymentStatus}
                                                 </td>
                                                 <td>
-                                                    <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                                </td>
-                                                <td>
                                                     <button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                                                        <i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
+                                                        <i onClick={() => {
+                                                            setSelectedBookingId(data.BookingID);
+                                                        }} className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -345,7 +374,7 @@ const Booking = () => {
                     </nav>
                 </div>
 
-                <div className="offcanvas offcanvas-end" id="demo">
+                {/* <div className="offcanvas offcanvas-end" id="demo">
                     <div className="offcanvas-header mb-0">
                         <h3 className="offcanvas-title">Edit Booking</h3>
                         <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
@@ -353,35 +382,6 @@ const Booking = () => {
                     <div className="offcanvas-body">
                         <p className="offCanInvid">Invoice ID: <span id="invoiceNo">1234567890</span></p>
                         <p className="offCanCustName">Customer<br /><span id="custName">Qwerty</span></p>
-                        <div className="card mt-4">
-                            <div className="card-header offCanCardHead">
-                                <div className="row">
-                                    <div className="col-lg-6">
-                                        <p>Order Status</p>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <button type="button" className="btn btn-outline-dark offCanCardHeadBtn float-end mt-1">Save Changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card-body pb-0">
-                                <div className="row">
-                                    <select style={{ padding: '10px', borderRadius: '5px' }}>
-                                        <option>Attend</option>
-                                        <option>Cancel</option>
-                                        <option>Absent</option>
-                                        <option>Started</option>
-                                    </select>
-                                </div>
-                                <div style={{ marginTop: '10px' }} className="row">
-                                    <select style={{ padding: '10px', borderRadius: '5px' }}>
-                                        <option>Paid</option>
-                                        <option>Pending</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
 
                         <div className="card mt-4">
                             <div className="card-header offCanCardHead">
@@ -390,13 +390,13 @@ const Booking = () => {
                                         <p>Order Information</p>
                                     </div>
                                     <div className="col-lg-6">
-                                        <button type="button" className="btn btn-outline-dark offCanCardHeadBtn float-end mt-1">Save Changes</button>
+                                        <button type="button" className="btn btn-outline-dark offCanCardHeadBtn float-end mt-1" onClick={handleEdit}>Save Changes</button>
                                     </div>
                                 </div>
                             </div>
                             <div className="card-body pb-0">
                                 <div className="row">
-                                    <div className="col-lg-2">
+                                    <div className="col-lg-2" style={{ display: 'flex', alignItems: 'center' }}>
                                         <img style={{ borderRadius: '5px' }} src="https://avatars.githubusercontent.com/u/97161064?v=4" width="100%" alt="Package" />
                                     </div>
                                     <div className="col-lg-8">
@@ -404,9 +404,127 @@ const Booking = () => {
                                         <p className="offCanPackageDetail">Japanese Sakura & Sake Spa Ritual for Couple /Japanese sake bath + Aromatherapy Massage + Suite + Cake&Tea + Sake + Gym</p>
                                     </div>
                                 </div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', margin: '10px 0px' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', margin: '10px 5px' }}>
                                     <input type="date" style={{ borderRadius: '7px', width: '48%', textAlign: 'center' }} id="datepicker" placeholder="Date" />
                                     <input type="time" style={{ borderRadius: '7px', width: '48%', textAlign: 'center' }} id="timepicker" placeholder="Time" />
+                                </div>
+                                <div className="card-body pb-0">
+                                    <div className="row">
+                                        <select style={{ padding: '10px', borderRadius: '5px' }}>
+                                            <option>Attend</option>
+                                            <option>Cancel</option>
+                                            <option>Absent</option>
+                                            <option>Started</option>
+                                        </select>
+                                    </div>
+                                    <div style={{ marginTop: '10px', marginBottom: '10px' }} className="row">
+                                        <select style={{ padding: '10px', borderRadius: '5px' }}>
+                                            <option>Paid</option>
+                                            <option>Pending</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card mt-4">
+                            <div className="card-header offCanCardHead">
+                                <div className="row">
+                                    <div className="col-lg-12">
+                                        <p>Customer Information</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card-body ">
+                                <div className="row">
+                                    <div className="col-lg-4">
+                                        <img style={{ borderRadius: '50%' }} src="https://avatars.githubusercontent.com/u/97161064?v=4" width="100%" alt="Customer" />
+                                    </div>
+                                    <div className="col-lg-8 my-auto">
+                                        <p id="custName">Qwerty</p>
+                                    </div>
+                                </div>
+                                <div className="input-group mt-3 w-50">
+                                    <input type="text" className="form-control" id="cName" defaultValue="9012345678" />
+                                    <button className="btn btn-outline-secondary border-0" type="submit"><i className="fa fa-clone"></i></button>
+                                </div>
+                                <div className="input-group mb-3 mt-3 w-auto">
+                                    <input type="text" className="form-control" id="cEmail" defaultValue="someone@something.com" />
+                                    <button className="btn btn-outline-secondary border-0" type="submit"><i className="fa fa-clone"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+
+                <div className="offcanvas offcanvas-end" id="demo">
+                    <div className="offcanvas-header mb-0">
+                        <h3 className="offcanvas-title">Edit Booking</h3>
+                        <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div className="offcanvas-body">
+                        <p className="offCanInvid">Invoice ID: <span id="invoiceNo">1234567890</span></p>
+                        <p className="offCanCustName">Customer<br /><span id="custName">Qwerty</span></p>
+
+                        <div className="card mt-4">
+                            <div className="card-header offCanCardHead">
+                                <div className="row">
+                                    <div className="col-lg-6">
+                                        <p>Order Information</p>
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <button type="button" className="btn btn-outline-dark offCanCardHeadBtn float-end mt-1" onClick={handleEdit}>Save Changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card-body pb-0">
+                                <div className="row">
+                                    <div className="col-lg-2" style={{ display: 'flex', alignItems: 'center' }}>
+                                        <img style={{ borderRadius: '5px' }} src="https://avatars.githubusercontent.com/u/97161064?v=4" width="100%" alt="Package" />
+                                    </div>
+                                    <div className="col-lg-8">
+                                        <p className="offCanOfferType">Regular</p>
+                                        <p className="offCanPackageDetail">Japanese Sakura & Sake Spa Ritual for Couple /Japanese sake bath + Aromatherapy Massage + Suite + Cake&Tea + Sake + Gym</p>
+                                    </div>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', margin: '10px 5px' }}>
+                                    <input
+                                        type="date"
+                                        style={{ borderRadius: '7px', width: '48%', textAlign: 'center' }}
+                                        id="datepicker"
+                                        value={date}
+                                        onChange={(e) => setDate(e.target.value)}
+                                    />
+                                    <input
+                                        type="time"
+                                        style={{ borderRadius: '7px', width: '48%', textAlign: 'center' }}
+                                        id="timepicker"
+                                        value={time}
+                                        onChange={(e) => setTime(e.target.value)}
+                                    />
+                                </div>
+                                <div className="card-body pb-0">
+                                    <div className="row">
+                                        <select
+                                            style={{ padding: '10px', borderRadius: '5px' }}
+                                            value={bookingStatus}
+                                            onChange={(e) => setBookingStatus(e.target.value)}
+                                        >
+                                            <option>Attend</option>
+                                            <option>Cancel</option>
+                                            <option>Absent</option>
+                                            <option>Started</option>
+                                        </select>
+                                    </div>
+                                    <div style={{ marginTop: '10px', marginBottom: '10px' }} className="row">
+                                        <select
+                                            style={{ padding: '10px', borderRadius: '5px' }}
+                                            value={paymentStatus}
+                                            onChange={(e) => setPaymentStatus(e.target.value)}
+                                        >
+                                            <option>Paid</option>
+                                            <option>Pending</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -439,6 +557,7 @@ const Booking = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="offcanvas offcanvas-end" id="filter-package">
                     <div className="offcanvas-header mb-0">
                         <h3 className="offcanvas-title">Filter Packagee</h3>

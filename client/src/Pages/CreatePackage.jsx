@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
 import SideBar from "../Components/SideBar";
 import background from "../assets/background.svg";
@@ -13,8 +13,11 @@ import addFile from "../assets/addFile.svg";
 import more from "../assets/more.svg";
 import play from "../assets/play.svg";
 import { motion } from "framer-motion";
+import Cookies from 'js-cookie';
 
 const CreatePackage = () => {
+    const jwtUserToken = Cookies.get("user_token");
+    const userData = JSON.parse(jwtUserToken);
     const [active, setActive] = useState('ads');
     const [isChecked, setIsChecked] = useState(false);
     const [expandedSection, setExpandedSection] = useState(null);
@@ -33,10 +36,40 @@ const CreatePackage = () => {
     };
 
     const openModal = () => {
-        // Use Bootstrap's modal API to show the modal
         const modal = new window.bootstrap.Modal(document.getElementById('exampleModalToggle'));
         modal.show();
     };
+
+    const [spa, setSpa] = useState([]);
+    const [massage, setMassage] = useState([]);
+    const [sauna, setSauna] = useState([]);
+
+    const fetchSpa = async () => {
+
+        try {
+            const response = await fetch('https://wellness.neardeal.me/WAPI/invListingMW.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "vendorId": userData.ID,
+                    "invCat": 'spa'
+                })
+            });
+
+            const data = await response.json();
+            console.log(data);
+
+            setSpa(data.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchSpa()
+    }, [])
 
     return (
         <div style={{ display: 'flex' }}>
@@ -80,40 +113,41 @@ const CreatePackage = () => {
                             </Link>
                         </div>
                         <div className={`accordion-content ${expandedSection === 'spa' ? 'expanded' : ''}`}>
-                            <div className='item'>
-                                <div className='left' style={{ width: '84%' }}>
-                                    <img src='https://avatars.githubusercontent.com/u/97161064?v=4' alt="spa" />
-                                    <div>
-                                        <span>Largest spa in Hong Kong</span>
-                                        <div>
-                                            <div><img style={{ width: 'max-content' }} src={eye1} alt="views" /><span style={{ color: 'grey' }}>1000 views</span></div>
-                                            <div style={{ marginLeft: '10px' }}><img style={{ width: 'max-content' }} src={likes} alt="likes" /><span style={{ color: 'grey' }}>1000 likes</span></div>
+                          
+                            {
+                                spa.map((item, index) => {
+                                    return <>
+                                        <div className='item' key={index}>
+                                            <div className='left' style={{ width: '84%' }}>
+                                                <img src='https://avatars.githubusercontent.com/u/97161064?v=4' alt="spa" />
+                                                <div>
+                                                    <span>{item.InventoryName}</span>
+                                                </div>
+                                            </div>
+                                            <div className='right' style={{ width: '14%', justifyContent: 'space-between' }}>
+                                                <div>
+                                                    <div className="toggle-switch">
+                                                        <input
+                                                            type="checkbox"
+                                                            id="toggle"
+                                                            className="toggle-checkbox"
+                                                            checked={item.Status == 1 ? true : false}
+                                                            onChange={handleToggle}
+                                                        />
+                                                        <label htmlFor="toggle" className="toggle-label"></label>
+                                                        <span>Publish</span>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <img width={25} src={edit1} alt="edit" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className='right' style={{ width: '20%', justifyContent: 'space-between' }}>
-                                    <div>
-                                        <div className="toggle-switch">
-                                            <input
-                                                type="checkbox"
-                                                id="toggle"
-                                                className="toggle-checkbox"
-                                                checked={isChecked}
-                                                onChange={handleToggle}
-                                            />
-                                            <label htmlFor="toggle" className="toggle-label"></label>
-                                            <span>Publish</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <img width={25} src={share} alt="share" />
-                                        <img width={25} src={eye} alt="view" />
-                                        <img width={25} src={edit1} alt="edit" />
-                                    </div>
-                                </div>
-                            </div>
-                            {/* Add more items here */}
+                                    </>
+                                })
+                            }
                         </div>
+
 
                         <div className="spa" onClick={() => handleAccordionToggle('massage')}>
                             <div style={{ width: '10%' }}>
@@ -219,16 +253,16 @@ const CreatePackage = () => {
             <div className="modal fade" id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
-                        <div style={{border:'none'}} className="modal-header">
+                        <div style={{ border: 'none' }} className="modal-header">
                             <h5 className="modal-title" id="exampleModalToggleLabel">New Folder</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div style={{border:'none'}} className="modal-body">
+                        <div style={{ border: 'none' }} className="modal-body">
                             <input type="text" className="form-control" placeholder="Folder Title" />
                         </div>
-                        <div style={{border:'none'}} className="modal-footer">
-                            <button style={{ background:'black', color:'white' }} type="button" className="btn">Create Folder</button>
-                            <button style={{ border:'1px solid black' }} type="button" className="btn" data-bs-dismiss="modal">Cancel</button>
+                        <div style={{ border: 'none' }} className="modal-footer">
+                            <button style={{ background: 'black', color: 'white' }} type="button" className="btn">Create Folder</button>
+                            <button style={{ border: '1px solid black' }} type="button" className="btn" data-bs-dismiss="modal">Cancel</button>
                         </div>
                     </div>
                 </div>
