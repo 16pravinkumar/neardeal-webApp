@@ -19,10 +19,8 @@ const Booking = () => {
 
         try {
             setLoading(true);
-
-            // Make sure to use POST if you're sending a body with your request
             const response = await fetch('https://wellness.neardeal.me/WAPI/bookingsTry.php', {
-                method: 'POST', // Correct method for sending data
+                method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -32,29 +30,13 @@ const Booking = () => {
                 })
             });
 
-            // Parse JSON data from the response
             const data = await response.json();
 
-            console.log(data.data);
-            setBookingData(data.data);
-
-            // const transformedArray = [
-            //     {
-            //         BookingID: data.message.BookingID,
-            //         BookingStatus: data.message.BookingStatus,
-            //         BookingStartDate: data.message.BookingStartDate,
-            //         BookingEndDate: data.message.BookingEndDate,
-            //         InventoryName: data.message.InventoryName,
-            //         AssignedTo: data.message.AssignedTo,
-            //         PaymentStatus: data.message.PaymentStatus
-            //     }
-            // ];
-            // console.log(transformedArray);
-            // setBookingData(transformedArray);
+            console.log('booking: ' , data);
+            // setBookingData(data.data);
 
         } catch (error) {
             console.error('Error:', error);
-            // toast.error('Login failed. Please check your credentials.');
         } finally {
             setLoading(false);
         }
@@ -64,6 +46,7 @@ const Booking = () => {
         console.log(jwtUserToken);
         handleSubmit()
     }, [bookingData])
+
     return (
         <div style={{ display: 'flex' }}>
             <SideBar></SideBar>
@@ -92,35 +75,60 @@ const Booking = () => {
                             <button data-bs-toggle="offcanvas" data-bs-target="#filter-package" className="btn btn-outline-secondary ms-3 me-0 rounded-3" type="button">Filter Packages</button>
                         </div>
                     </div>
-                    <motion.div >
 
+
+                    <motion.div>
                         <table className="table table-hover mt-5">
                             <tbody>
-                                {
-                                    bookingData.map((data) => {
-                                        return <>
-                                            <tr className="align-middle">
-                                                <>
-                                                    {data.BookingStatus === "Started" ? <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={started} /> <span>Started</span></td> : data.BookingStatus === "Absent" ? <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} /> <span>Absent</span></td> : <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={tick} /> <span>Attend</span></td>}
-                                                </>
-                                                {/* <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}><img style={{ width: '41%', margin: 'auto' }} src={tick} /> <span>Attend</span></td> */}
-                                                <td>{data.BookingStartDate}</td>
-                                                <td>{data.InventoryName}</td>
-                                                <td>{data.AssignedTo}</td>
-                                                <>
-                                                    {data.PaymentStatus === "Paid" ? <td className="text-success">{data.PaymentStatus}</td> : <td className="text-danger">{data.PaymentStatus}</td>}
-                                                </>
-                                                <td>
-                                                    <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
-                                                </td>
-                                                <td><button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i></button></td>
-                                            </tr>
-                                        </>
-                                    })
-                                }
+                                {bookingData.length === 0 ? (
+                                    <tr>
+                                        <td colSpan="5" className="text-center">No booking available</td>
+                                    </tr>
+                                ) : (
+                                    bookingData.map((data) => (
+                                        <tr className="align-middle" key={data.BookingID}>
+                                            <>
+                                                {data.BookingStatus === "Started" ? (
+                                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+                                                        <img style={{ width: '41%', margin: 'auto' }} src={started} />
+                                                        <span>Started</span>
+                                                    </td>
+                                                ) : data.BookingStatus === "Absent" ? (
+                                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+                                                        <img style={{ width: '41%', margin: 'auto' }} src={dotedCircle} />
+                                                        <span>Absent</span>
+                                                    </td>
+                                                ) : (
+                                                    <td style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+                                                        <img style={{ width: '41%', margin: 'auto' }} src={tick} />
+                                                        <span>Attend</span>
+                                                    </td>
+                                                )}
+                                            </>
+                                            <td>{data.BookingStartDate}</td>
+                                            <td>{data.InventoryName}</td>
+                                            <td>{data.AssignedTo}</td>
+                                            {data.PaymentStatus === "Paid" ? (
+                                                <td className="text-success">{data.PaymentStatus}</td>
+                                            ) : (
+                                                <td className="text-danger">{data.PaymentStatus}</td>
+                                            )}
+                                            <td>
+                                                <button className="btn btn-link"><i className="bi bi-pencil"></i></button>
+                                            </td>
+                                            <td>
+                                                <button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+                                                    <i className="fa fa-pencil p-0 me-3" style={{ fontSize: 'large' }}></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                )}
                             </tbody>
                         </table>
                     </motion.div>
+
+
                     <nav>
                         <ul className="pagination justify-content-center">
                             <li className="page-item disabled">
