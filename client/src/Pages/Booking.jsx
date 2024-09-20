@@ -7,6 +7,7 @@ import tick from "../assets/tick.svg";
 import dotedCircle from "../assets/dotedCircle.svg";
 import { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 const Booking = () => {
     const jwtUserToken = Cookies.get("user_token");
@@ -73,8 +74,10 @@ const Booking = () => {
             console.log(data);
             // You may want to refresh the booking data after editing
             handleSubmit(active);
+            toast.success(data.message);
         } catch (error) {
             console.error('Error:', error);
+            toast.error('An error occurred');
         }
     };
 
