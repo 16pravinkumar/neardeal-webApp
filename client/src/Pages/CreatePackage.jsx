@@ -71,6 +71,8 @@ const CreatePackage = () => {
         fetchSpa()
     }, [])
 
+   
+
     return (
         <div style={{ display: 'flex' }}>
             <SideBar />

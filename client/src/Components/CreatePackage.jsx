@@ -11,11 +11,15 @@ import deleteIcon from "../assets/deleteIcon.svg";
 import crossIcon from "../assets/cross.svg";
 import dot from "../assets/dot.svg"
 import edit from "../assets/edit.svg"
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const CreatePackage = () => {
+    const jwtUserToken = Cookies.get("user_token");
+    const userData = JSON.parse(jwtUserToken);
     const [availabilityGroups, setAvailabilityGroups] = useState([
         {
             timeSlots: [
@@ -175,7 +179,7 @@ const CreatePackage = () => {
         });
     }, []);
 
-    const handleSaveChanges = () => {
+    const handleSaveChanges = async () => {
         console.log('Package Title:', packageTitle);
         console.log('Category:', selectedCategory);
         console.log('Included Content:', editorStates.included.content);
@@ -187,6 +191,36 @@ const CreatePackage = () => {
         console.log('Images:', images);
         console.log('Is Checked:', isChecked);
         console.log('Editor States:', editorStates);
+        try {
+            const response = await fetch('https://wellness.neardeal.me/WAPI/createPackageMW.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "vendorId": userData.ID,
+                    "invName": packageTitle,
+                    "invCat": selectedCategory,
+                    "whatIncluded": editorStates.included.content,
+                    "TnC": editorStates.tnc.content,
+                    "duration": duration,
+                    "status": isChecked,
+                    "price": 999,
+                    "currency": "HKD",
+                    "invImgFileName": "PizzaBOGO.jpg",
+                    "invImage":""
+                })
+            });
+
+            const data = await response.json();
+            console.log(data);
+            // You may want to refresh the booking data after editing
+            // handleSubmit(active);
+            toast.success("Package created successfully");
+        } catch (error) {
+            console.error('Error:', error);
+            toast.error('An error occurred');
+        }
     };
 
     return (
@@ -478,110 +512,110 @@ const CreatePackage = () => {
                         active === 'limits'
                         &&
                         <motion.div initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 1 }} className="right">
-                                <div className="header">
-                                    <span>Changes will be autosaved</span>
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1 }} className="right">
+                            <div className="header">
+                                <span>Changes will be autosaved</span>
+                            </div>
+                            <div style={{ width: '100%' }} className="body">
+                                <div style={{ width: '100%' }}>
+                                    <div style={{ width: '49%' }} className="left">
+                                        <span className="grey">Before Event</span>
+                                        <select className="select">
+                                            <option>No Buffer</option>
+                                        </select>
+
+                                        <span className="grey">Minimum Notice</span>
+                                        <select className="select">
+                                            <option>3 hour</option>
+                                        </select>
+                                    </div>
+                                    <div style={{ width: '49%' }} className="right">
+                                        <span className="grey">After Event</span>
+                                        <select className="select">
+                                            <option>3 hour</option>
+                                        </select>
+
+                                        <div className="grey" style={{ fontSize: '13px' }}>
+                                            For example, if the potential attendee wants to book the meeting with you tomorrow at 5:00 PM and you have set a minimum notice of 2 hours, they need to submit the booking by 3:00 PM at the latest on the same day.
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '100%' }} className="body">
-                                    <div style={{ width: '100%' }}>
-                                        <div style={{ width: '49%' }} className="left">
-                                            <span className="grey">Before Event</span>
-                                            <select className="select">
-                                                <option>No Buffer</option>
+
+                                <div style={{ justifyContent: 'start', alignItems: 'center' }}>
+                                    <div className="toggle-switch">
+                                        <input
+                                            type="checkbox"
+                                            id="toggle1"
+                                            className="toggle-checkbox"
+                                            checked={isChecked1}
+                                            onChange={handleToggle1}
+                                        />
+                                        <label htmlFor="toggle1" className="toggle-label"></label>
+                                    </div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', margin: '0px 10px' }}>
+                                        <span>Booking frequency</span>
+                                        <div style={{ justifyContent: 'start' }}>
+                                            <input style={{ width: '10%', textAlign: 'center', borderRadius: '5px', border: '1px solid #919EAB' }} type="text" value={1}></input>
+                                            <select style={{ margin: '0px 10px' }} className="select">
+                                                <option>per day</option>
                                             </select>
-
-                                            <span className="grey">Minimum Notice</span>
-                                            <select className="select">
-                                                <option>3 hour</option>
-                                            </select>
-                                        </div>
-                                        <div style={{ width: '49%' }} className="right">
-                                            <span className="grey">After Event</span>
-                                            <select className="select">
-                                                <option>3 hour</option>
-                                            </select>
-
-                                            <div className="grey" style={{ fontSize: '13px' }}>
-                                                For example, if the potential attendee wants to book the meeting with you tomorrow at 5:00 PM and you have set a minimum notice of 2 hours, they need to submit the booking by 3:00 PM at the latest on the same day.
-                                            </div>
                                         </div>
                                     </div>
-
-                                    <div style={{ justifyContent: 'start', alignItems: 'center' }}>
-                                        <div className="toggle-switch">
-                                            <input
-                                                type="checkbox"
-                                                id="toggle1"
-                                                className="toggle-checkbox"
-                                                checked={isChecked1}
-                                                onChange={handleToggle1}
-                                            />
-                                            <label htmlFor="toggle1" className="toggle-label"></label>
-                                        </div>
-
-                                        <div style={{ display: 'flex', flexDirection: 'column', margin: '0px 10px' }}>
-                                            <span>Booking frequency</span>
-                                            <div style={{ justifyContent: 'start' }}>
-                                                <input style={{ width: '10%', textAlign: 'center', borderRadius: '5px', border: '1px solid #919EAB' }} type="text" value={1}></input>
-                                                <select style={{ margin: '0px 10px' }} className="select">
-                                                    <option>per day</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr />
-
-                                    <div style={{ justifyContent: 'start', alignItems: 'center' }}>
-                                        <div className="toggle-switch">
-                                            <input
-                                                type="checkbox"
-                                                id="toggle2"
-                                                className="toggle-checkbox"
-                                                checked={isChecked2}
-                                                onChange={handleToggle2}
-                                            />
-                                            <label htmlFor="toggle2" className="toggle-label"></label>
-
-                                        </div>
-
-                                        <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto 10px' }}>
-                                            Limit book only first slot
-                                        </div>
-                                    </div>
-
-                                    <hr />
-
-                                    <div style={{ justifyContent: 'start', alignItems: 'center' }}>
-                                        <div className="toggle-switch">
-                                            <input
-                                                type="checkbox"
-                                                id="toggle3"
-                                                className="toggle-checkbox"
-                                                checked={isChecked3}
-                                                onChange={handleToggle3}
-                                            />
-                                            <label htmlFor="toggle3" className="toggle-label"></label>
-
-                                        </div>
-
-                                        <div style={{ display: 'flex', flexDirection: 'column', margin: '0px 10px' }}>
-                                            <span>Booking frequency</span>
-                                            <div style={{ justifyContent: 'start' }}>
-                                                <input style={{ width: '10%', textAlign: 'center', borderRadius: '5px', border: '1px solid #919EAB' }} type="text" value={1}></input>
-                                                <select style={{ margin: '0px 10px' }} className="select">
-                                                    <option>per day</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr />
-
                                 </div>
-                            </motion.div>
+
+                                <hr />
+
+                                <div style={{ justifyContent: 'start', alignItems: 'center' }}>
+                                    <div className="toggle-switch">
+                                        <input
+                                            type="checkbox"
+                                            id="toggle2"
+                                            className="toggle-checkbox"
+                                            checked={isChecked2}
+                                            onChange={handleToggle2}
+                                        />
+                                        <label htmlFor="toggle2" className="toggle-label"></label>
+
+                                    </div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto 10px' }}>
+                                        Limit book only first slot
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div style={{ justifyContent: 'start', alignItems: 'center' }}>
+                                    <div className="toggle-switch">
+                                        <input
+                                            type="checkbox"
+                                            id="toggle3"
+                                            className="toggle-checkbox"
+                                            checked={isChecked3}
+                                            onChange={handleToggle3}
+                                        />
+                                        <label htmlFor="toggle3" className="toggle-label"></label>
+
+                                    </div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', margin: '0px 10px' }}>
+                                        <span>Booking frequency</span>
+                                        <div style={{ justifyContent: 'start' }}>
+                                            <input style={{ width: '10%', textAlign: 'center', borderRadius: '5px', border: '1px solid #919EAB' }} type="text" value={1}></input>
+                                            <select style={{ margin: '0px 10px' }} className="select">
+                                                <option>per day</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                            </div>
+                        </motion.div>
                     }
                     {/* Availability */}
 
@@ -744,8 +778,8 @@ const CreatePackage = () => {
                                                     type="button"
                                                     key={day}
                                                     className={`btn ${group.selectedDays.includes(day)
-                                                            ? "btn-success"
-                                                            : "btn-outline-dark"
+                                                        ? "btn-success"
+                                                        : "btn-outline-dark"
                                                         }`}
                                                     onClick={() => handleDayToggle(groupIndex, day)}
                                                 >

@@ -220,3 +220,35 @@ body{
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+/* Radio */
+
+
+.custom-radio {
+  display: none; /* Hide the default radio button */
+}
+
+.custom-radio + .custom-label {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+}
+
+.custom-label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007BFF; /* Border color */
+  border-radius: 50%;
+  background: white;
+}
+
+.custom-radio:checked + .custom-label:before {
+  background: #007BFF; /* Checked background color */
+  border-color: #0056b3; /* Checked border color */
+}

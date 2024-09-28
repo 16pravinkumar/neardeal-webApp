@@ -185,21 +185,21 @@ const CreatePackage = () => {
 
                                 <div className="grey">Type of coupon</div>
                                 <div style={{ flexDirection:'column' }}>
-                                    <div style={{ justifyContent:'start' }} className="form-check">
+                                    {/* <div style={{ justifyContent:'start' }} className="form-check">
                                         <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
                                             <label style={{ margin:'0px 5px' }} className="form-check-label" >
                                                 QR code
                                             </label>
-                                    </div>
+                                    </div> */}
                                     <div style={{ justifyContent:'start' }} className="form-check">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
-                                            <label style={{ margin:'0px 5px' }} className="form-check-label" >
+                                        <input style={{ color:'green' }} className="form-check-input custom-radio" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
+                                            <label style={{ margin:'0px 5px' }} className="form-check-label custom-label" >
                                               Percent Off
                                             </label>
                                     </div>
                                     <div style={{ justifyContent:'start' }} className="form-check">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
-                                            <label style={{ margin:'0px 5px' }} className="form-check-label" >
+                                        <input className="form-check-input custom-radio" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
+                                            <label style={{ margin:'0px 5px' }} className="form-check-label custom-label" >
                                                 Money Value
                                             </label>
                                     </div>
