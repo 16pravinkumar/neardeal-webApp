@@ -30,7 +30,7 @@ const CampaignAds = () => {
                                 onChange={handleToggle}
                             />
                             <label htmlFor="toggle" className="toggle-label"></label>
-                            {/* <span>Publish</span> */}
+                          
                         </div>
                         <span style={{ margin: '0px 10px' }}>Active</span>
                     </div>
