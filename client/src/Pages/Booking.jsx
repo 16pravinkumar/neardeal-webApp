@@ -512,10 +512,12 @@ const Booking = () => {
                                             value={bookingStatus}
                                             onChange={(e) => setBookingStatus(e.target.value)}
                                         >
-                                            <option>Attend</option>
-                                            <option>Cancel</option>
-                                            <option>Absent</option>
+                                            <option>Accepted</option>
+                                            <option>Declined</option>
                                             <option>Started</option>
+                                            <option>Finished</option>
+                                            <option>Absent</option>
+                                            <option>Cancelled</option>
                                         </select>
                                     </div>
                                     <div style={{ marginTop: '10px', marginBottom: '10px' }} className="row">
