@@ -71,7 +71,7 @@ const CreatePackage = () => {
         fetchSpa()
     }, [])
 
-   
+
 
     return (
         <div style={{ display: 'flex' }}>
@@ -115,7 +115,7 @@ const CreatePackage = () => {
                             </Link>
                         </div>
                         <div className={`accordion-content ${expandedSection === 'spa' ? 'expanded' : ''}`}>
-                          
+
                             {
                                 spa.map((item, index) => {
                                     return <>
@@ -170,13 +170,10 @@ const CreatePackage = () => {
                                     <img src='https://avatars.githubusercontent.com/u/97161064?v=4' alt="massage" />
                                     <div>
                                         <span>Relaxing massage experience</span>
-                                        <div>
-                                            <div><img style={{ width: 'max-content' }} src={eye1} alt="views" /><span style={{ color: 'grey' }}>500 views</span></div>
-                                            <div style={{ marginLeft: '10px' }}><img style={{ width: 'max-content' }} src={likes} alt="likes" /><span style={{ color: 'grey' }}>800 likes</span></div>
-                                        </div>
+
                                     </div>
                                 </div>
-                                <div className='right' style={{ width: '20%', justifyContent: 'space-between' }}>
+                                <div className='right' style={{ width: '15%', justifyContent: 'space-between' }}>
                                     <div>
                                         <div className="toggle-switch">
                                             <input
@@ -191,8 +188,8 @@ const CreatePackage = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <img width={25} src={share} alt="share" />
-                                        <img width={25} src={eye} alt="view" />
+                                        {/* <img width={25} src={share} alt="share" /> */}
+                                        {/* <img width={25} src={eye} alt="view" /> */}
                                         <img width={25} src={edit1} alt="edit" />
                                     </div>
                                 </div>
@@ -219,13 +216,10 @@ const CreatePackage = () => {
                                     <img src='https://avatars.githubusercontent.com/u/97161064?v=4' alt="sauna" />
                                     <div>
                                         <span>Premium sauna experience</span>
-                                        <div>
-                                            <div><img style={{ width: 'max-content' }} src={eye1} alt="views" /><span style={{ color: 'grey' }}>700 views</span></div>
-                                            <div style={{ marginLeft: '10px' }}><img style={{ width: 'max-content' }} src={likes} alt="likes" /><span style={{ color: 'grey' }}>900 likes</span></div>
-                                        </div>
+
                                     </div>
                                 </div>
-                                <div className='right' style={{ width: '20%', justifyContent: 'space-between' }}>
+                                <div className='right' style={{ width: '15%', justifyContent: 'space-between' }}>
                                     <div>
                                         <div className="toggle-switch">
                                             <input
@@ -240,8 +234,8 @@ const CreatePackage = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <img width={25} src={share} alt="share" />
-                                        <img width={25} src={eye} alt="view" />
+                                        {/* <img width={25} src={share} alt="share" /> */}
+                                        {/* <img width={25} src={eye} alt="view" /> */}
                                         <img width={25} src={edit1} alt="edit" />
                                     </div>
                                 </div>

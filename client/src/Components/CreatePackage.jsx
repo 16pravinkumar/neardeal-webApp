@@ -235,8 +235,8 @@ const CreatePackage = () => {
                 <div>
                     <div className="left">
                         <button className={`${isActive('setup')} btn-outline-secondary border-0 active me-2`} onClick={() => setActive('setup')} style={{ textDecoration: 'none' }}>Package Setup</button>
-                        <button className={`${isActive('availability')} btn-outline-secondary border-0 active me-2`} onClick={() => setActive('availability')} style={{ textDecoration: 'none' }}>Availability</button>
-                        <button className={`${isActive('limits')} btn-outline-secondary border-0 active me-2`} onClick={() => setActive('limits')} style={{ textDecoration: 'none' }}>Limits</button>
+                        {/* <button className={`${isActive('availability')} btn-outline-secondary border-0 active me-2`} onClick={() => setActive('availability')} style={{ textDecoration: 'none' }}>Availability</button>
+                        <button className={`${isActive('limits')} btn-outline-secondary border-0 active me-2`} onClick={() => setActive('limits')} style={{ textDecoration: 'none' }}>Limits</button> */}
                     </div>
 
                     {/* package setUp */}
@@ -263,8 +263,8 @@ const CreatePackage = () => {
                                 </div>
 
                                 <div className="mid">
-                                    <span><img src={copy} alt="copy link" /> Copy Link</span>
-                                    <span><img src={preview} alt="preview" /> Preview</span>
+                                    {/* <span><img src={copy} alt="copy link" /> Copy Link</span>
+                                    <span><img src={preview} alt="preview" /> Preview</span> */}
                                 </div>
 
                                 <div className="right">
@@ -351,7 +351,7 @@ const CreatePackage = () => {
                                         }}
                                     />
                                 </div>
-                                <div className="grey">Opening hours</div>
+                                {/* <div className="grey">Opening hours</div>
                                 <div className="text-section">
                                     <ReactQuill
                                         value={editorStates.openingHours.content}
@@ -373,7 +373,7 @@ const CreatePackage = () => {
                                             }
                                         }}
                                     />
-                                </div>
+                                </div> */}
                                 <div className="grey">TNC</div>
                                 <div className="text-section">
                                     <ReactQuill
@@ -398,7 +398,7 @@ const CreatePackage = () => {
                                     />
                                 </div>
 
-                                <div className="url">
+                                {/* <div className="url">
                                     <span className="grey">URL</span>
                                     <div>
                                         <input
@@ -422,7 +422,7 @@ const CreatePackage = () => {
                                         />
                                     ))}
                                     <img src={deleteIcon} alt="delete" />
-                                </div>
+                                </div> */}
 
                                 <div className="grey">Duration</div>
                                 <div className="add-on" style={{ justifyContent: 'start' }}>
