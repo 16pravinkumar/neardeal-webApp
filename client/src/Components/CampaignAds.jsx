@@ -39,7 +39,7 @@ const CampaignAds = () => {
                 </div>
             </div>
 
-            <div style={{ margin: '10px 0px', padding:'10px 20px' }} className="campaign-blog">
+            {/* <div style={{ margin: '10px 0px', padding:'10px 20px' }} className="campaign-blog">
                 <div>
                     <span>Apply NearDeal Blog page</span>
                     <p style={{ fontSize: '14px' }} className="grey">Our Neardeal Staff will have a trip to your store and experience your service. After that we will write an official review to help promote your store. You may have a chance of winning the Neardeal certified badge if we think your experience meet our standard.</p>
@@ -49,7 +49,7 @@ const CampaignAds = () => {
                         Email NearDeal
                     </button>
                 </div>
-            </div>
+            </div> */}
 
         </motion.div>
     )

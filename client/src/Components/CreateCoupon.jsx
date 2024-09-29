@@ -181,7 +181,7 @@ const CreatePackage = () => {
                                 />
                                 <input style={{ width: '35%', padding: '10px 20px', border: '2px solid #E9ECEE', color: '#637381', borderRadius: '10px' }} type="date" placeholder="Valid Date & time"></input>
 
-                                <input style={{ width: '35%', padding: '10px 20px', border: '2px solid #E9ECEE', color: '#637381', borderRadius: '10px', margin: '20px 0px' }} type="text" placeholder="How many NearPoints are required"></input>
+                                {/* <input style={{ width: '35%', padding: '10px 20px', border: '2px solid #E9ECEE', color: '#637381', borderRadius: '10px', margin: '20px 0px' }} type="text" placeholder="How many NearPoints are required"></input> */}
 
                                 <div className="grey">Type of coupon</div>
                                 <div style={{ flexDirection:'column' }}>
@@ -316,7 +316,7 @@ const CreatePackage = () => {
                                     />
                                 </div>
 
-                                <div className="url">
+                                {/* <div className="url">
                                     <span className="grey">URL</span>
                                     <div>
                                         <input
@@ -340,9 +340,10 @@ const CreatePackage = () => {
                                         />
                                     ))}
                                     <img src={deleteIcon} alt="delete" />
-                                </div>
+                                </div> */}
 
                                 <div className="grey">Duration</div>
+                                {/* End date dalna hai */}
                                 <div className="add-on" style={{ justifyContent: 'start' }}>
                                     <input
                                         style={{ margin: '0px 4px' }}

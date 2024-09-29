@@ -137,7 +137,7 @@ const CreatePackage = () => {
                                                             onChange={handleToggle}
                                                         />
                                                         <label htmlFor="toggle" className="toggle-label"></label>
-                                                        <span>Publish</span>
+                                                        <span>{item.Status == 1 ? 'Published' : 'Draft Saved'}</span>
                                                     </div>
                                                 </div>
                                                 <div>

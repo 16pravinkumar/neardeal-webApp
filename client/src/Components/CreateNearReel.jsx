@@ -228,7 +228,7 @@ const CreatePackage = () => {
                                     <button className="button">Upload</button>
                                 </div>
 
-                                <div className="url">
+                                {/* <div className="url">
                                     <span className="grey">URL</span>
                                     <div>
                                         <input
@@ -239,12 +239,11 @@ const CreatePackage = () => {
                                         />
                                         <img src={copy} alt="copy" />
                                     </div>
-                                </div>
+                                </div> */}
 
-                                <div style={{ margin: '20px 0px' }} className="grey">Mention Package</div>
+                                {/* <div style={{ margin: '20px 0px' }} className="grey">Mention Package</div>
                                 <div style={{ flexDirection: 'column', boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)', padding: '10px', borderRadius: '20px' }}>
 
-                                    {/* Filters */}
                                     <div className="row mb-4">
                                         <div className="col">
                                             <select className="form-select">
@@ -266,14 +265,12 @@ const CreatePackage = () => {
                                         </div>
                                     </div>
 
-                                    {/* Product Table */}
                                     <div className="product-table-wrapper">
                                         <table className="table table-hover product-table">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
                                                     <th scope="col">Product</th>
-                                                    {/* <th scope="col">Price</th> */}
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -335,7 +332,6 @@ const CreatePackage = () => {
                                         </table>
                                     </div>
 
-                                    {/* Footer */}
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="form-check">
                                             <input className="form-check-input" type="checkbox" id="denseCheck" />
@@ -353,7 +349,8 @@ const CreatePackage = () => {
                                             <span className="ms-2">3 of 7</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
+
                                 <div style={{ margin: '20px 0px' }}>
                                     <button className="button" onClick={handleSaveChanges}>Save changes</button>
                                 </div>
