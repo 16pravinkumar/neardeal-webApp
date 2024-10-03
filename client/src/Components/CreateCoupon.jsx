@@ -12,11 +12,15 @@ import crossIcon from "../assets/cross.svg";
 import PackageSideBar from "./PackageSideBar";
 import dot from "../assets/dot.svg"
 import edit from "../assets/edit.svg"
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const CreatePackage = () => {
+    const jwtUserToken = Cookies.get("user_token");
+    const userData = JSON.parse(jwtUserToken);
     const [active, setActive] = useState('setup');
     const isActive = (path) => {
         return active === path ? 'btn' : ''
@@ -35,25 +39,6 @@ const CreatePackage = () => {
     const [duration, setDuration] = useState('');
     const fileInputRef = useRef(null);
     const quillRefs = useRef({ included: null, openingHours: null, tnc: null });
-
-    const [isChecked1, setIsChecked1] = useState(false);
-    const [isChecked2, setIsChecked2] = useState(false);
-    const [isChecked3, setIsChecked3] = useState(false);
-
-    const handleToggle1 = () => {
-        setIsChecked1(!isChecked1);
-        console.log('Toggle state:', !isChecked1);
-    };
-
-    const handleToggle2 = () => {
-        setIsChecked2(!isChecked2);
-        console.log('Toggle state:', !isChecked2);
-    };
-
-    const handleToggle3 = () => {
-        setIsChecked3(!isChecked3);
-        console.log('Toggle state:', !isChecked3);
-    };
 
     const handleToggle = () => {
         setIsChecked(!isChecked);
@@ -91,16 +76,6 @@ const CreatePackage = () => {
         }
     };
 
-    const handleAddonsChange = (index, value) => {
-        const newAddons = [...addons];
-        newAddons[index] = value;
-        setAddons(newAddons);
-    };
-
-    const handleCategoryChange = (e) => {
-        setSelectedCategory(e.target.value);
-    };
-
     const updateEditorState = useCallback((editorKey, delta, oldDelta, source) => {
         setEditorStates(prevStates => {
             const updatedOperations = [...prevStates[editorKey].operations, { delta, oldDelta, source }];
@@ -114,18 +89,37 @@ const CreatePackage = () => {
         });
     }, []);
 
-    const handleSaveChanges = () => {
-        console.log('Package Title:', packageTitle);
-        console.log('Category:', selectedCategory);
-        console.log('Included Content:', editorStates.included.content);
-        console.log('Opening Hours Content:', editorStates.openingHours.content);
-        console.log('TNC Content:', editorStates.tnc.content);
-        console.log('URL:', url);
-        console.log('Add-ons:', addons);
-        console.log('Duration:', duration);
-        console.log('Images:', images);
-        console.log('Is Checked:', isChecked);
-        console.log('Editor States:', editorStates);
+    const handleSaveChanges = async () => {
+        try {
+            const response = await fetch('https://wellness.neardeal.me/WAPI/updateCouponsMW.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "vendorid": userData.ID,
+                    "title": packageTitle,
+                    "startDate": "2024-10-01",
+                    "endDate": "2024-10-15",
+                    "discount": 35,
+                    "unit": "%",
+                    "whatsIncluded":editorStates.included.content,
+                    "tnc": editorStates.tnc.content,
+                    "status": isChecked,
+                    "inventoryIds": "V107_I01,V107_I02",
+                    "couponCode": "",
+                    "couponType": "discount",
+                    "currency": "HKD"
+                })
+            });
+    
+            console.log(response);
+            toast.success("Successfully saved changes");
+        } catch (error) {
+            console.error('Error saving changes:', error);
+            toast.error("Error saving changes:");
+        }
+        
     };
 
     return (
@@ -143,7 +137,6 @@ const CreatePackage = () => {
                         <button className={`${isActive('availability')} btn-outline-secondary border-0 active me-2`} style={{ textDecoration: 'none' }}>Analytics (Soon)</button>
                     </div>
 
-                    {/* package setUp */}
                     {
                         active === 'setup'
                         &&
@@ -181,27 +174,19 @@ const CreatePackage = () => {
                                 />
                                 <input style={{ width: '35%', padding: '10px 20px', border: '2px solid #E9ECEE', color: '#637381', borderRadius: '10px' }} type="date" placeholder="Valid Date & time"></input>
 
-                                {/* <input style={{ width: '35%', padding: '10px 20px', border: '2px solid #E9ECEE', color: '#637381', borderRadius: '10px', margin: '20px 0px' }} type="text" placeholder="How many NearPoints are required"></input> */}
-
                                 <div className="grey">Type of coupon</div>
-                                <div style={{ flexDirection:'column' }}>
-                                    {/* <div style={{ justifyContent:'start' }} className="form-check">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                                            <label style={{ margin:'0px 5px' }} className="form-check-label" >
-                                                QR code
-                                            </label>
-                                    </div> */}
-                                    <div style={{ justifyContent:'start' }} className="form-check">
-                                        <input style={{ color:'green' }} className="form-check-input custom-radio" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
-                                            <label style={{ margin:'0px 5px' }} className="form-check-label custom-label" >
-                                              Percent Off
-                                            </label>
+                                <div style={{ flexDirection: 'column' }}>
+                                    <div style={{ justifyContent: 'start' }} className="form-check">
+                                        <input style={{ color: 'green' }} className="form-check-input custom-radio" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+                                        <label style={{ margin: '0px 5px' }} className="form-check-label custom-label" >
+                                            Percent Off
+                                        </label>
                                     </div>
-                                    <div style={{ justifyContent:'start' }} className="form-check">
-                                        <input className="form-check-input custom-radio" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
-                                            <label style={{ margin:'0px 5px' }} className="form-check-label custom-label" >
-                                                Money Value
-                                            </label>
+                                    <div style={{ justifyContent: 'start' }} className="form-check">
+                                        <input className="form-check-input custom-radio" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+                                        <label style={{ margin: '0px 5px' }} className="form-check-label custom-label" >
+                                            Money Value
+                                        </label>
                                     </div>
                                 </div>
 
@@ -316,34 +301,7 @@ const CreatePackage = () => {
                                     />
                                 </div>
 
-                                {/* <div className="url">
-                                    <span className="grey">URL</span>
-                                    <div>
-                                        <input
-                                            type="url"
-                                            name="url"
-                                            value={url}
-                                            onChange={handleInputChange}
-                                        />
-                                        <img src={copy} alt="copy" />
-                                    </div>
-                                </div>
-                                <div className="grey">Add-on</div>
-                                <div className="add-on" style={{ justifyContent: 'start' }}>
-                                    {addons.map((addon, index) => (
-                                        <input
-                                            key={index}
-                                            style={{ margin: '0px 4px' }}
-                                            type="text"
-                                            value={addon}
-                                            onChange={(e) => handleAddonsChange(index, e.target.value)}
-                                        />
-                                    ))}
-                                    <img src={deleteIcon} alt="delete" />
-                                </div> */}
-
                                 <div className="grey">Duration</div>
-                                {/* End date dalna hai */}
                                 <div className="add-on" style={{ justifyContent: 'start' }}>
                                     <input
                                         style={{ margin: '0px 4px' }}
@@ -423,13 +381,8 @@ const CreatePackage = () => {
 
                                 <hr />
                             </div>
-
-
-
                         </motion.div>
                     }
-
-
                 </div>
             </div>
         </div>
