@@ -1,0 +1,536 @@
+     {
+                        active === 'availability'
+                        &&
+                        <motion.div initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1 }} className="right">
+                            <div className="header">
+                                <span>Changes will be autosaved</span>
+                            </div>
+                            <div className="body">
+                                <div>
+                                    <span>Regular Time</span>
+                                    <button className="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+                                        Create New Present
+                                    </button>
+                                </div>
+
+                                <div>
+                                    <div>
+                                        <img src={dot}></img>
+                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                            <span>Working hours</span>
+                                            <span className="grey">Mon - sat, 9:00 AM - 1:00 PM</span>
+                                            <span className="grey">Mon - sat, 3:00 AM - 8:45 PM</span>
+                                            <span className="grey">Sun,</span>
+                                        </div>
+                                    </div>
+                                    <img src={edit}></img>
+                                </div>
+                                <hr />
+
+                                <div>
+                                    <span>Date override</span>
+                                    <button className="button" data-bs-toggle="offcanvas" data-bs-target="#demo1">
+                                        Create New Present
+                                    </button>
+                                </div>
+
+                                <div>
+                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                        <span>Friday, June 21</span>
+                                        <span className="grey">12:00 PM - 11:00 PM</span>
+                                    </div>
+                                    <img src={edit}></img>
+                                </div>
+                                <hr />
+
+                                <div>
+                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                        <span>Friday, June 28</span>
+                                        <span className="grey">Unavailable</span>
+                                    </div>
+                                    <img src={edit}></img>
+                                </div>
+
+                                <hr />
+                            </div>
+
+
+
+                        </motion.div>
+                    }
+
+                    {
+                        active === 'limits'
+                        &&
+                        <motion.div initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1 }} className="right">
+                            <div className="header">
+                                <span>Changes will be autosaved</span>
+                            </div>
+                            <div style={{ width: '100%' }} className="body">
+                                <div style={{ width: '100%' }}>
+                                    <div style={{ width: '49%' }} className="left">
+                                        <span className="grey">Before Event</span>
+                                        <select className="select">
+                                            <option>No Buffer</option>
+                                        </select>
+
+                                        <span className="grey">Minimum Notice</span>
+                                        <select className="select">
+                                            <option>3 hour</option>
+                                        </select>
+                                    </div>
+                                    <div style={{ width: '49%' }} className="right">
+                                        <span className="grey">After Event</span>
+                                        <select className="select">
+                                            <option>3 hour</option>
+                                        </select>
+
+                                        <div className="grey" style={{ fontSize: '13px' }}>
+                                            For example, if the potential attendee wants to book the meeting with you tomorrow at 5:00 PM and you have set a minimum notice of 2 hours, they need to submit the booking by 3:00 PM at the latest on the same day.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style={{ justifyContent: 'start', alignItems: 'center' }}>
+                                    <div className="toggle-switch">
+                                        <input
+                                            type="checkbox"
+                                            id="toggle1"
+                                            className="toggle-checkbox"
+                                            checked={isChecked1}
+                                            onChange={handleToggle1}
+                                        />
+                                        <label htmlFor="toggle1" className="toggle-label"></label>
+                                    </div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', margin: '0px 10px' }}>
+                                        <span>Booking frequency</span>
+                                        <div style={{ justifyContent: 'start' }}>
+                                            <input style={{ width: '10%', textAlign: 'center', borderRadius: '5px', border: '1px solid #919EAB' }} type="text" value={1}></input>
+                                            <select style={{ margin: '0px 10px' }} className="select">
+                                                <option>per day</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div style={{ justifyContent: 'start', alignItems: 'center' }}>
+                                    <div className="toggle-switch">
+                                        <input
+                                            type="checkbox"
+                                            id="toggle2"
+                                            className="toggle-checkbox"
+                                            checked={isChecked2}
+                                            onChange={handleToggle2}
+                                        />
+                                        <label htmlFor="toggle2" className="toggle-label"></label>
+
+                                    </div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto 10px' }}>
+                                        Limit book only first slot
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div style={{ justifyContent: 'start', alignItems: 'center' }}>
+                                    <div className="toggle-switch">
+                                        <input
+                                            type="checkbox"
+                                            id="toggle3"
+                                            className="toggle-checkbox"
+                                            checked={isChecked3}
+                                            onChange={handleToggle3}
+                                        />
+                                        <label htmlFor="toggle3" className="toggle-label"></label>
+
+                                    </div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', margin: '0px 10px' }}>
+                                        <span>Booking frequency</span>
+                                        <div style={{ justifyContent: 'start' }}>
+                                            <input style={{ width: '10%', textAlign: 'center', borderRadius: '5px', border: '1px solid #919EAB' }} type="text" value={1}></input>
+                                            <select style={{ margin: '0px 10px' }} className="select">
+                                                <option>per day</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                            </div>
+                        </motion.div>
+                    }
+                    {/* Availability */}
+
+
+
+
+
+
+
+
+
+
+                       <div className="offcanvas offcanvas-end" id="demo1">
+                <div className="offcanvas-header">
+                    <h3 className="offcanvas-title">Create Availability</h3>
+                    <button
+                        type="button"
+                        className="btn-close text-reset"
+                        data-bs-dismiss="offcanvas"
+                    ></button>
+                </div>
+                <div className="offcanvas-body">
+                    <form>
+                        <div className="mb-3">
+                            <label htmlFor="setName" className="form-label">
+                                Name of Set
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="setName"
+                                placeholder="Enter set name"
+                            />
+                        </div>
+
+                        {availabilitySets.map((set, index) => (
+                            <div key={index} className="mb-3">
+                                <div className="row">
+                                    <div className="col-5">
+                                        <input
+                                            type="time"
+                                            className="form-control"
+                                            value={set.fromTime}
+                                            onChange={(e) =>
+                                                handleTimeChange(index, "fromTime", e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                    <div className="col-2 text-center">-</div>
+                                    <div className="col-5">
+                                        <input
+                                            type="time"
+                                            className="form-control"
+                                            value={set.toTime}
+                                            onChange={(e) =>
+                                                handleTimeChange(index, "toTime", e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="mt-3">
+                                    <p>Time Apply on:</p>
+                                    <div className="d-flex justify-content-between">
+                                        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                                            (day) => (
+                                                <button
+                                                    type="button"
+                                                    key={day}
+                                                    className={`btn ${set.days.includes(day)
+                                                        ? "btn-primary"
+                                                        : "btn-outline-dark"
+                                                        }`}
+                                                    onClick={() => handleDayToggle(index, day)}
+                                                >
+                                                    {day}
+                                                </button>
+                                            )
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
+                        <button
+                            type="button"
+                            className="btn btn-outline-primary mt-3"
+                            onClick={addAvailabilitySet}
+                        >
+                            Add Availability Set
+                        </button>
+                    </form>
+                    <button type="button" className="btn btn-success mt-4">
+                        Save
+                    </button>
+                </div>
+            </div>
+
+            <div className="offcanvas offcanvas-end" id="demo">
+                <div className="offcanvas-header">
+                    <h3 className="offcanvas-title">Edit Availability</h3>
+                    <button
+                        type="button"
+                        className="btn-close text-reset"
+                        data-bs-dismiss="offcanvas"
+                    ></button>
+                </div>
+                <div className="offcanvas-body">
+                    <form>
+                        <div className="mb-3">
+                            <label htmlFor="setName" className="form-label">
+                                Name of Set
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="setName"
+                                defaultValue="Working Hours"
+                            />
+                        </div>
+
+                        {availabilityGroups.map((group, groupIndex) => (
+                            <div key={groupIndex} className="mb-4 p-3" style={{ border: "1px solid #ccc", borderRadius: "8px" }}>
+                                {group.timeSlots.map((slot, slotIndex) => (
+                                    <div key={slotIndex} className="row mb-3">
+                                        <div className="col-5">
+                                            <input
+                                                type="time"
+                                                className="form-control"
+                                                value={slot.startTime}
+                                                onChange={(e) =>
+                                                    handleTimeChange(groupIndex, slotIndex, "startTime", e.target.value)
+                                                }
+                                            />
+                                        </div>
+                                        <div className="col-2 text-center">-</div>
+                                        <div className="col-5">
+                                            <input
+                                                type="time"
+                                                className="form-control"
+                                                value={slot.endTime}
+                                                onChange={(e) =>
+                                                    handleTimeChange(groupIndex, slotIndex, "endTime", e.target.value)
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-primary mb-2"
+                                    onClick={() => addTimeSlot(groupIndex)}
+                                >
+                                    +
+                                </button>
+
+                                <div className="mt-3">
+                                    <p>Time Apply on:</p>
+                                    <div className="d-flex justify-content-between">
+                                        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                                            (day) => (
+                                                <button
+                                                    type="button"
+                                                    key={day}
+                                                    className={`btn ${group.selectedDays.includes(day)
+                                                        ? "btn-success"
+                                                        : "btn-outline-dark"
+                                                        }`}
+                                                    onClick={() => handleDayToggle(groupIndex, day)}
+                                                >
+                                                    {day}
+                                                </button>
+                                            )
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="text-end mt-3">
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger btn-sm"
+                                        onClick={() => removeAvailabilityGroup(groupIndex)}
+                                    >
+                                        <i className="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+
+                        <button
+                            type="button"
+                            className="btn btn-outline-primary mt-3"
+                            onClick={addAvailabilityGroup}
+                        >
+                            Add Availability Set
+                        </button>
+                    </form>
+
+                    <div className="d-flex justify-content-between mt-4">
+                        <button type="button" className="btn btn-outline-danger">
+                            Delete
+                        </button>
+                        <button type="button" className="btn btn-success">
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+             {/* <motion.div initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1 }} className="right">
+                            <div className="header">
+                                <div className="left" style={{ display: 'flex', flexDirection: 'row' }}>
+                                    <div className="toggle-switch">
+                                        <input
+                                            type="checkbox"
+                                            id="toggle"
+                                            className="toggle-checkbox"
+                                            checked={isChecked}
+                                            onChange={handleToggle}
+                                        />
+                                        <label htmlFor="toggle" className="toggle-label"></label>
+                                    </div>
+                                    <span>Publish</span>
+                                </div>
+
+                                <div className="mid">
+                                </div>
+
+                                <div className="right">
+                                    <button className="button" onClick={handleSaveChanges}>Save Changes</button>
+                                </div>
+                            </div>
+                            <div className="body">
+                                <div>
+                                    <span className="grey">Add this package to
+                                        <select className="select" value={selectedCategory} onChange={handleCategoryChange}>
+                                            <option>Spa</option>
+                                        </select>
+                                    </span>
+                                </div>
+                                <input
+                                    name="packageTitle"
+                                    className="package-title"
+                                    type="text"
+                                    placeholder="Package Title"
+                                    value={packageTitle}
+                                    onChange={handleInputChange}
+                                />
+                                <div
+                                    className="image-upload"
+                                    style={{ cursor: 'pointer', textAlign: 'center' }}
+                                    onClick={handleUploadClick}
+                                >
+                                    <img src={imageUpload} alt="upload" />
+                                    <span style={{ marginTop: '20px', fontWeight: 'bold', fontSize: '20px' }}>Select files</span>
+                                    <p className="grey">Drop files here or click <span style={{ color: '#00A76F' }}>browse</span> through your machine</p>
+                                    <input
+                                        type="file"
+                                        multiple
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        ref={fileInputRef}
+                                        style={{ display: 'none' }}
+                                    />
+                                </div>
+                                <div className="image-select" style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                    {images.map((image, index) => (
+                                        <div key={index} style={{ position: 'relative', margin: '10px' }}>
+                                            <img src={image} alt={`uploaded ${index}`} style={{ objectFit: 'cover' }} />
+                                            <button
+                                                onClick={() => handleRemoveImage(index)}
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: '5px',
+                                                    right: '5px',
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    cursor: 'pointer'
+                                                }}
+                                            >
+                                                <img src={crossIcon} alt="remove" style={{ width: '20px', height: '20px' }} />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div style={{ justifyContent: "end" }}>
+                                    <button style={{ borderRadius: '5px', padding: '0px 10px', margin: '0px 10px' }}>Remove All</button>
+                                    <button className="button">Upload</button>
+                                </div>
+                                <div className="grey">What's included</div>
+                                <div className="text-section">
+                                    <ReactQuill
+                                        value={editorStates.included.content}
+                                        onChange={(content, delta, source) => {
+                                            setEditorStates(prevStates => ({
+                                                ...prevStates,
+                                                included: { content, operations: prevStates.included.operations }
+                                            }));
+                                            updateEditorState('included', delta, null, source);
+                                        }}
+                                        className="text-area"
+                                        modules={CreatePackage.modules}
+                                        formats={CreatePackage.formats}
+                                        placeholder="Type here"
+                                        ref={(el) => {
+                                            if (el) {
+                                                quillRefs.current.included = el.getEditor();
+                                                quillRefs.current.included.on('text-change', (delta, oldDelta, source) => updateEditorState('included', delta, oldDelta, source));
+                                            }
+                                        }}
+                                    />
+                                </div>
+                               
+                                <div className="grey">TNC</div>
+                                <div className="text-section">
+                                    <ReactQuill
+                                        value={editorStates.tnc.content}
+                                        onChange={(content, delta, source) => {
+                                            setEditorStates(prevStates => ({
+                                                ...prevStates,
+                                                tnc: { content, operations: prevStates.tnc.operations }
+                                            }));
+                                            updateEditorState('tnc', delta, null, source);
+                                        }}
+                                        className="text-area"
+                                        modules={CreatePackage.modules}
+                                        formats={CreatePackage.formats}
+                                        placeholder="Type here"
+                                        ref={(el) => {
+                                            if (el) {
+                                                quillRefs.current.tnc = el.getEditor();
+                                                quillRefs.current.tnc.on('text-change', (delta, oldDelta, source) => updateEditorState('tnc', delta, oldDelta, source));
+                                            }
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="grey">Duration</div>
+                                <div className="add-on" style={{ justifyContent: 'start' }}>
+                                    <input
+                                        style={{ margin: '0px 4px' }}
+                                        type="text"
+                                        name="duration"
+                                        value={duration}
+                                        onChange={handleInputChange}
+                                    />
+                                    <select className="select" value="minutes" disabled>
+                                        <option>minutes</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <button className="button" onClick={handleSaveChanges}>Save changes</button>
+                                </div>
+                            </div>
+                        </motion.div> */}
+
+                    {/* package setUp */}

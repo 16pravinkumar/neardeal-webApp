@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../App.css";
 import SideBar from "../Components/SideBar";
 import background from "../assets/background.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import plus from "../assets/plus.svg";
 import edit1 from '../assets/edit1.svg';
 import eye from '../assets/eye.svg';
@@ -18,6 +18,7 @@ import Cookies from 'js-cookie';
 const CreatePackage = () => {
     const jwtUserToken = Cookies.get("user_token");
     const userData = JSON.parse(jwtUserToken);
+    const navigate = useNavigate();
     const [active, setActive] = useState('ads');
     const [isChecked, setIsChecked] = useState(false);
     const [expandedSection, setExpandedSection] = useState(null);
@@ -140,7 +141,7 @@ const CreatePackage = () => {
                                                         <span>{item.Status == 1 ? 'Published' : 'Draft Saved'}</span>
                                                     </div>
                                                 </div>
-                                                <div>
+                                                <div onClick={(e)=> navigate(`/package/${item.InventoryID}`)}> 
                                                     <img width={25} src={edit1} alt="edit" />
                                                 </div>
                                             </div>
