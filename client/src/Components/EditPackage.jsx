@@ -108,6 +108,7 @@ const CreatePackage = () => {
                 },
                 body: JSON.stringify({
                     vendorId: userData.ID,
+                    invId: id,
                     invName: packageTitle,
                     invCat: selectedCategory,
                     whatIncluded: editorStates.included.content,
