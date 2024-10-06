@@ -14,6 +14,8 @@ const CreatePackage = () => {
     const { id } = useParams();
     const jwtUserToken = Cookies.get("user_token");
     const userData = JSON.parse(jwtUserToken);
+    console.log("User Data:", userData);
+    
     
     const [inventoryData, setInventoryData] = useState(null);
     const [active, setActive] = useState('setup');
@@ -143,7 +145,7 @@ const CreatePackage = () => {
                 </span>
                 <div>
                     <div className="left">
-                        <button className={`btn ${active === 'setup' ? 'active' : ''}`} onClick={() => setActive('setup')}>Package Setup</button>
+                        <button className={`btn-outline-secondary border-0 active me-2 ${active === 'setup' ? 'active' : ''}`} onClick={() => setActive('setup')}>Package Setup</button>
                     </div>
                     {active === 'setup' && (
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }} className="right">

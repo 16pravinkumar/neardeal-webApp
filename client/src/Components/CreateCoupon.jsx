@@ -90,6 +90,7 @@ const CreatePackage = () => {
     }, []);
 
     const handleSaveChanges = async () => {
+        console.log(userData.ID);
         try {
             const response = await fetch('https://wellness.neardeal.me/WAPI/updateCouponsMW.php', {
                 method: 'POST',
@@ -97,7 +98,7 @@ const CreatePackage = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "vendorid": userData.ID,
+                    "vendorId": userData.ID,
                     "title": packageTitle,
                     "startDate": "2024-10-01",
                     "endDate": "2024-10-15",

@@ -139,33 +139,28 @@ const SignUp = () => {
                 return true; // Proceed to next step if verification is successful
             } else if (step === 5) {
                 // Handle final API call directly after successful verification
-                payload = {
-                    userid: userId,
-                    contactno: storeData.contact, // Assuming this field is mapped from storeData
-                    storeaddress: storeData.storeAddress,
-                    storedoo: merchantData.dob, // Date of opening
-                    city: storeData.city,
-                    country: storeData.country,
-                    zip: storeData.zip,
-                    coordinates: "", // If applicable, else keep as empty string
-                    storeimage: "", // Assuming this might be optional
-                    storelogo: storeData.profilePic || "" // Use profilePic from storeData
-                };
-    
+               
+    console.log(storeData);
                 const finalResponse = await fetch('https://wellness.neardeal.me/WAPI/merchantSignup.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(payload),
+                    body: JSON.stringify({
+                        userid: userId,
+                        contactno: storeData.contact,
+                        storeaddress: storeData.storeAddress,
+                        storedoo: merchantData.dob, 
+                        city: storeData.city,
+                        country: storeData.country,
+                        zip: storeData.zip,
+                        coordinates: "kl",
+                        storeimage: "kjn",
+                        storelogo: "jk"
+                    }),
                 });
     
-                // console.log('Final Response:', finalResponse);
-                if (!finalResponse.ok) {
-                    throw new Error('Network response was not ok.');
-                }
-    
-                await finalResponse.json();
+                console.log('Final Response:', finalResponse);
                 navigate('/login');
                 toast.success('Merchant account launched successfully');
             }
