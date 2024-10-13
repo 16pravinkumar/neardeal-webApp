@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import imageUpload from "../assets/imageUpload.svg";
 
 const CreatePackage = () => {
     const { id } = useParams();
@@ -63,7 +64,7 @@ const CreatePackage = () => {
             setDuration(inventoryData.Duration || '');
             setEditorStates(prev => ({
                 ...prev,
-                included: { content: inventoryData.whatIncluded || '', operations: [] },
+                included: { content: inventoryData.WhatIncluded || '', operations: [] },
                 tnc: { content: inventoryData.Tnc || '', operations: [] }
             }));
         }
@@ -132,9 +133,11 @@ const CreatePackage = () => {
             toast.error('An error occurred');
         }
     };
-
+    const fileInputRef = useRef(null);
+    const handleUploadClick = () => {
+        fileInputRef.current.click();
+    };
     if (!inventoryData) return <div>Loading...</div>;
-
     return (
         <div style={{ display: 'flex' }}>
             <SideBar />
@@ -182,7 +185,7 @@ const CreatePackage = () => {
                                     value={packageTitle}
                                     onChange={handleInputChange}
                                 />
-                                <div className="image-upload" style={{ cursor: 'pointer', textAlign: 'center' }}>
+                                {/* <div className="image-upload" style={{ cursor: 'pointer', textAlign: 'center' }}>
                                     <input
                                         type="file"
                                         multiple
@@ -192,7 +195,27 @@ const CreatePackage = () => {
                                     />
                                     <span style={{ marginTop: '20px', fontWeight: 'bold', fontSize: '20px' }}>Select files</span>
                                     <p className="grey">Drop files here or click <span style={{ color: '#00A76F' }}>browse</span> through your machine</p>
+                                </div> */}
+
+
+                                <div
+                                    className="image-upload"
+                                    style={{ cursor: 'pointer', textAlign: 'center' }}
+                                    onClick={handleUploadClick}
+                                >
+                                    <img src={imageUpload} alt="upload" />
+                                    <span style={{ marginTop: '20px', fontWeight: 'bold', fontSize: '20px' }}>Select files</span>
+                                    <p className="grey">Drop files here or click <span style={{ color: '#00A76F' }}>browse</span> through your machine</p>
+                                    <input
+                                        type="file"
+                                        multiple
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        ref={fileInputRef}
+                                        style={{ display: 'none' }}
+                                    />
                                 </div>
+
                                 <div className="image-select" style={{ display: 'flex', flexWrap: 'wrap' }}>
                                     {images.map((image, index) => (
                                         <div key={index} style={{ position: 'relative', margin: '10px' }}>

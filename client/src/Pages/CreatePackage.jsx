@@ -55,12 +55,13 @@ const CreatePackage = () => {
                 },
                 body: JSON.stringify({
                     "vendorId": userData.ID,
-                    "invCat": 'spa'
+                    "invCat": 'spa',
+                    "fetchType": 'List'
                 })
             });
 
             const data = await response.json();
-            console.log(data);
+            console.log('Data', data);
 
             setSpa(data.data);
         } catch (error) {
